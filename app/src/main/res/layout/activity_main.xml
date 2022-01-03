@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolBar"
+            style="?attr/collapsingToolbarLayoutMediumStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:layout_width="match_parent"
+            app:expandedTitleTextAppearance="?attr/textAppearanceDisplayMedium"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize">
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_name"
+                android:elevation="0dp" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="52dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchorGravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/ic_theme"
+        app:layout_anchor="@id/collapsingToolBar" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

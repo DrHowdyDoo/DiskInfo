@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/txtView_mount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:layout_marginEnd="4dp"
+        android:text="/storage"
+        android:tooltipText="fileStore"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        app:layout_constraintEnd_toStartOf="@+id/txtView_total_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtView_total_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="820MB"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView_mount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_fileSystem"
+        style="@style/Widget.Material3.Chip.Suggestion"
+        android:tooltipText="FileSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ext4"
+        android:clickable="false"
+        android:checked="true"
+        app:chipCornerRadius="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_mount" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_access"
+        style="@style/Widget.Material3.Chip.Suggestion"
+        android:tooltipText="Access Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="R/W"
+        android:checked="true"
+        android:clickable="false"
+        android:layout_marginStart="4dp"
+        app:chipCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/chip_fileSystem"
+        app:layout_constraintStart_toEndOf="@id/chip_fileSystem"
+        app:layout_constraintTop_toTopOf="@id/chip_fileSystem" />
+
+    <TextView
+        android:id="@+id/txtView_used_size"
+        android:layout_width="wrap_content"
+        android:text="150MB"
+        android:layout_marginBottom="6dp"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        app:layout_constraintTop_toBottomOf="@+id/chip_fileSystem"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/track_bar"
+        app:trackThickness="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        app:trackCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_used_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView_unused"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200MB"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView_used_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_fileSystem" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
