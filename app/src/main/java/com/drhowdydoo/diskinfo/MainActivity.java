@@ -1,6 +1,11 @@
 package com.drhowdydoo.diskinfo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,10 +26,29 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MaterialToolbar materialToolbar;
     private FloatingActionButton fab;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
+            case "purple":
+                setTheme(R.style.Theme_DiskInfo_Purple);
+                break;
+
+            case "red":
+                setTheme(R.style.Theme_DiskInfo_Red);
+                break;
+
+            case "yellow":
+                setTheme(R.style.Theme_DiskInfo_Yellow);
+                break;
+
+            case "green":
+                setTheme(R.style.Theme_DiskInfo_Green);
+                break;
+        }
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -60,10 +84,26 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
 
         fab.setOnClickListener(view -> {
-            BottomSheet bottomSheet = new BottomSheet(this);
+            BottomSheet bottomSheet = new BottomSheet();
             bottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
         });
 
+
     }
+
+    public void restartToApply(long delay) {
+        new Handler().postDelayed(() -> {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                finish();
+            }
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                finish();
+            }
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }, delay);
+    }
+
 
 }
