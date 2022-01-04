@@ -1,5 +1,7 @@
 package com.drhowdydoo.diskinfo;
 
+import android.content.Context;
+
 import java.text.DecimalFormat;
 
 public class Util {
@@ -19,7 +21,18 @@ public class Util {
 
     public static int getUsedSpace(long total, long used) {
 
-        return used == 0 ? 0 : (int) (100 / (total / used));
+        double totalIndouble = (double) total;
+        double usedIndouble = (double) used;
+
+        return total == 0 ? 0 : (int) ((usedIndouble / totalIndouble) * 100);
+    }
+
+
+    public static int dpToPx(Context context, int dp) {
+        float density = context.getResources()
+                .getDisplayMetrics()
+                .density;
+        return Math.round((float) dp * density);
     }
 
 }

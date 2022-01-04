@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
 
         fab.setOnClickListener(view -> {
-
+            BottomSheet bottomSheet = new BottomSheet(this);
+            bottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
         });
 
     }
