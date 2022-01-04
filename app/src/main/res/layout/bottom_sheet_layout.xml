@@ -7,16 +7,18 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/themes"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:gravity="start|center_vertical"
-        android:drawablePadding="8dp"
-        android:textAppearance="?attr/textAppearanceHeadlineLarge"
+        android:gravity="center"
+        android:drawablePadding="4dp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
         app:drawableStartCompat="@drawable/ic_theme_large"
         app:drawableTint="?attr/colorPrimary" />
 
@@ -110,5 +112,39 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtView_dynamic_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dynamic_colors"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:layout_margin="16dp" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        app:singleSelection="true"
+        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/dynamic_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/on"
+            app:icon="@drawable/ic_theme"
+            style="@style/App.ToggleButtons.Small" />
+
+        <Button
+            android:id="@+id/dynamic_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/off"
+            style="@style/App.ToggleButtons.Small" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
 </LinearLayout>

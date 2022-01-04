@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.color.DynamicColors;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
             case "green":
                 setTheme(R.style.Theme_DiskInfo_Green);
                 break;
+
+        }
+
+        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+            DynamicColors.applyIfAvailable(this);
         }
         setContentView(R.layout.activity_main);
 

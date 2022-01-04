@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DiskInfo</string>
     <string name="themes">Themes</string>
+    <string name="dynamic_colors">Dynamic Colors</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

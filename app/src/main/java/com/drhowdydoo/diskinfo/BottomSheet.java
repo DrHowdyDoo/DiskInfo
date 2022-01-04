@@ -2,16 +2,21 @@ package com.drhowdydoo.diskinfo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.color.DynamicColors;
 
 public class BottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
@@ -19,6 +24,9 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
     private MaterialCardView themePurple, themeRed, themeYellow, themeGreen;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private MaterialButtonToggleGroup dynamicColors;
+    private MaterialButton t1, t2;
+    private TextView dynamicColorsTitle;
 
     public BottomSheet() {
 
@@ -36,6 +44,21 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
         themeYellow = v.findViewById(R.id.theme_yellow);
         themeGreen = v.findViewById(R.id.theme_green);
 
+        dynamicColors = v.findViewById(R.id.toggleButton);
+        t1 = v.findViewById(R.id.dynamic_on);
+        t2 = v.findViewById(R.id.dynamic_off);
+        dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
+
+        dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (checkedId == R.id.dynamic_on) {
+                editor.putBoolean("DiskInfo.DynamicColors", true).apply();
+                DynamicColors.applyIfAvailable(requireActivity());
+            }
+            if (checkedId == R.id.dynamic_off) {
+                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            }
+        });
+
         themePurple.setOnClickListener(this);
         themeRed.setOnClickListener(this);
         themeYellow.setOnClickListener(this);
@@ -43,6 +66,16 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
 
         sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
+        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false))
+            dynamicColors.check(R.id.dynamic_on);
+        else dynamicColors.check(R.id.dynamic_off);
+
+        if (Build.VERSION.SDK_INT < 31) {
+            t1.setEnabled(false);
+            t2.setEnabled(false);
+            dynamicColorsTitle.setEnabled(false);
+        }
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
             case "purple":
@@ -60,6 +93,7 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
             case "green":
                 themeGreen.setChecked(true);
                 break;
+
         }
 
         return v;
