@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.nio.file.FileStore;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private MaterialToolbar materialToolbar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
+        materialToolbar = findViewById(R.id.materialToolBar);
+        fab = findViewById(R.id.fab_theme);
+
+        String version = "v" + BuildConfig.VERSION_NAME;
+        materialToolbar.setSubtitle(version);
 
         ArrayList<DataStore> storeArrayList = new ArrayList<>();
 
@@ -49,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         divider.setDividerInsetEnd(32);
         recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        fab.setOnClickListener(view -> {
+
+        });
 
     }
 

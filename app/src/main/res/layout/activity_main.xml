@@ -22,10 +22,12 @@
 
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_name"
                 android:elevation="0dp" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
