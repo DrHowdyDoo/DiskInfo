@@ -1,6 +1,9 @@
 package com.drhowdydoo.diskinfo;
 
 import android.content.Context;
+import android.util.TypedValue;
+
+import androidx.annotation.AttrRes;
 
 import java.text.DecimalFormat;
 
@@ -33,6 +36,12 @@ public class Util {
                 .getDisplayMetrics()
                 .density;
         return Math.round((float) dp * density);
+    }
+
+    public static int getColorAttr(Context context, @AttrRes int resId) {
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(resId, typedValue, true);
+        return typedValue.data;
     }
 
 }

@@ -42,10 +42,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/img_purple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/purple_primary_40"
                 android:background="@drawable/ic_circle_24" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -62,10 +62,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/img_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/red_primary_40"
                 android:background="@drawable/ic_circle_24" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -82,10 +82,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/img_yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/yellow_primary_40"
                 android:background="@drawable/ic_circle_24" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -102,10 +102,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/img_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/green_primary_40"
                 android:background="@drawable/ic_circle_24" />
 
         </com.google.android.material.card.MaterialCardView>
