@@ -50,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.Theme_DiskInfo_Green);
                 break;
 
-        }
+            default:
+                if (DynamicColors.isDynamicColorAvailable()) {
+                    DynamicColors.applyIfAvailable(this);
+                } else setTheme(R.style.Theme_DiskInfo_Purple);
+                break;
 
-        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
-            DynamicColors.applyIfAvailable(this);
         }
         setContentView(R.layout.activity_main);
 

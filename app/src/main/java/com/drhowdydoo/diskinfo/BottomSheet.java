@@ -25,7 +25,7 @@ import com.google.android.material.color.DynamicColors;
 public class BottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
 
-    private MaterialCardView themePurple, themeRed, themeYellow, themeGreen;
+    private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors;
@@ -49,6 +49,7 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
         themeRed = v.findViewById(R.id.theme_red);
         themeYellow = v.findViewById(R.id.theme_yellow);
         themeGreen = v.findViewById(R.id.theme_green);
+        themeDynamic = v.findViewById(R.id.theme_dynamic);
 
         imgPurple = v.findViewById(R.id.img_purple);
         imgRed = v.findViewById(R.id.img_red);
@@ -86,27 +87,18 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
         t2 = v.findViewById(R.id.dynamic_off);
         dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
 
-        dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
-            if (checkedId == R.id.dynamic_on) {
-                editor.putBoolean("DiskInfo.DynamicColors", true).apply();
-                DynamicColors.applyIfAvailable(requireActivity());
-            }
-            if (checkedId == R.id.dynamic_off) {
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-            }
-        });
-
-        themePurple.setOnClickListener(this);
-        themeRed.setOnClickListener(this);
-        themeYellow.setOnClickListener(this);
-        themeGreen.setOnClickListener(this);
-
         sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false))
+        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
             dynamicColors.check(R.id.dynamic_on);
-        else dynamicColors.check(R.id.dynamic_off);
+            themeDynamic.setVisibility(View.VISIBLE);
+            themeDynamic.setChecked(true);
+        } else {
+            dynamicColors.check(R.id.dynamic_off);
+            themeDynamic.setChecked(false);
+            themeDynamic.setVisibility(View.GONE);
+        }
 
         if (Build.VERSION.SDK_INT < 31) {
             t1.setEnabled(false);
@@ -132,6 +124,31 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
                 break;
 
         }
+
+        dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (checkedId == R.id.dynamic_on) {
+                editor.putBoolean("DiskInfo.DynamicColors", true).apply();
+                dynamicColors.check(R.id.dynamic_on);
+                unCheckAll();
+                themeDynamic.setVisibility(View.VISIBLE);
+                themeDynamic.setChecked(true);
+                editor.putString("DiskInfo.Theme", "dynamic").apply();
+                DynamicColors.applyIfAvailable(requireActivity());
+            }
+            if (checkedId == R.id.dynamic_off) {
+                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+                editor.putString("DiskInfo.Theme", "purple").apply();
+                themePurple.setChecked(true);
+                themeDynamic.setVisibility(View.GONE);
+                dismiss();
+                restart();
+            }
+        });
+
+        themePurple.setOnClickListener(this);
+        themeRed.setOnClickListener(this);
+        themeYellow.setOnClickListener(this);
+        themeGreen.setOnClickListener(this);
 
         return v;
     }
