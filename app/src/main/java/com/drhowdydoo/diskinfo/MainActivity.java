@@ -23,6 +23,8 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
+import me.zhanghai.android.fastscroll.FastScrollerBuilder;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         divider.setDividerInsetEnd(32);
         recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(recyclerViewAdapter);
+        new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
         fab.setOnClickListener(view -> {
             BottomSheet bottomSheet = new BottomSheet();
