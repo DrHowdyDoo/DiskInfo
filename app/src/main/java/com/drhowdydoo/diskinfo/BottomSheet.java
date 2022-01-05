@@ -90,20 +90,21 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
         sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
-            dynamicColors.check(R.id.dynamic_on);
-            themeDynamic.setVisibility(View.VISIBLE);
-            themeDynamic.setChecked(true);
-        } else {
-            dynamicColors.check(R.id.dynamic_off);
-            themeDynamic.setChecked(false);
-            themeDynamic.setVisibility(View.GONE);
-        }
 
         if (Build.VERSION.SDK_INT < 31) {
             t1.setEnabled(false);
             t2.setEnabled(false);
             dynamicColorsTitle.setEnabled(false);
+        } else {
+            if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+                dynamicColors.check(R.id.dynamic_on);
+                themeDynamic.setVisibility(View.VISIBLE);
+                themeDynamic.setChecked(true);
+            } else {
+                dynamicColors.check(R.id.dynamic_off);
+                themeDynamic.setChecked(false);
+                themeDynamic.setVisibility(View.GONE);
+            }
         }
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
