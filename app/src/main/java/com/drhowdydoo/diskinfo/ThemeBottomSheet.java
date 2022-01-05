@@ -22,7 +22,7 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.DynamicColors;
 
-public class BottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
+public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
 
     private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic;
@@ -34,7 +34,7 @@ public class BottomSheet extends BottomSheetDialogFragment implements View.OnCli
 
     private ImageView imgPurple, imgRed, imgYellow, imgGreen;
 
-    public BottomSheet() {
+    public ThemeBottomSheet() {
 
     }
 

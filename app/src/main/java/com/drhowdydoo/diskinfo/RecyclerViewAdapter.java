@@ -2,6 +2,7 @@ package com.drhowdydoo.diskinfo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<DataStore> storeArrayList;
     private Context context;
+    private SharedPreferences sharedPref;
 
     public RecyclerViewAdapter(Context context, ArrayList<DataStore> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
@@ -39,6 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DataStore curr = storeArrayList.get(position);
         String readOnly = "r", readWrite = "r/w";
         String access_type = curr.isAccess_type() ? readOnly : readWrite;
+        sharedPref = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
+
 
         holder.mountName.setText(curr.getMount_name());
         holder.totalSpace.setText(Util.FormatBytes(curr.getTotal()) + " total");
@@ -46,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.chip_access.setText(access_type);
         holder.usedSpace.setText(Util.FormatBytes(curr.getUsed()) + " used");
         holder.freeSpace.setText(Util.FormatBytes(curr.getUnused()) + " free");
-        holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()), true);
+        holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()), sharedPref.getBoolean("animation", true));
         holder.chip_blockSize.setText(Util.FormatBytes(curr.getBlockSize()));
 
     }

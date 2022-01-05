@@ -15,6 +15,7 @@
         <!-- Customize your theme here. -->
 
         <item name="tooltipStyle">@style/App.ToolTip.Rounded</item>
+        <item name="switchStyle">@style/App.Switches</item>
     </style>
 
     <style name="Theme.DiskInfo.Purple" parent="Theme.DiskInfo">
@@ -176,6 +177,13 @@
     <style name="ShapeAppearance.ToolTip" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">30dp</item>
+    </style>
+
+
+    <style name="App.Switches" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="track">@drawable/switch_track</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
+
     </style>
 
 </resources>

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private SharedPreferences sharedPref;
     private AppBarLayout appBarLayout;
+    private MaterialButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         materialToolbar = findViewById(R.id.materialToolBar);
         appBarLayout = findViewById(R.id.appBar);
         fab = findViewById(R.id.fab_theme);
+        settings = findViewById(R.id.settings);
 
         String version = "v" + BuildConfig.VERSION_NAME;
         materialToolbar.setSubtitle(version);
@@ -102,8 +105,13 @@ public class MainActivity extends AppCompatActivity {
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
         fab.setOnClickListener(view -> {
-            BottomSheet bottomSheet = new BottomSheet();
-            bottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
+            ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
+            themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
+        });
+
+        settings.setOnClickListener(view -> {
+            SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
+            settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
         });
 
 

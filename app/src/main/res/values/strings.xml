@@ -4,4 +4,7 @@
     <string name="dynamic_colors">Dynamic Colors</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="show_animation">Show Animation</string>
+    <string name="preferences">Preferences</string>
+    <string name="animate_bars">Animate Bars</string>
 </resources>

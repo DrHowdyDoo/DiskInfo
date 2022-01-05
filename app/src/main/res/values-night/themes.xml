@@ -14,6 +14,7 @@
         <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <!-- Customize your theme here. -->
         <item name="tooltipStyle">@style/App.ToolTip.Rounded</item>
+        <item name="switchStyle">@style/App.Switches</item>
     </style>
 
     <style name="Theme.DiskInfo.Purple" parent="Theme.DiskInfo">
