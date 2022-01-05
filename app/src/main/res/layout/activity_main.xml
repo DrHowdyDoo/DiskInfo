@@ -28,7 +28,6 @@
                 app:title="@string/app_name"
                 android:elevation="0dp" />
 
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

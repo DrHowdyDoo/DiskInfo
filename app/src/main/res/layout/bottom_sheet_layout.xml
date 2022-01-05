@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="32dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="contentDescription"
     android:orientation="vertical">
 
     <TextView
@@ -29,20 +31,19 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginBottom="16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_purple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconTint="@color/white"
-            android:layout_width="wrap_content"
             app:cardCornerRadius="16dp"
-            android:layout_height="wrap_content">
+            app:checkedIconTint="@color/white"
+            tools:ignore="DuplicateSpeakableTextCheck">
 
             <ImageView
                 android:id="@+id/img_purple"
@@ -165,10 +166,11 @@
 
         <Button
             android:id="@+id/dynamic_off"
+            style="@style/App.ToggleButtons.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/off"
-            style="@style/App.ToggleButtons.Small" />
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
 </LinearLayout>

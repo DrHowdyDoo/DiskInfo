@@ -13,6 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?android:attr/colorBackground</item>
         <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <!-- Customize your theme here. -->
+
+        <item name="tooltipStyle">@style/App.ToolTip.Rounded</item>
     </style>
 
     <style name="Theme.DiskInfo.Purple" parent="Theme.DiskInfo">
@@ -163,9 +165,17 @@
         <item name="iconPadding">2dp</item>
         <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">12dp</item>
-        <item name="android:minWidth">28dp</item>
+        <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">52dp</item>
     </style>
 
+    <style name="App.ToolTip.Rounded" parent="Widget.Material3.Tooltip">
+        <item name="shapeAppearance">@style/ShapeAppearance.ToolTip</item>
+    </style>
+
+    <style name="ShapeAppearance.ToolTip" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
 
 </resources>
