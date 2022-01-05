@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialToolbar materialToolbar;
     private FloatingActionButton fab;
     private SharedPreferences sharedPref;
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         materialToolbar = findViewById(R.id.materialToolBar);
+        appBarLayout = findViewById(R.id.appBar);
         fab = findViewById(R.id.fab_theme);
 
         String version = "v" + BuildConfig.VERSION_NAME;
