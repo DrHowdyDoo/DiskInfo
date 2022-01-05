@@ -46,7 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.chip_access.setText(access_type);
         holder.usedSpace.setText(Util.FormatBytes(curr.getUsed()) + " used");
         holder.freeSpace.setText(Util.FormatBytes(curr.getUnused()) + " free");
-        holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()));
+        holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()), true);
         holder.chip_blockSize.setText(Util.FormatBytes(curr.getBlockSize()));
 
     }

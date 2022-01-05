@@ -110,17 +110,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void restartToApply(long delay) {
-        new Handler().postDelayed(() -> {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                finish();
-            }
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                finish();
-            }
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }, delay);
+        if (recyclerView != null)
+            new Handler().postDelayed(() -> {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                    finish();
+                }
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    finish();
+                }
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }, delay);
     }
 
 
