@@ -1,5 +1,6 @@
 package com.drhowdydoo.diskinfo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private AppBarLayout appBarLayout;
     private MaterialButton settings;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private ArrayList<DataStore> storeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         String version = "v" + BuildConfig.VERSION_NAME;
         materialToolbar.setSubtitle(version);
 
-        ArrayList<DataStore> storeArrayList = new ArrayList<>();
+        storeArrayList = new ArrayList<>();
 
         FileSystem filesystem = FileSystems.getDefault();
         for (FileStore store : filesystem.getFileStores()) {
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, storeArrayList);
+        recyclerViewAdapter = new RecyclerViewAdapter(this, storeArrayList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MaterialDividerItemDecoration divider = new MaterialDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
@@ -132,5 +135,17 @@ public class MainActivity extends AppCompatActivity {
             }, delay);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void recreateRecyclerView() {
+        if (recyclerViewAdapter != null) {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+            if (layoutManager != null) {
+                int firstVisible = layoutManager.findFirstVisibleItemPosition();
+                int lastVisible = layoutManager.findLastVisibleItemPosition();
+                int itemsChanged = lastVisible - firstVisible + 1;
+                recyclerViewAdapter.notifyItemRangeChanged(firstVisible, itemsChanged);
+            }
+        }
+    }
 
 }

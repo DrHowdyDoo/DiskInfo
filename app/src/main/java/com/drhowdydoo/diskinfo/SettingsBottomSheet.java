@@ -44,6 +44,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
         blockSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("blockSize", isChecked).apply();
+            ((MainActivity) requireActivity()).recreateRecyclerView();
         });
 
 
