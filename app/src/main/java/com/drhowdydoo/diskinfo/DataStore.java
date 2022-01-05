@@ -7,17 +7,19 @@ public class DataStore {
 
     private boolean access_type;
 
-    private long total,
-            unused,
-            used;
+    private long total;
+    private long unused;
+    private long used;
+    private long blockSize;
 
-    public DataStore(String mount_name, String fileSystem, boolean access_type, long total, long unused, long used) {
+    public DataStore(String mount_name, String fileSystem, boolean access_type, long total, long unused, long used, long blockSize) {
         this.mount_name = mount_name;
         this.fileSystem = fileSystem;
         this.access_type = access_type;
         this.total = total;
         this.unused = unused;
         this.used = used;
+        this.blockSize = blockSize;
     }
 
     public String getMount_name() {
@@ -67,5 +69,13 @@ public class DataStore {
 
     public void setAccess_type(boolean access_type) {
         this.access_type = access_type;
+    }
+
+    public long getBlockSize() {
+        return blockSize;
+    }
+
+    public void setBlockSize(long blockSize) {
+        this.blockSize = blockSize;
     }
 }

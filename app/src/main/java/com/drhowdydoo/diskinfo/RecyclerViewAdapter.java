@@ -47,6 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.usedSpace.setText(Util.FormatBytes(curr.getUsed()) + " used");
         holder.freeSpace.setText(Util.FormatBytes(curr.getUnused()) + " free");
         holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()));
+        holder.chip_blockSize.setText(Util.FormatBytes(curr.getBlockSize()));
 
     }
 
@@ -59,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mountName, usedSpace, totalSpace, freeSpace;
-        public Chip chip_fileSystem, chip_access;
+        public Chip chip_fileSystem, chip_access, chip_blockSize;
         public LinearProgressIndicator track_bar;
 
         public ViewHolder(@NonNull View itemView) {
@@ -68,6 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             track_bar = itemView.findViewById(R.id.track_bar);
             chip_fileSystem = itemView.findViewById(R.id.chip_fileSystem);
             chip_access = itemView.findViewById(R.id.chip_access);
+            chip_blockSize = itemView.findViewById(R.id.chip_blockSize);
             usedSpace = itemView.findViewById(R.id.txtView_used_size);
             totalSpace = itemView.findViewById(R.id.txtView_total_size);
             freeSpace = itemView.findViewById(R.id.txtView_unused);

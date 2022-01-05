@@ -60,6 +60,21 @@
         app:layout_constraintStart_toEndOf="@id/chip_fileSystem"
         app:layout_constraintTop_toTopOf="@id/chip_fileSystem" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_blockSize"
+        style="@style/Widget.Material3.Chip.Suggestion"
+        android:tooltipText="Block size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:gravity="center"
+        android:clickable="false"
+        android:checked="true"
+        app:chipCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/chip_access"
+        app:layout_constraintStart_toEndOf="@id/chip_access"
+        app:layout_constraintTop_toTopOf="@id/chip_access" />
+
     <TextView
         android:id="@+id/txtView_used_size"
         android:layout_width="wrap_content"

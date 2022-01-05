@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StatFs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 long totalSpace = store.getTotalSpace();
                 long unusedSpace = store.getUnallocatedSpace();
                 long usedSpace = totalSpace - unusedSpace;
-                DataStore dataStore = new DataStore(store.toString(), store.type(), store.isReadOnly(), totalSpace, unusedSpace, usedSpace);
+                String fileStorePath = store.toString().replaceFirst(" .*", "");
+                StatFs statFs = new StatFs(fileStorePath);
+                long blockSize = statFs.getBlockSizeLong();
+                DataStore dataStore = new DataStore(store.toString(), store.type(), store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSize);
                 storeArrayList.add(dataStore);
 
             } catch (IOException e) {
