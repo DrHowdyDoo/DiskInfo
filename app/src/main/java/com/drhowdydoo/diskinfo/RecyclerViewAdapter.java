@@ -52,6 +52,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.freeSpace.setText(Util.FormatBytes(curr.getUnused()) + " free");
         holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()), sharedPref.getBoolean("animation", true));
         holder.chip_blockSize.setText(Util.FormatBytes(curr.getBlockSize()));
+        if (sharedPref.getBoolean("blockSize", true)) {
+            holder.chip_blockSize.setVisibility(View.VISIBLE);
+        } else {
+            holder.chip_blockSize.setVisibility(View.GONE);
+        }
 
     }
 

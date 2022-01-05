@@ -7,4 +7,5 @@
     <string name="show_animation">Show Animation</string>
     <string name="preferences">Preferences</string>
     <string name="animate_bars">Animate Bars</string>
+    <string name="show_block_size">Show block size</string>
 </resources>

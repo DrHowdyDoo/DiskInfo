@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:paddingBottom="32dp"
+    android:paddingTop="32dp"
     android:layout_height="wrap_content">
 
 
@@ -11,10 +13,12 @@
         android:layout_height="wrap_content"
         android:text="@string/preferences"
         android:gravity="center"
-        android:textAppearance="?attr/textAppearanceDisplaySmall"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -22,10 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:gravity="start"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="@string/animate_bars"
         android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/switchMaterial_animation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtView_title" />
@@ -38,5 +43,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/txtView_blockSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/show_block_size"
+        android:gravity="start"
+        android:layout_marginEnd="16dp"
+        android:textSize="18sp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        app:layout_constraintEnd_toStartOf="@+id/switchMaterial_blockSize"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchMaterial_blockSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView_blockSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtView_blockSize" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

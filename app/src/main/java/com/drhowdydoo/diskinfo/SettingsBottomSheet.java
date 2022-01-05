@@ -3,7 +3,6 @@ package com.drhowdydoo.diskinfo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
-    private SwitchMaterial animation;
+    private SwitchMaterial animation, blockSize;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
@@ -32,13 +31,19 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        Log.d("TEST", "onCreateView: ");
 
         animation = v.findViewById(R.id.switchMaterial_animation);
+        blockSize = v.findViewById(R.id.switchMaterial_blockSize);
+
         animation.setChecked(sharedPref.getBoolean("animation", true));
+        blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
 
         animation.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("animation", isChecked).apply();
+        });
+
+        blockSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editor.putBoolean("blockSize", isChecked).apply();
         });
 
 
