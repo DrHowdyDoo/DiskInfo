@@ -83,4 +83,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             freeSpace = itemView.findViewById(R.id.txtView_unused);
         }
     }
+
 }

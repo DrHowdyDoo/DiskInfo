@@ -7,8 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.format.Formatter;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
@@ -33,11 +36,13 @@ import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "TEST";
     private RecyclerView recyclerView;
     private MaterialToolbar materialToolbar;
     private FloatingActionButton fab;
     private SharedPreferences sharedPref;
     private AppBarLayout appBarLayout;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     private MaterialButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<DataStore> storeArrayList;
@@ -75,11 +80,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         materialToolbar = findViewById(R.id.materialToolBar);
         appBarLayout = findViewById(R.id.appBar);
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar);
         fab = findViewById(R.id.fab_theme);
         settings = findViewById(R.id.settings);
-
-        String version = "v" + BuildConfig.VERSION_NAME;
-        materialToolbar.setSubtitle(version);
 
         storeArrayList = new ArrayList<>();
 
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         recyclerViewAdapter = new RecyclerViewAdapter(this, storeArrayList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -115,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
         divider.setDividerInsetEnd(32);
         recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Parcelable state = intent.getParcelableExtra("scroll_state");
+            if (state != null) {
+                Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(state);
+                Log.d(TAG, "onCreate: restored");
+            }
+        }
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
         fab.setOnClickListener(view -> {
@@ -131,15 +144,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void restartToApply(long delay) {
-        if (recyclerView != null)
-            new Handler().postDelayed(() -> {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                    finish();
-                }
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    finish();
+
+        Parcelable state;
+        state = Objects.requireNonNull(recyclerView.getLayoutManager()).onSaveInstanceState();
+
+        new Handler().postDelayed(() -> {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                finish();
+            }
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("scroll_state", state);
+            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                finish();
                 }
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }, delay);
@@ -158,5 +175,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
