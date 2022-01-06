@@ -1,6 +1,7 @@
 package com.drhowdydoo.diskinfo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
     private SwitchMaterial animation, blockSize;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private boolean isChanged = false;
 
     public SettingsBottomSheet() {
     }
@@ -38,14 +40,29 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
 
-        animation.setOnCheckedChangeListener((buttonView, isChecked) -> editor.putBoolean("animation", isChecked).apply());
+        animation.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editor.putBoolean("animation", isChecked).apply();
+        });
 
         blockSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("blockSize", isChecked).apply();
-            ((MainActivity) requireActivity()).recreateRecyclerView();
+            isChanged = true;
         });
 
 
         return v;
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (isSettingsChanged()) {
+            ((MainActivity) requireActivity()).recreateRecyclerView();
+        }
+        isChanged = false;
+    }
+
+    private boolean isSettingsChanged() {
+        return isChanged;
     }
 }
