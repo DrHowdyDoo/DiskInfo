@@ -38,9 +38,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
 
-        animation.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            editor.putBoolean("animation", isChecked).apply();
-        });
+        animation.setOnCheckedChangeListener((buttonView, isChecked) -> editor.putBoolean("animation", isChecked).apply());
 
         blockSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("blockSize", isChecked).apply();
