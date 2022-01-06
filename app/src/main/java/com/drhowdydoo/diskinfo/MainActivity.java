@@ -13,6 +13,7 @@ import android.text.format.Formatter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -26,6 +27,7 @@ import java.nio.file.FileStore;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 int firstVisible = layoutManager.findFirstVisibleItemPosition();
                 int lastVisible = layoutManager.findLastVisibleItemPosition();
                 int itemsChanged = lastVisible - firstVisible + 1;
+                ((SimpleItemAnimator) Objects.requireNonNull(recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
                 recyclerViewAdapter.notifyItemRangeChanged(firstVisible, itemsChanged);
             }
         }
