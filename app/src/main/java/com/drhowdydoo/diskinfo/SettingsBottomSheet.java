@@ -19,7 +19,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
     private SwitchMaterial animation, blockSize;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private boolean isChanged = false;
+    private boolean isChanged = false, isCheckedPreviously;
 
     public SettingsBottomSheet() {
     }
@@ -40,13 +40,15 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
 
+        isCheckedPreviously = blockSize.isChecked();
+
         animation.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("animation", isChecked).apply();
         });
 
         blockSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("blockSize", isChecked).apply();
-            isChanged = true;
+            isChanged = (isCheckedPreviously ^ isChecked);
         });
 
 
@@ -56,13 +58,10 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        if (isSettingsChanged()) {
+        if (isChanged) {
             ((MainActivity) requireActivity()).recreateRecyclerView();
         }
         isChanged = false;
     }
 
-    private boolean isSettingsChanged() {
-        return isChanged;
-    }
 }
