@@ -69,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.Theme_DiskInfo_Green);
                 break;
 
+            case "orange":
+                setTheme(R.style.Theme_DiskInfo_Orange);
+                break;
+
+            case "pink":
+                setTheme(R.style.Theme_DiskInfo_Pink);
+                break;
+
             default:
                 if (DynamicColors.isDynamicColorAvailable()) {
                     DynamicColors.applyIfAvailable(this);

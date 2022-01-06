@@ -162,6 +162,64 @@
         <item name="colorOutline">@color/green_neutral_variant_50</item>
     </style>
 
+    <style name="Theme.DiskInfo.Orange" parent="Theme.DiskInfo">
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorOnPrimary">@color/orange_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/orange_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/orange_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/orange_secondary</item>
+        <item name="colorOnSecondary">@color/orange_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/orange_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/orange_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/orange_tertiary</item>
+        <item name="colorOnTertiary">@color/orange_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/orange_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/orange_onTertiaryContainer</item>
+        <item name="colorError">@color/orange_error</item>
+        <item name="colorErrorContainer">@color/orange_errorContainer</item>
+        <item name="colorOnError">@color/orange_onError</item>
+        <item name="colorOnErrorContainer">@color/orange_onErrorContainer</item>
+        <item name="android:colorBackground">@color/orange_background</item>
+        <item name="colorOnBackground">@color/orange_onBackground</item>
+        <item name="colorSurface">@color/orange_surface</item>
+        <item name="colorOnSurface">@color/orange_onSurface</item>
+        <item name="colorSurfaceVariant">@color/orange_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/orange_onSurfaceVariant</item>
+        <item name="colorOutline">@color/orange_outline</item>
+        <item name="colorOnSurfaceInverse">@color/orange_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/orange_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/orange_primaryInverse</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Pink" parent="Theme.DiskInfo">
+        <item name="colorPrimary">@color/pink_light_primary</item>
+        <item name="colorOnPrimary">@color/pink_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/pink_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pink_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/pink_light_secondary</item>
+        <item name="colorOnSecondary">@color/pink_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/pink_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pink_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/pink_light_tertiary</item>
+        <item name="colorOnTertiary">@color/pink_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/pink_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/pink_light_onTertiaryContainer</item>
+        <item name="colorError">@color/pink_light_error</item>
+        <item name="colorErrorContainer">@color/pink_light_errorContainer</item>
+        <item name="colorOnError">@color/pink_light_onError</item>
+        <item name="colorOnErrorContainer">@color/pink_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/pink_light_background</item>
+        <item name="colorOnBackground">@color/pink_light_onBackground</item>
+        <item name="colorSurface">@color/pink_light_surface</item>
+        <item name="colorOnSurface">@color/pink_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/pink_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pink_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/pink_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/pink_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/pink_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/pink_light_primaryInverse</item>
+    </style>
+
     <style name="App.ToggleButtons.Small" parent="Widget.Material3.Button.OutlinedButton">
         <item name="iconPadding">2dp</item>
         <item name="android:paddingLeft">12dp</item>

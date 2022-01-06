@@ -161,4 +161,62 @@
         <item name="colorOutline">@color/green_neutral_variant_60</item>
     </style>
 
+    <style name="Theme.DiskInfo.Orange" parent="Theme.DiskInfo">
+        <item name="colorPrimary">@color/orange_dark_primary</item>
+        <item name="colorOnPrimary">@color/orange_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/orange_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/orange_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/orange_dark_secondary</item>
+        <item name="colorOnSecondary">@color/orange_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/orange_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/orange_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/orange_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/orange_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/orange_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/orange_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/orange_dark_error</item>
+        <item name="colorErrorContainer">@color/orange_dark_errorContainer</item>
+        <item name="colorOnError">@color/orange_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/orange_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/orange_dark_background</item>
+        <item name="colorOnBackground">@color/orange_dark_onBackground</item>
+        <item name="colorSurface">@color/orange_dark_surface</item>
+        <item name="colorOnSurface">@color/orange_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/orange_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/orange_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/orange_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/orange_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/orange_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/orange_dark_primaryInverse</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Pink" parent="Theme.DiskInfo">
+        <item name="colorPrimary">@color/pink_dark_primary</item>
+        <item name="colorOnPrimary">@color/pink_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/pink_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pink_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/pink_dark_secondary</item>
+        <item name="colorOnSecondary">@color/pink_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/pink_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pink_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/pink_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/pink_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/pink_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/pink_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/pink_dark_error</item>
+        <item name="colorErrorContainer">@color/pink_dark_errorContainer</item>
+        <item name="colorOnError">@color/pink_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/pink_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/pink_dark_background</item>
+        <item name="colorOnBackground">@color/pink_dark_onBackground</item>
+        <item name="colorSurface">@color/pink_dark_surface</item>
+        <item name="colorOnSurface">@color/pink_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/pink_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pink_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/pink_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/pink_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/pink_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/pink_dark_primaryInverse</item>
+    </style>
+
 </resources>

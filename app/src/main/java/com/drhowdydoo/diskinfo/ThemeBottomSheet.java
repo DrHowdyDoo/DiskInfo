@@ -25,14 +25,14 @@ import com.google.android.material.color.DynamicColors;
 public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
 
-    private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic;
+    private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic, themeOrange, themePink;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors;
     private MaterialButton t1, t2;
     private TextView dynamicColorsTitle;
 
-    private ImageView imgPurple, imgRed, imgYellow, imgGreen;
+    private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
 
     public ThemeBottomSheet() {
 
@@ -50,16 +50,22 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeYellow = v.findViewById(R.id.theme_yellow);
         themeGreen = v.findViewById(R.id.theme_green);
         themeDynamic = v.findViewById(R.id.theme_dynamic);
+        themeOrange = v.findViewById(R.id.theme_orange);
+        themePink = v.findViewById(R.id.theme_pink);
 
         imgPurple = v.findViewById(R.id.img_purple);
         imgRed = v.findViewById(R.id.img_red);
         imgYellow = v.findViewById(R.id.img_yellow);
         imgGreen = v.findViewById(R.id.img_green);
+        imgOrange = v.findViewById(R.id.img_orange);
+        imgPink = v.findViewById(R.id.img_pink);
 
         Drawable purple_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
         Drawable red_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
         Drawable yellow_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
         Drawable green_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
+        Drawable orange_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
+        Drawable pink_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
 
         if (purple_circle != null) {
             purple_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Purple), R.attr.colorPrimary));
@@ -79,6 +85,16 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         if (green_circle != null) {
             green_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Green), R.attr.colorPrimary));
             imgGreen.setBackground(green_circle);
+        }
+
+        if (orange_circle != null) {
+            orange_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Orange), R.attr.colorPrimary));
+            imgOrange.setBackground(orange_circle);
+        }
+
+        if (pink_circle != null) {
+            pink_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Pink), R.attr.colorPrimary));
+            imgPink.setBackground(pink_circle);
         }
 
 
@@ -124,6 +140,14 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
                 themeGreen.setChecked(true);
                 break;
 
+            case "orange":
+                themeOrange.setChecked(true);
+                break;
+
+            case "pink":
+                themePink.setChecked(true);
+                break;
+
         }
 
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
@@ -150,6 +174,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeRed.setOnClickListener(this);
         themeYellow.setOnClickListener(this);
         themeGreen.setOnClickListener(this);
+        themeOrange.setOnClickListener(this);
+        themePink.setOnClickListener(this);
 
         return v;
     }
@@ -189,6 +215,22 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
                 dismiss();
                 restart();
                 break;
+
+            case R.id.theme_orange:
+                unCheckAll();
+                if (!themeOrange.isChecked()) themeOrange.setChecked(true);
+                editor.putString("DiskInfo.Theme", "orange").apply();
+                dismiss();
+                restart();
+                break;
+
+            case R.id.theme_pink:
+                unCheckAll();
+                if (!themePink.isChecked()) themePink.setChecked(true);
+                editor.putString("DiskInfo.Theme", "pink").apply();
+                dismiss();
+                restart();
+                break;
         }
 
     }
@@ -203,6 +245,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeRed.setChecked(false);
         themeYellow.setChecked(false);
         themeGreen.setChecked(false);
+        themeOrange.setChecked(false);
+        themePink.setChecked(false);
     }
 
 }

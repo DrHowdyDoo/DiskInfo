@@ -42,7 +42,7 @@
             android:clickable="true"
             android:focusable="true"
             app:checkedIconMargin="17dp"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="18dp"
             app:checkedIconTint="?attr/colorOnPrimary"
             tools:ignore="DuplicateSpeakableTextCheck">
 
@@ -64,7 +64,7 @@
             app:checkedIconTint="?attr/colorOnPrimary"
             android:layout_width="wrap_content"
             app:checkedIconMargin="17dp"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="18dp"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -85,7 +85,7 @@
             app:checkedIconMargin="17dp"
             app:checkedIconTint="@color/white"
             android:layout_width="wrap_content"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="18dp"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -106,7 +106,7 @@
             app:checkedIconMargin="17dp"
             app:checkedIconTint="?attr/colorOnPrimary"
             android:layout_width="wrap_content"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="18dp"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -120,27 +120,79 @@
 
     </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/theme_dynamic"
-        android:checkable="true"
-        android:visibility="gone"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        app:checkedIconTint="?attr/colorOnPrimary"
-        android:layout_width="wrap_content"
-        app:cardCornerRadius="16dp"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/img_dynamic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/theme_orange"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_margin="8dp"
-            android:background="@drawable/ic_pie" />
+            app:checkedIconMargin="17dp"
+            app:checkedIconTint="?attr/colorOnPrimary"
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="18dp"
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/img_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_circle_24" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/theme_pink"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="8dp"
+            app:checkedIconMargin="17dp"
+            app:checkedIconTint="?attr/colorOnPrimary"
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="18dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_pink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_circle_24" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/theme_dynamic"
+            android:checkable="true"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:checkedIconTint="?attr/colorOnPrimary"
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_dynamic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_pie" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/txtView_dynamic_colors"
