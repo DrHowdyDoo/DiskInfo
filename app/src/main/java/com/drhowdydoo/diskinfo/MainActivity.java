@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<DataStore> storeArrayList;
+    private boolean expanded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
 
         storeArrayList = new ArrayList<>();
+
 
         FileSystem filesystem = FileSystems.getDefault();
         for (FileStore store : filesystem.getFileStores()) {
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(state);
                 Log.d(TAG, "onCreate: restored");
             }
+            appBarLayout.setExpanded(intent.getBooleanExtra("collapsing_toolbar_state", true));
         }
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
@@ -140,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
         });
 
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> expanded = verticalOffset == 0);
 
     }
 
@@ -154,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("scroll_state", state);
+            intent.putExtra("collapsing_toolbar_state", expanded);
             startActivity(intent);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 finish();
