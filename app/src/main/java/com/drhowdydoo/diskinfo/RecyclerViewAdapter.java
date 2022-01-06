@@ -3,7 +3,6 @@ package com.drhowdydoo.diskinfo;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewAdapter(Context context, ArrayList<DataStore> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
         this.context = context;
+        sharedPref = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -42,17 +42,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DataStore curr = storeArrayList.get(position);
         String readOnly = "r", readWrite = "r/w";
         String access_type = curr.isAccess_type() ? readOnly : readWrite;
-        sharedPref = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
-
 
         holder.mountName.setText(curr.getMount_name());
-        holder.totalSpace.setText(Formatter.formatFileSize(context, curr.getTotal()) + " total");
+        holder.totalSpace.setText(curr.getTotalSize() + " total");
         holder.chip_fileSystem.setText(curr.getFileSystem());
         holder.chip_access.setText(access_type);
-        holder.usedSpace.setText(Formatter.formatFileSize(context, curr.getUsed()) + " used");
-        holder.freeSpace.setText(Formatter.formatFileSize(context, curr.getUnused()) + " free");
-        holder.track_bar.setProgress(Util.getUsedSpace(curr.getTotal(), curr.getUsed()), sharedPref.getBoolean("animation", true));
-        holder.chip_blockSize.setText(Formatter.formatFileSize(context, curr.getBlockSize()));
+        holder.usedSpace.setText(curr.getUsedSize() + " used");
+        holder.freeSpace.setText(curr.getFreeSize() + " free");
+        holder.track_bar.setProgress(curr.getProgress(), sharedPref.getBoolean("animation", true));
+        holder.chip_blockSize.setText(curr.getBlockSize());
         if (sharedPref.getBoolean("blockSize", true)) {
             holder.chip_blockSize.setVisibility(View.VISIBLE);
         } else {

@@ -2,24 +2,36 @@ package com.drhowdydoo.diskinfo;
 
 public class DataStore {
 
-    private String mount_name,
-            fileSystem;
+    private String mount_name;
+    private String fileSystem;
+
+    private String totalSize;
+    private String usedSize;
+    private String freeSize;
+    private String blockSize;
 
     private boolean access_type;
 
     private long total;
     private long unused;
     private long used;
-    private long blockSize;
+    private long blockSpace;
 
-    public DataStore(String mount_name, String fileSystem, boolean access_type, long total, long unused, long used, long blockSize) {
+    private int progress;
+
+    public DataStore(String mount_name, String fileSystem, String totalSize, String usedSize, String freeSize, String blockSize, boolean access_type, long total, long unused, long used, long blockSpace, int progress) {
         this.mount_name = mount_name;
         this.fileSystem = fileSystem;
+        this.totalSize = totalSize;
+        this.usedSize = usedSize;
+        this.freeSize = freeSize;
+        this.blockSize = blockSize;
         this.access_type = access_type;
         this.total = total;
         this.unused = unused;
         this.used = used;
-        this.blockSize = blockSize;
+        this.blockSpace = blockSpace;
+        this.progress = progress;
     }
 
     public String getMount_name() {
@@ -71,11 +83,52 @@ public class DataStore {
         this.access_type = access_type;
     }
 
-    public long getBlockSize() {
+    public long getBlockSpace() {
+        return blockSpace;
+    }
+
+    public void setBlockSpace(long blockSpace) {
+        this.blockSpace = blockSpace;
+    }
+
+    public String getTotalSize() {
+        return totalSize;
+    }
+
+    public void setTotalSize(String totalSize) {
+        this.totalSize = totalSize;
+    }
+
+    public String getUsedSize() {
+        return usedSize;
+    }
+
+    public void setUsedSize(String usedSize) {
+        this.usedSize = usedSize;
+    }
+
+    public String getFreeSize() {
+        return freeSize;
+    }
+
+    public void setFreeSize(String freeSize) {
+        this.freeSize = freeSize;
+    }
+
+    public String getBlockSize() {
         return blockSize;
     }
 
-    public void setBlockSize(long blockSize) {
+    public void setBlockSize(String blockSize) {
         this.blockSize = blockSize;
     }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
 }

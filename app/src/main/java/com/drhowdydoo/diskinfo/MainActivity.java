@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StatFs;
+import android.text.format.Formatter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -86,10 +87,17 @@ public class MainActivity extends AppCompatActivity {
                 long totalSpace = store.getTotalSpace();
                 long unusedSpace = store.getUnallocatedSpace();
                 long usedSpace = totalSpace - unusedSpace;
+                String totalSize = Formatter.formatFileSize(this, totalSpace);
+                String usedSize = Formatter.formatFileSize(this, usedSpace);
+                String freeSize = Formatter.formatFileSize(this, unusedSpace);
+
+                int progress = Util.getUsedSpace(totalSpace, usedSpace);
+
                 String fileStorePath = store.toString().replaceFirst(" .*", "");
                 StatFs statFs = new StatFs(fileStorePath);
-                long blockSize = statFs.getBlockSizeLong();
-                DataStore dataStore = new DataStore(store.toString(), store.type(), store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSize);
+                long blockSpace = statFs.getBlockSizeLong();
+                String blockSize = Formatter.formatFileSize(this, blockSpace);
+                DataStore dataStore = new DataStore(store.toString(), store.type(), totalSize, usedSize, freeSize, blockSize, store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSpace, progress);
                 storeArrayList.add(dataStore);
 
             } catch (IOException e) {
