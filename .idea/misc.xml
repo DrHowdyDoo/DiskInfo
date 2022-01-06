@@ -10,7 +10,9 @@
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/fastscroll_track.xml" value="0.56796875" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_baseline_pie_chart_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_circle_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_icon.xml" value="0.56796875" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.56796875" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_pie.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_quarter.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_quarter_down.xml" value="0.37864583333333335" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.4111111111111111" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/item_view.xml" value="0.39861111111111114" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/settings_bottom_sheet_layout.xml" value="0.39861111111111114" />
+        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.328125" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.56796875" />
       </map>
     </option>
