@@ -16,6 +16,8 @@
 
         <item name="tooltipStyle">@style/App.ToolTip.Rounded</item>
         <item name="switchStyle">@style/App.Switches</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Overlay.LargeComponent
+        </item>
     </style>
 
     <style name="Theme.DiskInfo.Purple" parent="Theme.DiskInfo">
@@ -241,7 +243,11 @@
     <style name="App.Switches" parent="Widget.Material3.CompoundButton.Switch">
         <item name="track">@drawable/switch_track</item>
         <item name="android:thumb">@drawable/switch_thumb</item>
+    </style>
 
+    <style name="ShapeAppearance.Overlay.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
 </resources>
