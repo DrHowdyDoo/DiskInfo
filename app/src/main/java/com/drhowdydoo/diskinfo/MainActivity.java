@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private AppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    private MaterialButton settings;
+    private FloatingActionButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<DataStore> storeArrayList;
     private boolean expanded;
