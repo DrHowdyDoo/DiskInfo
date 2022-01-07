@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-night-v31/ic_launcher_foreground.xml" value="0.56796875" />
+        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-notnight-v31/ic_launcher_foreground.xml" value="0.56796875" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-v31/ic_pie.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/checked_circle.xml" value="0.37864583333333335" />
