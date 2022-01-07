@@ -175,6 +175,7 @@
             android:visibility="gone"
             android:clickable="true"
             android:focusable="true"
+            app:checkedIconMargin="17dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
             app:checkedIconTint="?attr/colorOnPrimary"
