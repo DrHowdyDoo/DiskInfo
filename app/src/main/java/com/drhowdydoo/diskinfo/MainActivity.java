@@ -23,10 +23,13 @@ import com.google.android.material.color.DynamicColors;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.file.FileStore;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import me.zhanghai.android.fastscroll.FastScrollerBuilder;
@@ -116,6 +119,51 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        storeArrayList.add("Memory");
+        String line;
+        Map<String, Long> map = new HashMap<>();
+
+        try {
+            RandomAccessFile reader = new RandomAccessFile("/proc/meminfo", "r");
+            while ((line = reader.readLine()) != null) {
+                String[] entry = line.split(":");
+                map.put(entry[0], Long.parseLong(entry[1].substring(0, entry[1].length() - 2).trim()));
+            }
+            reader.close();
+
+            long totalMem = 0, availMem = 0, usedMem;
+
+            if (map.containsKey("MemTotal")) {
+                totalMem = map.get("MemTotal") * 1000;
+            }
+            if (map.containsKey("MemAvailable")) {
+                availMem = map.get("MemAvailable") * 1000;
+            }
+
+            usedMem = totalMem - availMem;
+            int memTrack = totalMem != 0 ? (int) (((double) usedMem / totalMem) * 100) : 0;
+            MemInfo memInfo = new MemInfo("Memory", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), memTrack);
+            storeArrayList.add(memInfo);
+
+            long totalSwap = 0, availSwap = 0, usedSwap;
+
+            if (map.containsKey("SwapTotal")) {
+                totalSwap = map.get("SwapTotal") * 1000;
+            }
+            if (map.containsKey("SwapFree")) {
+                availSwap = map.get("SwapFree") * 1000;
+            }
+
+            usedSwap = totalSwap - availSwap;
+            int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
+            MemInfo swapInfo = new MemInfo("Swap", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapTrack);
+            storeArrayList.add(swapInfo);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 

@@ -32,15 +32,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         if (storeArrayList.get(position) instanceof DataStore) {
             return 0;
-        } else return 1;
+        } else if (storeArrayList.get(position) instanceof MemInfo) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 0) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_partion_info, parent, false);
             return new PartitionViewHolder(view);
+        } else if (viewType == 1) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_meminfo, parent, false);
+            return new MemInfoViewHolder(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header, parent, false);
             return new HeaderViewHolder(view);
@@ -74,6 +81,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             } else {
                 partitionViewHolder.chip_blockSize.setVisibility(View.GONE);
             }
+        } else if (this.getItemViewType(position) == 1) {
+            MemInfoViewHolder memInfoViewHolder = (MemInfoViewHolder) holder;
+            MemInfo memInfo = (MemInfo) storeArrayList.get(position);
+            memInfoViewHolder.memName.setText(memInfo.getName());
+            memInfoViewHolder.memTotal.setText(memInfo.getTotalMem() + " total");
+            memInfoViewHolder.memUsed.setText(memInfo.getUsedMem() + " used");
+            memInfoViewHolder.memAvail.setText(memInfo.getAvailMem() + " free");
+            memInfoViewHolder.memTrack.setProgress(memInfo.getMemBar(), sharedPref.getBoolean("animation", true));
         } else {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             String header = (String) storeArrayList.get(position);
@@ -114,6 +129,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
             headerView = itemView.findViewById(R.id.txtView_header);
+        }
+    }
+
+    public static class MemInfoViewHolder extends RecyclerView.ViewHolder {
+
+        TextView memName, memTotal, memUsed, memAvail;
+        LinearProgressIndicator memTrack;
+
+        public MemInfoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            memName = itemView.findViewById(R.id.txtView_name_mem);
+            memTotal = itemView.findViewById(R.id.txtView_total_mem);
+            memAvail = itemView.findViewById(R.id.txtView_free_mem);
+            memUsed = itemView.findViewById(R.id.txtView_used_mem);
+            memTrack = itemView.findViewById(R.id.track_bar_mem);
         }
     }
 
