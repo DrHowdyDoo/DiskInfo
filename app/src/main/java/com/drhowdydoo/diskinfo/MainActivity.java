@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             reader.close();
 
             long totalMem = 0, availMem = 0, usedMem;
+            long cahced = 0;
 
             if (map.containsKey("MemTotal")) {
                 totalMem = map.get("MemTotal") * 1000;
@@ -141,13 +142,18 @@ public class MainActivity extends AppCompatActivity {
             if (map.containsKey("MemAvailable")) {
                 availMem = map.get("MemAvailable") * 1000;
             }
+            if (map.containsKey("Cached")) {
+                cahced = map.get("Cached") * 1000;
+            }
+
+            String cache = "Cached : " + Formatter.formatFileSize(this, cahced);
 
             usedMem = totalMem - availMem;
             int memTrack = totalMem != 0 ? (int) (((double) usedMem / totalMem) * 100) : 0;
-            MemInfo memInfo = new MemInfo("Memory", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), memTrack);
+            MemInfo memInfo = new MemInfo("Memory", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
             storeArrayList.add(memInfo);
 
-            long totalSwap = 0, availSwap = 0, usedSwap;
+            long totalSwap = 0, availSwap = 0, usedSwap, swapCached = 0;
 
             if (map.containsKey("SwapTotal")) {
                 totalSwap = map.get("SwapTotal") * 1000;
@@ -156,9 +162,14 @@ public class MainActivity extends AppCompatActivity {
                 availSwap = map.get("SwapFree") * 1000;
             }
 
+            if (map.containsKey("SwapCached")) {
+                swapCached = map.get("SwapCached") * 1000;
+            }
+
+            String swapCache = "SwapCached : " + Formatter.formatFileSize(this, swapCached);
             usedSwap = totalSwap - availSwap;
             int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
-            MemInfo swapInfo = new MemInfo("Swap", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapTrack);
+            MemInfo swapInfo = new MemInfo("Swap", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
             storeArrayList.add(swapInfo);
 
 

@@ -89,6 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             memInfoViewHolder.memUsed.setText(memInfo.getUsedMem() + " used");
             memInfoViewHolder.memAvail.setText(memInfo.getAvailMem() + " free");
             memInfoViewHolder.memTrack.setProgress(memInfo.getMemBar(), sharedPref.getBoolean("animation", true));
+            memInfoViewHolder.chipCache.setText(memInfo.getCache());
         } else {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             String header = (String) storeArrayList.get(position);
@@ -136,6 +137,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
         TextView memName, memTotal, memUsed, memAvail;
         LinearProgressIndicator memTrack;
+        Chip chipCache;
 
         public MemInfoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +146,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             memAvail = itemView.findViewById(R.id.txtView_free_mem);
             memUsed = itemView.findViewById(R.id.txtView_used_mem);
             memTrack = itemView.findViewById(R.id.track_bar_mem);
+            chipCache = itemView.findViewById(R.id.chip_cached);
         }
     }
 

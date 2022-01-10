@@ -42,14 +42,27 @@ public class MemInfo {
         this.memBar = memBar;
     }
 
-    private String name, totalMem, availMem, usedMem;
+    public String getCache() {
+        return cache;
+    }
+
+    public void setCache(String cache) {
+        this.cache = cache;
+    }
+
+    private String name;
+    private String totalMem;
+    private String availMem;
+    private String usedMem;
+    private String cache;
     private int memBar;
 
-    public MemInfo(String name, String totalMem, String availMem, String usedMem, int memBar) {
+    public MemInfo(String name, String totalMem, String availMem, String usedMem, String cache, int memBar) {
         this.name = name;
         this.totalMem = totalMem;
         this.availMem = availMem;
         this.usedMem = usedMem;
+        this.cache = cache;
         this.memBar = memBar;
     }
 

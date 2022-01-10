@@ -28,13 +28,25 @@
         app:layout_constraintTop_toTopOf="@id/txtView_name_mem"
         android:textAppearance="?attr/textAppearanceLabelLarge" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_cached"
+        style="@style/Widget.Material3.Chip.Suggestion"
+        android:tooltipText="Cached memory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:clickable="false"
+        android:checked="true"
+        app:chipCornerRadius="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_name_mem" />
+
     <TextView
         android:id="@+id/txtView_used_mem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtView_name_mem"
+        app:layout_constraintTop_toBottomOf="@id/chip_cached"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
         android:textAppearance="?attr/textAppearanceBodyMedium" />
 
     <TextView
@@ -43,8 +55,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceBodyMedium"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/txtView_name_mem" />
+        app:layout_constraintTop_toBottomOf="@id/chip_cached" />
 
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
