@@ -26,6 +26,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/materialToolBar"
                 android:layout_width="match_parent"
+                app:layout_collapseMode="pin"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_name"
                 android:elevation="0dp" />

@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.format.Formatter;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -134,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
             Parcelable state = intent.getParcelableExtra("scroll_state");
             if (state != null) {
                 Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(state);
-                Log.d(TAG, "onCreate: restored");
             }
-            appBarLayout.setExpanded(intent.getBooleanExtra("collapsing_toolbar_state", true));
+            if (intent.getBooleanExtra("theme_changed", false))
+                appBarLayout.setExpanded(intent.getBooleanExtra("collapsing_toolbar_state", true));
         }
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
@@ -166,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("scroll_state", state);
             intent.putExtra("collapsing_toolbar_state", expanded);
+            intent.putExtra("theme_changed", true);
             startActivity(intent);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 finish();
@@ -187,6 +187,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 }
