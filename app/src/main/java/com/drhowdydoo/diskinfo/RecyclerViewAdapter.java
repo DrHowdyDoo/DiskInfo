@@ -16,45 +16,68 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<DataStore> storeArrayList;
+    private ArrayList<Object> storeArrayList;
     private Context context;
     private SharedPreferences sharedPref;
 
-    public RecyclerViewAdapter(Context context, ArrayList<DataStore> storeArrayList) {
+    public RecyclerViewAdapter(Context context, ArrayList<Object> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
         this.context = context;
         sharedPref = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (storeArrayList.get(position) instanceof DataStore) {
+            return 0;
+        } else return 1;
+    }
+
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
-        return new ViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == 0) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
+            return new PartitionViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header, parent, false);
+            return new HeaderViewHolder(view);
+        }
+
     }
+
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        DataStore curr = storeArrayList.get(position);
-        String readOnly = "r", readWrite = "r/w";
-        String access_type = curr.isAccess_type() ? readOnly : readWrite;
+        if (this.getItemViewType(position) == 0) {
 
-        holder.mountName.setText(curr.getMount_name());
-        holder.totalSpace.setText(curr.getTotalSize() + " total");
-        holder.chip_fileSystem.setText(curr.getFileSystem());
-        holder.chip_access.setText(access_type);
-        holder.usedSpace.setText(curr.getUsedSize() + " used");
-        holder.freeSpace.setText(curr.getFreeSize() + " free");
-        holder.track_bar.setProgress(curr.getProgress(), sharedPref.getBoolean("animation", true));
-        holder.chip_blockSize.setText(curr.getBlockSize());
-        if (sharedPref.getBoolean("blockSize", true)) {
-            holder.chip_blockSize.setVisibility(View.VISIBLE);
+            DataStore curr = (DataStore) storeArrayList.get(position);
+            String readOnly = "r", readWrite = "r/w";
+            String access_type = curr.isAccess_type() ? readOnly : readWrite;
+
+            PartitionViewHolder partitionViewHolder = (PartitionViewHolder) holder;
+
+            partitionViewHolder.mountName.setText(curr.getMount_name());
+            partitionViewHolder.totalSpace.setText(curr.getTotalSize() + " total");
+            partitionViewHolder.chip_fileSystem.setText(curr.getFileSystem());
+            partitionViewHolder.chip_access.setText(access_type);
+            partitionViewHolder.usedSpace.setText(curr.getUsedSize() + " used");
+            partitionViewHolder.freeSpace.setText(curr.getFreeSize() + " free");
+            partitionViewHolder.track_bar.setProgress(curr.getProgress(), sharedPref.getBoolean("animation", true));
+            partitionViewHolder.chip_blockSize.setText(curr.getBlockSize());
+            if (sharedPref.getBoolean("blockSize", true)) {
+                partitionViewHolder.chip_blockSize.setVisibility(View.VISIBLE);
+            } else {
+                partitionViewHolder.chip_blockSize.setVisibility(View.GONE);
+            }
         } else {
-            holder.chip_blockSize.setVisibility(View.GONE);
+            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
+            String header = (String) storeArrayList.get(position);
+            headerViewHolder.headerView.setText(header);
         }
 
     }
@@ -65,13 +88,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class PartitionViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mountName, usedSpace, totalSpace, freeSpace;
         public Chip chip_fileSystem, chip_access, chip_blockSize;
         public LinearProgressIndicator track_bar;
 
-        public ViewHolder(@NonNull View itemView) {
+        public PartitionViewHolder(@NonNull View itemView) {
             super(itemView);
             mountName = itemView.findViewById(R.id.txtView_mount);
             track_bar = itemView.findViewById(R.id.track_bar);
@@ -81,6 +104,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             usedSpace = itemView.findViewById(R.id.txtView_used_size);
             totalSpace = itemView.findViewById(R.id.txtView_total_size);
             freeSpace = itemView.findViewById(R.id.txtView_unused);
+        }
+    }
+
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        TextView headerView;
+
+        public HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            headerView = itemView.findViewById(R.id.txtView_header);
         }
     }
 

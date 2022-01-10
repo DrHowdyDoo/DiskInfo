@@ -20,7 +20,6 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.color.DynamicColors;
-import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private ArrayList<DataStore> storeArrayList;
+    private ArrayList<Object> storeArrayList;
     private boolean expanded;
 
     @Override
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
 
         storeArrayList = new ArrayList<>();
+        storeArrayList.add("Partitions");
 
 
         FileSystem filesystem = FileSystems.getDefault();
@@ -122,10 +122,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewAdapter = new RecyclerViewAdapter(this, storeArrayList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MaterialDividerItemDecoration divider = new MaterialDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        divider.setDividerInsetStart(32);
-        divider.setDividerInsetEnd(32);
-        recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         Intent intent = getIntent();
