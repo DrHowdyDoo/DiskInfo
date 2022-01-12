@@ -8,217 +8,270 @@
     tools:ignore="contentDescription"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/themes"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:drawablePadding="4dp"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-        app:drawableStartCompat="@drawable/ic_theme_large"
-        app:drawableTint="?attr/colorPrimary" />
-
-    <LinearLayout
-        android:id="@+id/container"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_purple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:checkedIconMargin="17dp"
-            app:cardCornerRadius="18dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            tools:ignore="DuplicateSpeakableTextCheck">
-
-            <ImageView
-                android:id="@+id/img_purple"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_red"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:checkedIconMargin="17dp"
-            app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_yellow"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="@color/white"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_yellow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_green"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_orange"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_orange"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_pink"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_pink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_circle_24" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/theme_dynamic"
-            android:checkable="true"
-            android:visibility="gone"
-            android:clickable="true"
-            android:focusable="true"
-            app:checkedIconMargin="17dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="16dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/img_dynamic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/ic_pie" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/txtView_dynamic_colors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dynamic_colors"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textAppearance="?attr/textAppearanceTitleLarge"
-        android:layout_margin="16dp" />
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        app:singleSelection="true"
-        android:layout_marginBottom="50dp"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/dynamic_on"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/on"
-            app:icon="@drawable/ic_theme"
-            style="@style/App.ToggleButtons.Small" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/dynamic_off"
-            style="@style/App.ToggleButtons.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/off"
-            tools:ignore="TextContrastCheck" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/themes"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:drawablePadding="4dp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                app:drawableStartCompat="@drawable/ic_theme_large"
+                app:drawableTint="?attr/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_purple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:checkedIconMargin="17dp"
+                    app:cardCornerRadius="18dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    tools:ignore="DuplicateSpeakableTextCheck">
+
+                    <ImageView
+                        android:id="@+id/img_purple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_red"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="8dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    android:layout_width="wrap_content"
+                    app:checkedIconMargin="17dp"
+                    app:cardCornerRadius="18dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_yellow"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="8dp"
+                    app:checkedIconMargin="17dp"
+                    app:checkedIconTint="@color/white"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="18dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_green"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="8dp"
+                    app:checkedIconMargin="17dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="18dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_orange"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="8dp"
+                    app:checkedIconMargin="17dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="18dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_orange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_pink"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="8dp"
+                    app:checkedIconMargin="17dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="18dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_pink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_circle_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/theme_dynamic"
+                    android:checkable="true"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:checkedIconMargin="17dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    app:checkedIconTint="?attr/colorOnPrimary"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_dynamic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/ic_pie" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                android:textStyle="bold"
+                android:text="@string/themes"
+                android:layout_margin="16dp"
+                android:layout_gravity="center" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/appTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/theme_auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto"
+                    style="@style/App.ToggleButtons.Small" />
+
+                <Button
+                    android:id="@+id/theme_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/light"
+                    style="@style/App.ToggleButtons.Small" />
+
+                <Button
+                    android:id="@+id/theme_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dark"
+                    style="@style/App.ToggleButtons.Small" />
+
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            <TextView
+                android:id="@+id/txtView_dynamic_colors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dynamic_colors"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                android:layout_margin="16dp" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                app:singleSelection="true"
+                android:layout_marginBottom="50dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/dynamic_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/on"
+                    app:icon="@drawable/ic_theme"
+                    style="@style/App.ToggleButtons.Small" />
+
+                <Button
+                    android:id="@+id/dynamic_off"
+                    style="@style/App.ToggleButtons.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/off"
+                    tools:ignore="TextContrastCheck" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
