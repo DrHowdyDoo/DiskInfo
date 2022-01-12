@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DiskInfo</string>
-    <string name="themes">Themes</string>
+    <string name="themes">Theme</string>
     <string name="dynamic_colors">Dynamic Colors</string>
     <string name="on">On</string>
     <string name="off">Off</string>
@@ -8,4 +8,8 @@
     <string name="preferences">Preferences</string>
     <string name="animate_bars">Animate Bars</string>
     <string name="show_block_size">Show block size</string>
+    <string name="app_colors">App Colors</string>
+    <string name="auto">Auto</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
 </resources>

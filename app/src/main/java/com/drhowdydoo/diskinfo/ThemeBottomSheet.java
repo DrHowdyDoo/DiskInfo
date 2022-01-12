@@ -28,8 +28,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic, themeOrange, themePink;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private MaterialButtonToggleGroup dynamicColors;
-    private MaterialButton t1, t2;
+    private MaterialButtonToggleGroup dynamicColors, appTheme;
+    private MaterialButton t1, t2, x1, x2, x3;
     private TextView dynamicColorsTitle;
 
     private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
@@ -99,6 +99,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
 
         dynamicColors = v.findViewById(R.id.toggleButton);
+        appTheme = v.findViewById(R.id.appTheme);
         t1 = v.findViewById(R.id.dynamic_on);
         t2 = v.findViewById(R.id.dynamic_off);
         dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
@@ -148,6 +149,39 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
                 break;
 
         }
+
+        switch (sharedPref.getInt("DiskInfo.MODE", -1)) {
+            case -1:
+                appTheme.check(R.id.theme_auto);
+                break;
+
+            case 1:
+                appTheme.check(R.id.theme_light);
+                break;
+
+            case 2:
+                appTheme.check(R.id.theme_dark);
+                break;
+        }
+
+
+        appTheme.addOnButtonCheckedListener(((group, checkedId, isChecked) -> {
+            if (checkedId == R.id.theme_auto) {
+                editor.putInt("DiskInfo.MODE", -1).apply();
+                dismiss();
+                restart();
+            }
+            if (checkedId == R.id.theme_light) {
+                editor.putInt("DiskInfo.MODE", 1).apply();
+                dismiss();
+                restart();
+            }
+            if (checkedId == R.id.theme_dark) {
+                editor.putInt("DiskInfo.MODE", 2).apply();
+                dismiss();
+                restart();
+            }
+        }));
 
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (checkedId == R.id.dynamic_on) {

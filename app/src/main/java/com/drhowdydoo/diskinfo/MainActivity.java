@@ -12,6 +12,7 @@ import android.os.StatFs;
 import android.text.format.Formatter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        int mode = sharedPref.getInt("DiskInfo.MODE", -1);
+        AppCompatDelegate.setDefaultNightMode(mode);
+
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
             case "purple":
                 setTheme(R.style.Theme_DiskInfo_Purple);
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         setContentView(R.layout.activity_main);
+
 
         recyclerView = findViewById(R.id.recyclerView);
         materialToolbar = findViewById(R.id.materialToolBar);
