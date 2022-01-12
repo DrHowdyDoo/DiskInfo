@@ -108,9 +108,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
 
         if (Build.VERSION.SDK_INT < 31) {
-            t1.setEnabled(false);
-            t2.setEnabled(false);
-            dynamicColorsTitle.setEnabled(false);
+            dynamicColors.setVisibility(View.GONE);
+            dynamicColorsTitle.setVisibility(View.GONE);
         } else {
             if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
                 dynamicColors.check(R.id.dynamic_on);
