@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
@@ -89,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -126,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        int totalPartitions = storeArrayList.size() - 1;
+        String titleWithCount = "Partitions " + "(" + totalPartitions + ")";
+        storeArrayList.set(0, titleWithCount);
 
         storeArrayList.add("Memory");
         String line;

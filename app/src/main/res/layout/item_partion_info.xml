@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="start"
+        android:breakStrategy="simple"
         android:layout_marginEnd="4dp"
         android:tooltipText="partition alias (partition mount path)"
         android:textAppearance="?attr/textAppearanceTitleMedium"
@@ -30,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceLabelLarge"
-        app:layout_constraintBottom_toBottomOf="@+id/txtView_mount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

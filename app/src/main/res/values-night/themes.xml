@@ -12,6 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
         <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <!-- Customize your theme here. -->
         <item name="tooltipStyle">@style/App.ToolTip.Rounded</item>
         <item name="switchStyle">@style/App.Switches</item>
