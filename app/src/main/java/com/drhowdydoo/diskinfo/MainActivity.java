@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
             usedMem = totalMem - availMem;
             int memTrack = totalMem != 0 ? (int) (((double) usedMem / totalMem) * 100) : 0;
-            MemInfo memInfo = new MemInfo("Memory", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
+            MemInfo memInfo = new MemInfo("Memory (RAM)", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
             storeArrayList.add(memInfo);
 
             long totalSwap = 0, availSwap = 0, usedSwap, swapCached = 0;
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             String swapCache = "SwapCached : " + Formatter.formatFileSize(this, swapCached);
             usedSwap = totalSwap - availSwap;
             int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
-            MemInfo swapInfo = new MemInfo("Swap", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
+            MemInfo swapInfo = new MemInfo("Swap (ZRAM)", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
             storeArrayList.add(swapInfo);
 
 
@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         settings.setOnClickListener(view -> {
+            settings.animate().rotationBy(180f).setDuration(460).setStartDelay(0);
             SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
             settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
         });
