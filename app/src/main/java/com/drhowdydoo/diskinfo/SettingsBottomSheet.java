@@ -19,7 +19,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
     private SwitchMaterial animation, blockSize, advanceMode;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false;
+    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false;
 
     public SettingsBottomSheet() {
     }
@@ -56,7 +56,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
         advanceMode.setOnCheckedChangeListener(((buttonView, isChecked) -> {
             editor.putBoolean("advanceMode", isChecked).apply();
-            advanceModeOn ^= isChecked;
+            isModeChanged = advanceModeOn ^ isChecked;
         }));
 
 
@@ -70,7 +70,8 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
             ((MainActivity) requireActivity()).recreateRecyclerView();
         }
         isChanged = false;
-        if (advanceModeOn) ((MainActivity) requireActivity()).advanceModeOn();
+        if (isModeChanged) ((MainActivity) requireActivity()).advanceModeOn();
+        isModeChanged = false;
     }
 
 }
