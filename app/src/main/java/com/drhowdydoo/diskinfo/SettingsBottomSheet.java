@@ -72,6 +72,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         isChanged = false;
         if (isModeChanged) ((MainActivity) requireActivity()).advanceModeOn();
         isModeChanged = false;
+        //((MainActivity) requireActivity()).resetSettingsFabLocation();
     }
 
 }

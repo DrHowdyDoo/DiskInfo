@@ -290,4 +290,9 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
     }
 
+//    @Override
+//    public void onDismiss(@NonNull DialogInterface dialog) {
+//        super.onDismiss(dialog);
+//        ((MainActivity)requireActivity()).resetThemeFabLocation();
+//    }
 }

@@ -231,12 +231,13 @@ public class MainActivity extends AppCompatActivity {
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
         fab.setOnClickListener(view -> {
+            //fab.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
             ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
             themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
         });
 
         settings.setOnClickListener(view -> {
-            settings.animate().rotationBy(180f).setDuration(460).setStartDelay(0);
+            //settings.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
             SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
             settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
         });
@@ -294,5 +295,13 @@ public class MainActivity extends AppCompatActivity {
         }, 0);
 
     }
+
+//    public void resetSettingsFabLocation(){
+//        settings.animate().translationYBy(50f).setStartDelay(0);
+//    }
+//
+//    public void resetThemeFabLocation(){
+//        fab.animate().translationYBy(50f).setStartDelay(0);
+//    }
 
 }
