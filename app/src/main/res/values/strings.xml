@@ -12,4 +12,5 @@
     <string name="auto">Auto</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+    <string name="show_all_partitions">Show all partitions</string>
 </resources>

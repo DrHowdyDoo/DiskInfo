@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private ArrayList<Object> storeArrayList;
+    private ArrayList<Object> storeArrayList, basicPartition, advancePartition;
     private boolean expanded;
 
     @Override
@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         recyclerView = findViewById(R.id.recyclerView);
         materialToolbar = findViewById(R.id.materialToolBar);
         appBarLayout = findViewById(R.id.appBar);
@@ -101,8 +100,13 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
 
         storeArrayList = new ArrayList<>();
-        storeArrayList.add("Partitions");
+        basicPartition = new ArrayList<>();
+        advancePartition = new ArrayList<>();
 
+        DataStore cacheStore = null, rootStore = null;
+
+
+        advancePartition.add("Partitions");
 
         FileSystem filesystem = FileSystems.getDefault();
         for (FileStore store : filesystem.getFileStores()) {
@@ -121,16 +125,37 @@ public class MainActivity extends AppCompatActivity {
                 long blockSpace = statFs.getBlockSizeLong();
                 String blockSize = Formatter.formatFileSize(this, blockSpace);
                 DataStore dataStore = new DataStore(store.toString(), store.type(), totalSize, usedSize, freeSize, blockSize, store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSpace, progress);
-                storeArrayList.add(dataStore);
+                advancePartition.add(dataStore);
+                if (store.toString().startsWith("/cache")) {
+                    cacheStore = dataStore;
+                }
+                if (store.toString().startsWith("/data ")) {
+                    rootStore = dataStore;
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        int totalPartitions = storeArrayList.size() - 1;
+        int totalPartitions = advancePartition.size() - 1;
         String titleWithCount = "Partitions " + "(" + totalPartitions + ")";
-        storeArrayList.set(0, titleWithCount);
+        advancePartition.set(0, titleWithCount);
+
+        basicPartition.add("Basic Partitions");
+
+        if (rootStore != null && cacheStore != null) {
+            rootStore.setMount_name("Data");
+            cacheStore.setMount_name("Cache");
+            basicPartition.add(rootStore);
+            basicPartition.add(cacheStore);
+        }
+
+        if (sharedPref.getBoolean("advanceMode", false)) {
+            storeArrayList = advancePartition;
+        } else {
+            storeArrayList = basicPartition;
+        }
 
         storeArrayList.add("Memory");
         String line;
@@ -253,6 +278,21 @@ public class MainActivity extends AppCompatActivity {
                 recyclerViewAdapter.notifyItemRangeChanged(firstVisible, itemsChanged);
             }
         }
+    }
+
+    public void advanceModeOn() {
+        new Handler().postDelayed(() -> {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                finish();
+            }
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                finish();
+            }
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }, 0);
+
     }
 
 }

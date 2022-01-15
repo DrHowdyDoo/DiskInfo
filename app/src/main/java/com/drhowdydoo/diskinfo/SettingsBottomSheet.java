@@ -16,10 +16,10 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
-    private SwitchMaterial animation, blockSize;
+    private SwitchMaterial animation, blockSize, advanceMode;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private boolean isChanged = false, isCheckedPreviously;
+    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false;
 
     public SettingsBottomSheet() {
     }
@@ -36,11 +36,14 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
         animation = v.findViewById(R.id.switchMaterial_animation);
         blockSize = v.findViewById(R.id.switchMaterial_blockSize);
+        advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
 
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
+        advanceMode.setChecked(sharedPref.getBoolean("advanceMode", false));
 
         isCheckedPreviously = blockSize.isChecked();
+        advanceModeOn = advanceMode.isChecked();
 
         animation.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("animation", isChecked).apply();
@@ -50,6 +53,11 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
             editor.putBoolean("blockSize", isChecked).apply();
             isChanged = (isCheckedPreviously ^ isChecked);
         });
+
+        advanceMode.setOnCheckedChangeListener(((buttonView, isChecked) -> {
+            editor.putBoolean("advanceMode", isChecked).apply();
+            advanceModeOn ^= isChecked;
+        }));
 
 
         return v;
@@ -62,6 +70,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
             ((MainActivity) requireActivity()).recreateRecyclerView();
         }
         isChanged = false;
+        if (advanceModeOn) ((MainActivity) requireActivity()).advanceModeOn();
     }
 
 }
