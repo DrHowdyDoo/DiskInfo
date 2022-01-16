@@ -254,6 +254,8 @@
     <style name="App.Switches" parent="Widget.Material3.CompoundButton.Switch">
         <item name="track">@drawable/switch_track</item>
         <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="thumbTint">@color/custom_switch_thumb_tint</item>
+        <item name="trackTint">@color/custom_switch_track_tint</item>
     </style>
 
     <style name="ShapeAppearance.Overlay.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
