@@ -314,12 +314,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public void resetSettingsFabLocation(){
-//        settings.animate().translationYBy(50f).setStartDelay(0);
-//    }
-//
-//    public void resetThemeFabLocation(){
-//        fab.animate().translationYBy(50f).setStartDelay(0);
-//    }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
