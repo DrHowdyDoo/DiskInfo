@@ -95,14 +95,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:drawablePadding="6dp"
-                android:gravity="center"
                 android:layout_alignParentTop="true"
+                android:gravity="center"
                 android:text="@string/advance_mode"
                 android:textAppearance="?attr/textAppearanceTitleLarge"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                app:drawableStartCompat="@drawable/ic_baseline_all_inclusive_24" />
+                android:textStyle="bold" />
 
 
             <TextView
@@ -110,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtView_advance_mode"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_toStartOf="@+id/switchMaterial_advance_mode"
                 android:alpha="0.5"
