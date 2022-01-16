@@ -233,6 +233,31 @@
         <item name="colorPrimaryInverse">@color/pink_light_primaryInverse</item>
     </style>
 
+    <style name="Theme.DiskInfo.Purple.Amoled" parent="Theme.DiskInfo.Purple">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Red.Amoled" parent="Theme.DiskInfo.Red">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Yellow.Amoled" parent="Theme.DiskInfo.Yellow">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Green.Amoled" parent="Theme.DiskInfo.Green">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Orange.Amoled" parent="Theme.DiskInfo.Orange">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.DiskInfo.Pink.Amoled" parent="Theme.DiskInfo.Pink">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+
     <style name="App.ToggleButtons.Small" parent="Widget.Material3.Button.OutlinedButton">
         <item name="iconPadding">2dp</item>
         <item name="android:paddingLeft">12dp</item>

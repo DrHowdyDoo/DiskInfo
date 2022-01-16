@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
-                android:text="@string/themes"
+                android:text="@string/app_colors"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/theme_purple"
@@ -200,7 +200,7 @@
                 android:textAppearance="?attr/textAppearanceTitleLarge"
                 android:textStyle="bold"
                 android:text="@string/themes"
-                android:layout_margin="16dp"
+                android:layout_margin="12dp"
                 android:layout_gravity="center" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
@@ -233,6 +233,41 @@
 
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView_amoledMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:cardCornerRadius="32dp"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_marginTop="24dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:text="AMOLED MODE"
+                        android:layout_margin="12dp"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch_amoledMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="12dp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
             <TextView

@@ -1,6 +1,7 @@
 package com.drhowdydoo.diskinfo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -21,6 +22,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
@@ -31,8 +33,10 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     private MaterialButtonToggleGroup dynamicColors, appTheme;
     private MaterialButton t1, t2, x1, x2, x3;
     private TextView dynamicColorsTitle;
+    private SwitchMaterial amoledMode;
 
     private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
+    private boolean isAmoledModeChanged = false, prevState;
 
     public ThemeBottomSheet() {
 
@@ -41,7 +45,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bottom_sheet_layout,
+        View v = inflater.inflate(R.layout.theme_bottom_sheet_layout,
                 container, false);
 
 
@@ -59,6 +63,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         imgGreen = v.findViewById(R.id.img_green);
         imgOrange = v.findViewById(R.id.img_orange);
         imgPink = v.findViewById(R.id.img_pink);
+
+        amoledMode = v.findViewById(R.id.switch_amoledMode);
 
         Drawable purple_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
         Drawable red_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
@@ -210,6 +216,14 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeOrange.setOnClickListener(this);
         themePink.setOnClickListener(this);
 
+        amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
+        prevState = amoledMode.isChecked();
+
+        amoledMode.setOnCheckedChangeListener(((buttonView, isChecked) -> {
+            editor.putBoolean("amoledMode", isChecked).apply();
+            isAmoledModeChanged = isChecked ^ prevState;
+        }));
+
         return v;
     }
 
@@ -290,9 +304,10 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
     }
 
-//    @Override
-//    public void onDismiss(@NonNull DialogInterface dialog) {
-//        super.onDismiss(dialog);
-//        ((MainActivity)requireActivity()).resetThemeFabLocation();
-//    }
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (isAmoledModeChanged) restart();
+        isAmoledModeChanged = false;
+    }
 }

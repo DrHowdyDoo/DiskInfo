@@ -58,27 +58,42 @@ public class MainActivity extends AppCompatActivity {
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
             case "purple":
-                setTheme(R.style.Theme_DiskInfo_Purple);
+                if (sharedPref.getBoolean("amoledMode", false)) {
+                    setTheme(R.style.Theme_DiskInfo_Purple_Amoled);
+                } else {
+                    setTheme(R.style.Theme_DiskInfo_Purple);
+                }
+
                 break;
 
             case "red":
-                setTheme(R.style.Theme_DiskInfo_Red);
+                if (sharedPref.getBoolean("amoledMode", false))
+                    setTheme(R.style.Theme_DiskInfo_Red_Amoled);
+                else setTheme(R.style.Theme_DiskInfo_Red);
                 break;
 
             case "yellow":
-                setTheme(R.style.Theme_DiskInfo_Yellow);
+                if (sharedPref.getBoolean("amoledMode", false))
+                    setTheme(R.style.Theme_DiskInfo_Yellow_Amoled);
+                else setTheme(R.style.Theme_DiskInfo_Yellow);
                 break;
 
             case "green":
-                setTheme(R.style.Theme_DiskInfo_Green);
+                if (sharedPref.getBoolean("amoledMode", false))
+                    setTheme(R.style.Theme_DiskInfo_Green_Amoled);
+                else setTheme(R.style.Theme_DiskInfo_Green);
                 break;
 
             case "orange":
-                setTheme(R.style.Theme_DiskInfo_Orange);
+                if (sharedPref.getBoolean("amoledMode", false))
+                    setTheme(R.style.Theme_DiskInfo_Orange_Amoled);
+                else setTheme(R.style.Theme_DiskInfo_Orange);
                 break;
 
             case "pink":
-                setTheme(R.style.Theme_DiskInfo_Pink);
+                if (sharedPref.getBoolean("amoledMode", false))
+                    setTheme(R.style.Theme_DiskInfo_Pink_Amoled);
+                else setTheme(R.style.Theme_DiskInfo_Pink);
                 break;
 
             default:
@@ -144,10 +159,13 @@ public class MainActivity extends AppCompatActivity {
 
         basicPartition.add("Basic Partitions");
 
-        if (rootStore != null && cacheStore != null) {
+        if (rootStore != null) {
             rootStore.setMount_name("Data");
-            cacheStore.setMount_name("Cache");
             basicPartition.add(rootStore);
+        }
+
+        if (cacheStore != null) {
+            cacheStore.setMount_name("Cache");
             basicPartition.add(cacheStore);
         }
 
