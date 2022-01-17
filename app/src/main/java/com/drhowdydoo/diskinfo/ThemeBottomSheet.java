@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -175,17 +176,17 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
             if (checkedId == R.id.theme_auto) {
                 editor.putInt("DiskInfo.MODE", -1).apply();
                 dismiss();
-                restart();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
             }
             if (checkedId == R.id.theme_light) {
                 editor.putInt("DiskInfo.MODE", 1).apply();
                 dismiss();
-                restart();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
             if (checkedId == R.id.theme_dark) {
                 editor.putInt("DiskInfo.MODE", 2).apply();
                 dismiss();
-                restart();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
         }));
 

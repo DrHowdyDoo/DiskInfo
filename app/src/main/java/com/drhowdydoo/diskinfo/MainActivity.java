@@ -314,4 +314,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void recreate() {
+        restartToApply(0);
+    }
 }
