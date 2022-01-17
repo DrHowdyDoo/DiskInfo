@@ -201,12 +201,14 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
                 DynamicColors.applyIfAvailable(requireActivity());
             }
             if (checkedId == R.id.dynamic_off) {
+
                 editor.putBoolean("DiskInfo.DynamicColors", false).apply();
                 editor.putString("DiskInfo.Theme", "purple").apply();
                 themePurple.setChecked(true);
                 themeDynamic.setVisibility(View.GONE);
                 dismiss();
                 restart();
+
             }
         });
 
@@ -217,6 +219,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeOrange.setOnClickListener(this);
         themePink.setOnClickListener(this);
 
+        amoledMode.setEnabled(!sharedPref.getBoolean("DiskInfo.DynamicColors", false));
         amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
         prevState = amoledMode.isChecked();
 
