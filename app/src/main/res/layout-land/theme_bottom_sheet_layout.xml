@@ -246,23 +246,42 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:text="AMOLED MODE"
-                        android:layout_margin="12dp"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textStyle="bold" />
+                        android:layout_marginEnd="12dp"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:text="@string/amoled_mode"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/txtView_amoledMode_body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/not_available_with_dynamic_colors"
+                            android:alpha="0.5"
+                            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                    </LinearLayout>
+
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switch_amoledMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="12dp" />
+                        android:layout_gravity="end|center_vertical" />
 
                 </LinearLayout>
 

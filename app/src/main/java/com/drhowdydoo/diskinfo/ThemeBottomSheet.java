@@ -33,7 +33,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors, appTheme;
     private MaterialButton t1, t2, x1, x2, x3;
-    private TextView dynamicColorsTitle;
+    private TextView dynamicColorsTitle, amoledModeBody;
     private SwitchMaterial amoledMode;
 
     private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
@@ -66,6 +66,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         imgPink = v.findViewById(R.id.img_pink);
 
         amoledMode = v.findViewById(R.id.switch_amoledMode);
+        amoledModeBody = v.findViewById(R.id.txtView_amoledMode_body);
 
         Drawable purple_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
         Drawable red_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
@@ -219,9 +220,14 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeOrange.setOnClickListener(this);
         themePink.setOnClickListener(this);
 
-        amoledMode.setEnabled(!sharedPref.getBoolean("DiskInfo.DynamicColors", false));
-        amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
-        prevState = amoledMode.isChecked();
+        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+            amoledMode.setChecked(false);
+            amoledMode.setEnabled(false);
+            amoledModeBody.setVisibility(View.VISIBLE);
+        } else {
+            amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
+            prevState = amoledMode.isChecked();
+        }
 
         amoledMode.setOnCheckedChangeListener(((buttonView, isChecked) -> {
             editor.putBoolean("amoledMode", isChecked).apply();
