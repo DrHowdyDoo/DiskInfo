@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.format.Formatter;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
+        Log.d(TAG, "onCreate: created taskID : " + getTaskId());
         AppCompatDelegate.setDefaultNightMode(mode);
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
@@ -317,5 +319,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void recreate() {
         restartToApply(0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }
