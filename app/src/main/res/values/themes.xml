@@ -235,26 +235,32 @@
 
     <style name="Theme.DiskInfo.Purple.Amoled" parent="Theme.DiskInfo.Purple">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.DiskInfo.Red.Amoled" parent="Theme.DiskInfo.Red">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.DiskInfo.Yellow.Amoled" parent="Theme.DiskInfo.Yellow">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.DiskInfo.Green.Amoled" parent="Theme.DiskInfo.Green">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.DiskInfo.Orange.Amoled" parent="Theme.DiskInfo.Orange">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.DiskInfo.Pink.Amoled" parent="Theme.DiskInfo.Pink">
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
 
