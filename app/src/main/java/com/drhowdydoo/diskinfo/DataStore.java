@@ -34,6 +34,21 @@ public class DataStore {
         this.progress = progress;
     }
 
+    public DataStore(DataStore obj) {
+        this.mount_name = obj.mount_name;
+        this.fileSystem = obj.fileSystem;
+        this.totalSize = obj.totalSize;
+        this.usedSize = obj.usedSize;
+        this.freeSize = obj.freeSize;
+        this.blockSize = obj.blockSize;
+        this.access_type = obj.access_type;
+        this.total = obj.total;
+        this.unused = obj.unused;
+        this.used = obj.used;
+        this.blockSpace = obj.blockSpace;
+        this.progress = obj.progress;
+    }
+
     public String getMount_name() {
         return mount_name;
     }

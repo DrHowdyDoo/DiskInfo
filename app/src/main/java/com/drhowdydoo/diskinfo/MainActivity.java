@@ -144,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 DataStore dataStore = new DataStore(store.toString(), store.type(), totalSize, usedSize, freeSize, blockSize, store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSpace, progress);
                 advancePartition.add(dataStore);
                 if (store.toString().startsWith("/cache")) {
-                    cacheStore = dataStore;
+                    cacheStore = new DataStore(dataStore);
                 }
                 if (store.toString().startsWith("/data ")) {
-                    rootStore = dataStore;
+                    rootStore = new DataStore(dataStore);
                 }
 
             } catch (IOException e) {

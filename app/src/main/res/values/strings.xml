@@ -14,7 +14,7 @@
     <string name="light">Light</string>
     <string name="show_all_partitions">Show all partitions</string>
     <string name="advance_mode">Advance Mode</string>
-    <string name="show_more_than_just_basic_partitions">Show more than just basic partitions</string>
+    <string name="show_more_than_just_basic_partitions">Shows more than just basic partitions</string>
     <string name="not_available_with_dynamic_colors">Not available with Dynamic Colors</string>
     <string name="amoled_mode">AMOLED MODE</string>
 </resources>
