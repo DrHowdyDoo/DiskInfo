@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?attr/materialCardViewFilledStyle"
-        app:cardCornerRadius="62dp"
+        app:cardCornerRadius="100dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
@@ -82,20 +82,19 @@
         app:layout_constraintTop_toBottomOf="@+id/txtView_blockSize">
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="vertical"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtView_advance_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:text="@string/advance_mode"
                 android:textAppearance="?attr/textAppearanceTitleLarge"
@@ -104,25 +103,23 @@
 
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtView_advance_mode"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@+id/switchMaterial_advance_mode"
+                android:layout_marginTop="2dp"
                 android:alpha="0.5"
                 android:text="@string/show_more_than_just_basic_partitions"
                 android:textAppearance="?attr/textAppearanceBodyMedium" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchMaterial_advance_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="end|center_vertical" />
 
-        </RelativeLayout>
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial_advance_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="end|top" />
 
 
     </com.google.android.material.card.MaterialCardView>
