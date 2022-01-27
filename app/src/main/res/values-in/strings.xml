@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DiskInfo</string>
+    <string name="themes">tema</string>
+    <string name="dynamic_colors">Warna Dinamis</string>
+    <string name="on">mengaktifkan</string>
+    <string name="off">matikan</string>
+    <string name="show_animation">Show Animation</string>
+    <string name="preferences">Preferensi</string>
+    <string name="animate_bars">bar animasi</string>
+    <string name="show_block_size">Tampilkan ukuran blok</string>
+    <string name="app_colors">Warna Aplikasi</string>
+    <string name="auto">otomatis</string>
+    <string name="dark">Gelap</string>
+    <string name="light">Lampu</string>
+    <string name="show_all_partitions">Tampilkan semua partisi</string>
+    <string name="advance_mode">Modus Lanjutan</string>
+    <string name="show_more_than_just_basic_partitions">Menampilkan lebih dari sekedar partisi dasar</string>
+    <string name="not_available_with_dynamic_colors">Tidak tersedia dengan Warna Dinamis</string>
+    <string name="amoled_mode">MODE AMOLED</string>
+    <string name="partitions">Partisi</string>
+    <string name="basic_partitions">Partisi Dasar</string>
+    <string name="memory">Memory</string>
+    <string name="ram">RAM</string>
+    <string name="zram">ZRAM</string>
+    <string name="total">total</string>
+    <string name="free">gratis</string>
+    <string name="used">digunakan</string>
+    <string name="data">Data</string>
+    <string name="cache">Cache</string>
+    <string name="swap">Swap</string>
+    <string name="cached">Cached</string>
+    <string name="swap_cached">SwapCached</string>
+    <string name="partition_tooltip">jalur pemasangan partisi (sistem file partisi)</string>
+    <string name="access_type_tooltip">Jenis Akses (hanya baca atau baca/tulis)</string>
+    <string name="block_size_tooltip">Ukuran blok</string>
+    <string name="filesystem_tooltip">Jenis Sistem File</string>
+
+</resources>
