@@ -60,6 +60,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+        String _total = " " + context.getString(R.string.total),
+                _used = " " + context.getString(R.string.used),
+                _free = " " + context.getString(R.string.free);
+
         if (this.getItemViewType(position) == 0) {
 
             DataStore curr = (DataStore) storeArrayList.get(position);
@@ -69,11 +73,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             PartitionViewHolder partitionViewHolder = (PartitionViewHolder) holder;
 
             partitionViewHolder.mountName.setText(curr.getMount_name());
-            partitionViewHolder.totalSpace.setText(curr.getTotalSize() + " total");
+            partitionViewHolder.totalSpace.setText(curr.getTotalSize() + _total);
             partitionViewHolder.chip_fileSystem.setText(curr.getFileSystem());
             partitionViewHolder.chip_access.setText(access_type);
-            partitionViewHolder.usedSpace.setText(curr.getUsedSize() + " used");
-            partitionViewHolder.freeSpace.setText(curr.getFreeSize() + " free");
+            partitionViewHolder.usedSpace.setText(curr.getUsedSize() + _used);
+            partitionViewHolder.freeSpace.setText(curr.getFreeSize() + _free);
             partitionViewHolder.track_bar.setProgress(curr.getProgress(), sharedPref.getBoolean("animation", true));
             partitionViewHolder.chip_blockSize.setText(curr.getBlockSize());
             if (sharedPref.getBoolean("blockSize", true)) {
@@ -85,9 +89,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             MemInfoViewHolder memInfoViewHolder = (MemInfoViewHolder) holder;
             MemInfo memInfo = (MemInfo) storeArrayList.get(position);
             memInfoViewHolder.memName.setText(memInfo.getName());
-            memInfoViewHolder.memTotal.setText(memInfo.getTotalMem() + " total");
-            memInfoViewHolder.memUsed.setText(memInfo.getUsedMem() + " used");
-            memInfoViewHolder.memAvail.setText(memInfo.getAvailMem() + " free");
+            memInfoViewHolder.memTotal.setText(memInfo.getTotalMem() + _total);
+            memInfoViewHolder.memUsed.setText(memInfo.getUsedMem() + _used);
+            memInfoViewHolder.memAvail.setText(memInfo.getAvailMem() + _free);
             memInfoViewHolder.memTrack.setProgress(memInfo.getMemBar(), sharedPref.getBoolean("animation", true));
             memInfoViewHolder.chipCache.setText(memInfo.getCache());
         } else {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DiskInfo</string>
+    <string name="themes">Chủ để </string>
+    <string name="dynamic_colors">Màu sắc động</string>
+    <string name="on">Bật</string>
+    <string name="off">Tắt</string>
+    <string name="show_animation">Hiển thị hoạt ảnh</string>
+    <string name="preferences">Cài đặt</string>
+    <string name="animate_bars">Tạo hoạt ảnh cho các thanh</string>
+    <string name="show_block_size">Hiển thị kích cỡ của block</string>
+    <string name="app_colors">Màu ứng dụng </string>
+    <string name="auto">Tự động</string>
+    <string name="dark">Tối</string>
+    <string name="light">Sáng</string>
+    <string name="show_all_partitions">Hiển thị tất cả phân vùng</string>
+    <string name="advance_mode">Chế độ nâng cao</string>
+    <string name="show_more_than_just_basic_partitions">Hiển thị nhiều phân vùng hơn thay vì chỉ hiển thị phân vùng cơ bản</string>
+    <string name="not_available_with_dynamic_colors">Không khả dụng với màu sắc động</string>
+    <string name="amoled_mode">Chế độ AMOLED</string>
+    <string name="partitions">Các phân vùng</string>
+    <string name="basic_partitions">Phân vùng cơ bản</string>
+    <string name="memory">Bộ nhớ</string>
+    <string name="ram">RAM</string>
+    <string name="zram">RAM ảo</string>
+    <string name="total">Tổng</string>
+    <string name="free">Còn trống</string>
+    <string name="used">Đã dùng </string>
+    <string name="data">Dữ liệu </string>
+    <string name="cache">Cache</string>
+    <string name="swap">Swap</string>
+    <string name="cached">Cached</string>
+    <string name="swap_cached">SwapCached</string>
+</resources>

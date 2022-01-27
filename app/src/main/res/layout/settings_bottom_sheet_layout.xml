@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?attr/materialCardViewFilledStyle"
-        app:cardCornerRadius="52dp"
+        app:cardCornerRadius="62dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
@@ -86,8 +86,8 @@
             android:layout_width="match_parent"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="14dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
             android:layout_height="wrap_content">
 
             <TextView

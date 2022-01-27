@@ -122,8 +122,19 @@ public class MainActivity extends AppCompatActivity {
 
         DataStore cacheStore = null, rootStore = null;
 
+        String _partition = getString(R.string.partitions),
+                _basic_partitions = getString(R.string.basic_partitions),
+                _data = getString(R.string.data),
+                _cache = getString(R.string.cache),
+                _cached = getString(R.string.cached),
+                _swap = getString(R.string.swap),
+                _swap_cached = getString(R.string.swap_cached),
+                _ram = getString(R.string.ram),
+                _zram = getString(R.string.zram),
+                _memory = getString(R.string.memory);
 
-        advancePartition.add("Partitions");
+
+        advancePartition.add(_partition);
 
         FileSystem filesystem = FileSystems.getDefault();
         for (FileStore store : filesystem.getFileStores()) {
@@ -156,18 +167,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int totalPartitions = advancePartition.size() - 1;
-        String titleWithCount = "Partitions " + "(" + totalPartitions + ")";
+        String titleWithCount = _partition + " (" + totalPartitions + ")";
         advancePartition.set(0, titleWithCount);
 
-        basicPartition.add("Basic Partitions");
+        basicPartition.add(_basic_partitions);
 
         if (rootStore != null) {
-            rootStore.setMount_name("Data");
+            rootStore.setMount_name(_data);
             basicPartition.add(rootStore);
         }
 
         if (cacheStore != null) {
-            cacheStore.setMount_name("Cache");
+            cacheStore.setMount_name(_cache);
             basicPartition.add(cacheStore);
         }
 
@@ -177,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             storeArrayList = basicPartition;
         }
 
-        storeArrayList.add("Memory");
+        storeArrayList.add(_memory);
         String line;
         Map<String, Long> map = new HashMap<>();
 
@@ -202,11 +213,12 @@ public class MainActivity extends AppCompatActivity {
                 cahced = map.get("Cached") * 1000;
             }
 
-            String cache = "Cached : " + Formatter.formatFileSize(this, cahced);
+            String cache = _cached + " : " + Formatter.formatFileSize(this, cahced);
 
             usedMem = totalMem - availMem;
             int memTrack = totalMem != 0 ? (int) (((double) usedMem / totalMem) * 100) : 0;
-            MemInfo memInfo = new MemInfo("Memory (RAM)", Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
+            String _memory_ram = _memory + " " + "(" + _ram + ")";
+            MemInfo memInfo = new MemInfo(_memory_ram, Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
             storeArrayList.add(memInfo);
 
             long totalSwap = 0, availSwap = 0, usedSwap, swapCached = 0;
@@ -222,10 +234,11 @@ public class MainActivity extends AppCompatActivity {
                 swapCached = map.get("SwapCached") * 1000;
             }
 
-            String swapCache = "SwapCached : " + Formatter.formatFileSize(this, swapCached);
+            String swapCache = _swap_cached + " : " + Formatter.formatFileSize(this, swapCached);
             usedSwap = totalSwap - availSwap;
             int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
-            MemInfo swapInfo = new MemInfo("Swap (ZRAM)", Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
+            String _swap_zram = _swap + " " + "(" + _zram + ")";
+            MemInfo swapInfo = new MemInfo(_swap_zram, Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
             storeArrayList.add(swapInfo);
 
 

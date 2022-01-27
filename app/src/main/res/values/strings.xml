@@ -17,4 +17,17 @@
     <string name="show_more_than_just_basic_partitions">Shows more than just basic partitions</string>
     <string name="not_available_with_dynamic_colors">Not available with Dynamic Colors</string>
     <string name="amoled_mode">AMOLED MODE</string>
+    <string name="partitions">Partitions</string>
+    <string name="basic_partitions">Basic Partitions</string>
+    <string name="memory">Memory</string>
+    <string name="ram">RAM</string>
+    <string name="zram">ZRAM</string>
+    <string name="total">total</string>
+    <string name="free">free</string>
+    <string name="used">used</string>
+    <string name="data">Data</string>
+    <string name="cache">Cache</string>
+    <string name="swap">Swap</string>
+    <string name="cached">Cached</string>
+    <string name="swap_cached">SwapCached</string>
 </resources>
