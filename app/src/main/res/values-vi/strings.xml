@@ -31,4 +31,8 @@
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>
+    <string name="partition_tooltip">đường dẫn gắn kết phân vùng (hệ thống tệp phân vùng)</string>
+    <string name="access_type_tooltip">Loại truy cập (chỉ đọc hoặc đọc / ghi)</string>
+    <string name="block_size_tooltip">Kích thước khối</string>
+    <string name="filesystem_tooltip">Loại hệ thống tệp</string>
 </resources>

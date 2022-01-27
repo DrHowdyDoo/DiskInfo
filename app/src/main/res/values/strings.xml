@@ -30,4 +30,8 @@
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>
+    <string name="partition_tooltip">partition mount path (partition filesystem)</string>
+    <string name="access_type_tooltip">Access Type (readOnly or read/write)</string>
+    <string name="block_size_tooltip">Block size</string>
+    <string name="filesystem_tooltip">FileSystem type</string>
 </resources>

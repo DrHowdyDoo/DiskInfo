@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DiskInfo</string>
+    <string name="themes">темы</string>
+    <string name="dynamic_colors">Динамические цвета</string>
+    <string name="on">включи это</string>
+    <string name="off">выключить</string>
+    <string name="show_animation">Show Animation</string>
+    <string name="preferences">предпочтения</string>
+    <string name="animate_bars">анимированные бары</string>
+    <string name="show_block_size">показать размер блока</string>
+    <string name="app_colors">цвет приложения</string>
+    <string name="auto">автоматический</string>
+    <string name="dark">темно</string>
+    <string name="light">светлый</string>
+    <string name="show_all_partitions">показать все перегородки</string>
+    <string name="advance_mode">расширенный режим</string>
+    <string name="show_more_than_just_basic_partitions">Показывает больше, чем просто основные перегородки</string>
+    <string name="not_available_with_dynamic_colors">недоступно с динамическими цветами</string>
+    <string name="amoled_mode">AMOLED-РЕЖИМ</string>
+    <string name="partitions">перегородки</string>
+    <string name="basic_partitions">основные перегородки</string>
+    <string name="memory">объем памяти</string>
+    <string name="ram">RAM</string>
+    <string name="zram">ZRAM</string>
+    <string name="total">Всего</string>
+    <string name="free">бесплатно</string>
+    <string name="used">использовал</string>
+    <string name="data">данные</string>
+    <string name="cache">тайник</string>
+    <string name="swap">Swap</string>
+    <string name="cached">Cached</string>
+    <string name="swap_cached">SwapCached</string>
+    <string name="partition_tooltip">путь монтирования раздела (файловая система раздела)</string>
+    <string name="access_type_tooltip">Тип доступа (только чтение или чтение/запись)</string>
+    <string name="block_size_tooltip">Размер блока</string>
+    <string name="filesystem_tooltip">Тип файловой системы</string>
+</resources>
