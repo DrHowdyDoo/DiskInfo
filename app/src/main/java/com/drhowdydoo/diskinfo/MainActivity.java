@@ -4,24 +4,26 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.format.Formatter;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -49,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<Object> storeArrayList, basicPartition, advancePartition;
     private boolean expanded;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
-        Log.d(TAG, "onCreate: created taskID : " + getTaskId());
         AppCompatDelegate.setDefaultNightMode(mode);
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
@@ -115,24 +119,80 @@ public class MainActivity extends AppCompatActivity {
         collapsingToolbarLayout = findViewById(R.id.collapsingToolBar);
         fab = findViewById(R.id.fab_theme);
         settings = findViewById(R.id.settings);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+
+        int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
+        int progressIndicatorColor = MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK);
+
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressBackgroundColor);
+        swipeRefreshLayout.setColorSchemeColors(progressIndicatorColor);
 
         storeArrayList = new ArrayList<>();
         basicPartition = new ArrayList<>();
         advancePartition = new ArrayList<>();
 
+
+        _partition = getString(R.string.partitions);
+        _basic_partitions = getString(R.string.basic_partitions);
+        _data = getString(R.string.data);
+        _cache = getString(R.string.cache);
+        _cached = getString(R.string.cached);
+        _swap = getString(R.string.swap);
+        _swap_cached = getString(R.string.swap_cached);
+        _ram = getString(R.string.ram);
+        _zram = getString(R.string.zram);
+        _memory = getString(R.string.memory);
+
+
+        getList();
+        setList();
+        addMemoryDetails();
+        setView();
+
+
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            storeArrayList.clear();
+            advancePartition.clear();
+            basicPartition.clear();
+
+            getList();
+            setList();
+            addMemoryDetails();
+            recyclerViewAdapter.notifyDataSetChanged();
+            recyclerView.scheduleLayoutAnimation();
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Parcelable state = intent.getParcelableExtra("scroll_state");
+            if (state != null) {
+                Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(state);
+            }
+            if (intent.getBooleanExtra("theme_changed", false))
+                appBarLayout.setExpanded(intent.getBooleanExtra("collapsing_toolbar_state", true));
+        }
+        new FastScrollerBuilder(recyclerView).useMd2Style().build();
+
+        fab.setOnClickListener(view -> {
+            //fab.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
+            ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
+            themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
+        });
+
+        settings.setOnClickListener(view -> {
+            //settings.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
+            SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
+            settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
+        });
+
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> expanded = verticalOffset == 0);
+
+    }
+
+    private void getList() {
+
         DataStore cacheStore = null, rootStore = null;
-
-        String _partition = getString(R.string.partitions),
-                _basic_partitions = getString(R.string.basic_partitions),
-                _data = getString(R.string.data),
-                _cache = getString(R.string.cache),
-                _cached = getString(R.string.cached),
-                _swap = getString(R.string.swap),
-                _swap_cached = getString(R.string.swap_cached),
-                _ram = getString(R.string.ram),
-                _zram = getString(R.string.zram),
-                _memory = getString(R.string.memory);
-
 
         advancePartition.add(_partition);
 
@@ -181,13 +241,17 @@ public class MainActivity extends AppCompatActivity {
             cacheStore.setMount_name(_cache);
             basicPartition.add(cacheStore);
         }
+    }
 
+    private void setList() {
         if (sharedPref.getBoolean("advanceMode", false)) {
             storeArrayList = advancePartition;
         } else {
             storeArrayList = basicPartition;
         }
+    }
 
+    private void addMemoryDetails() {
         storeArrayList.add(_memory);
         String line;
         Map<String, Long> map = new HashMap<>();
@@ -245,38 +309,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-
+    private void setView() {
         recyclerViewAdapter = new RecyclerViewAdapter(this, storeArrayList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
-
-        Intent intent = getIntent();
-        if (intent != null) {
-            Parcelable state = intent.getParcelableExtra("scroll_state");
-            if (state != null) {
-                Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(state);
-            }
-            if (intent.getBooleanExtra("theme_changed", false))
-                appBarLayout.setExpanded(intent.getBooleanExtra("collapsing_toolbar_state", true));
-        }
-        new FastScrollerBuilder(recyclerView).useMd2Style().build();
-
-        fab.setOnClickListener(view -> {
-            //fab.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
-            ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
-            themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
-        });
-
-        settings.setOnClickListener(view -> {
-            //settings.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
-            SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
-            settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
-        });
-
-        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> expanded = verticalOffset == 0);
-
     }
 
     public void restartToApply(long delay) {
