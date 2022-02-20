@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
 import android.util.Log;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -167,19 +169,28 @@ public class MainActivity extends AppCompatActivity {
         addMemoryDetails();
         setView();
 
+        int resId = R.anim.layout_animation_fall_down;
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, resId);
+
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            storeArrayList.clear();
-            advancePartition.clear();
-            basicPartition.clear();
-            map.clear();
 
-            getList();
-            setList();
-            addMemoryDetails();
-            setView();
-            recyclerView.scheduleLayoutAnimation();
-            swipeRefreshLayout.setRefreshing(false);
+            new Thread(() -> {
+                storeArrayList.clear();
+                advancePartition.clear();
+                basicPartition.clear();
+                map.clear();
+
+                getList();
+                setList();
+                addMemoryDetails();
+                runOnUiThread(() -> {
+                    setView();
+                    recyclerView.setLayoutAnimation(animation);
+                    swipeRefreshLayout.setRefreshing(false);
+                });
+            }).start();
+
         });
 
         Intent intent = getIntent();
