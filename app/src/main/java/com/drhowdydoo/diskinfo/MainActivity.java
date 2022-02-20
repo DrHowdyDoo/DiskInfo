@@ -1,7 +1,6 @@
 package com.drhowdydoo.diskinfo;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory;
     private int unit_flag, unit;
+    private Map<String, Long> map;
+    private RandomAccessFile reader;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -131,21 +132,22 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPref.getBoolean("useSI", false)) {
             unit_flag = FormatterX.FLAG_SI_UNITS;
-            unit = 1000;
         } else {
             unit_flag = FormatterX.FLAG_IEC_UNITS;
-            unit = 1024;
         }
 
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        activityManager.getMemoryInfo(mi);
+        unit = 1024;
 
-        Log.d(TAG, "onCreate: mem avail : " + mi.availMem + " \nmemTotal : " + mi.totalMem);
+//        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+//        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+//        activityManager.getMemoryInfo(mi);
+//
+//        Log.d(TAG, "onCreate: mem avail : " + mi.availMem + " \nmemTotal : " + mi.totalMem);
 
         storeArrayList = new ArrayList<>();
         basicPartition = new ArrayList<>();
         advancePartition = new ArrayList<>();
+        map = new HashMap<>();
 
 
         _partition = getString(R.string.partitions);
@@ -170,11 +172,12 @@ public class MainActivity extends AppCompatActivity {
             storeArrayList.clear();
             advancePartition.clear();
             basicPartition.clear();
+            map.clear();
 
             getList();
             setList();
             addMemoryDetails();
-            recyclerViewAdapter.notifyDataSetChanged();
+            setView();
             recyclerView.scheduleLayoutAnimation();
             swipeRefreshLayout.setRefreshing(false);
         });
@@ -191,13 +194,11 @@ public class MainActivity extends AppCompatActivity {
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
         fab.setOnClickListener(view -> {
-            //fab.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
             ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
             themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
         });
 
         settings.setOnClickListener(view -> {
-            //settings.animate().translationYBy(-50f).setDuration(300).setStartDelay(0);
             SettingsBottomSheet settingsBottomSheet = new SettingsBottomSheet();
             settingsBottomSheet.show(getSupportFragmentManager(), "Settings");
         });
@@ -268,18 +269,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addMemoryDetails() {
+
         storeArrayList.add(_memory);
         String line;
-        Map<String, Long> map = new HashMap<>();
-
 
         try {
-            RandomAccessFile reader = new RandomAccessFile("/proc/meminfo", "r");
+            reader = new RandomAccessFile("/proc/meminfo", "r");
             while ((line = reader.readLine()) != null) {
                 String[] entry = line.split(":");
                 map.put(entry[0], Long.parseLong(entry[1].substring(0, entry[1].length() - 2).trim()));
             }
-            reader.close();
+
 
             long totalMem = 0, availMem = 0, usedMem;
             long cahced = 0;
@@ -293,6 +293,8 @@ public class MainActivity extends AppCompatActivity {
             if (map.containsKey("Cached")) {
                 cahced = map.get("Cached") * unit;
             }
+
+            Log.d(TAG, "addMemoryDetails: " + availMem + " " + FormatterX.formatFileSize(this, availMem, unit_flag));
 
             String cache = _cached + " : " + FormatterX.formatFileSize(this, cahced, unit_flag);
 
@@ -395,5 +397,15 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
