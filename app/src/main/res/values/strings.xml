@@ -34,4 +34,7 @@
     <string name="access_type_tooltip">Access Type (readOnly or read/write)</string>
     <string name="block_size_tooltip">Block size</string>
     <string name="filesystem_tooltip">FileSystem type</string>
+    <string name="unit_system">Unit System</string>
+    <string name="si">SI</string>
+    <string name="iec">IEC</string>
 </resources>

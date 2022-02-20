@@ -35,4 +35,7 @@
     <string name="access_type_tooltip">Тип доступа (только чтение или чтение/запись)</string>
     <string name="block_size_tooltip">Размер блока</string>
     <string name="filesystem_tooltip">Тип файловой системы</string>
+    <string name="unit_system">система единиц</string>
+    <string name="si">SI</string>
+    <string name="iec">IEC</string>
 </resources>

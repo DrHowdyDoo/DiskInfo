@@ -1,6 +1,7 @@
 package com.drhowdydoo.diskinfo;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
-import android.text.format.Formatter;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean expanded;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory;
+    private int unit_flag, unit;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -126,6 +128,20 @@ public class MainActivity extends AppCompatActivity {
 
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressBackgroundColor);
         swipeRefreshLayout.setColorSchemeColors(progressIndicatorColor);
+
+        if (sharedPref.getBoolean("useSI", false)) {
+            unit_flag = FormatterX.FLAG_SI_UNITS;
+            unit = 1000;
+        } else {
+            unit_flag = FormatterX.FLAG_IEC_UNITS;
+            unit = 1024;
+        }
+
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+
+        Log.d(TAG, "onCreate: mem avail : " + mi.availMem + " \nmemTotal : " + mi.totalMem);
 
         storeArrayList = new ArrayList<>();
         basicPartition = new ArrayList<>();
@@ -202,16 +218,16 @@ public class MainActivity extends AppCompatActivity {
                 long totalSpace = store.getTotalSpace();
                 long unusedSpace = store.getUnallocatedSpace();
                 long usedSpace = totalSpace - unusedSpace;
-                String totalSize = Formatter.formatFileSize(this, totalSpace);
-                String usedSize = Formatter.formatFileSize(this, usedSpace);
-                String freeSize = Formatter.formatFileSize(this, unusedSpace);
+                String totalSize = FormatterX.formatFileSize(this, totalSpace, unit_flag);
+                String usedSize = FormatterX.formatFileSize(this, usedSpace, unit_flag);
+                String freeSize = FormatterX.formatFileSize(this, unusedSpace, unit_flag);
 
                 int progress = Util.getUsedSpace(totalSpace, usedSpace);
 
                 String fileStorePath = store.toString().replaceFirst(" .*", "");
                 StatFs statFs = new StatFs(fileStorePath);
                 long blockSpace = statFs.getBlockSizeLong();
-                String blockSize = Formatter.formatFileSize(this, blockSpace);
+                String blockSize = FormatterX.formatFileSize(this, blockSpace, unit_flag);
                 DataStore dataStore = new DataStore(store.toString(), store.type(), totalSize, usedSize, freeSize, blockSize, store.isReadOnly(), totalSpace, unusedSpace, usedSpace, blockSpace, progress);
                 advancePartition.add(dataStore);
                 if (store.toString().startsWith("/cache")) {
@@ -256,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
         String line;
         Map<String, Long> map = new HashMap<>();
 
+
         try {
             RandomAccessFile reader = new RandomAccessFile("/proc/meminfo", "r");
             while ((line = reader.readLine()) != null) {
@@ -268,41 +285,42 @@ public class MainActivity extends AppCompatActivity {
             long cahced = 0;
 
             if (map.containsKey("MemTotal")) {
-                totalMem = map.get("MemTotal") * 1000;
+                totalMem = map.get("MemTotal") * unit;
             }
             if (map.containsKey("MemAvailable")) {
-                availMem = map.get("MemAvailable") * 1000;
+                availMem = map.get("MemAvailable") * unit;
             }
             if (map.containsKey("Cached")) {
-                cahced = map.get("Cached") * 1000;
+                cahced = map.get("Cached") * unit;
             }
 
-            String cache = _cached + " : " + Formatter.formatFileSize(this, cahced);
+            String cache = _cached + " : " + FormatterX.formatFileSize(this, cahced, unit_flag);
+
 
             usedMem = totalMem - availMem;
             int memTrack = totalMem != 0 ? (int) (((double) usedMem / totalMem) * 100) : 0;
             String _memory_ram = _memory + " " + "(" + _ram + ")";
-            MemInfo memInfo = new MemInfo(_memory_ram, Formatter.formatFileSize(this, totalMem), Formatter.formatFileSize(this, availMem), Formatter.formatFileSize(this, usedMem), cache, memTrack);
+            MemInfo memInfo = new MemInfo(_memory_ram, FormatterX.formatFileSize(this, totalMem, unit_flag), FormatterX.formatFileSize(this, availMem, unit_flag), FormatterX.formatFileSize(this, usedMem, unit_flag), cache, memTrack);
             storeArrayList.add(memInfo);
 
             long totalSwap = 0, availSwap = 0, usedSwap, swapCached = 0;
 
             if (map.containsKey("SwapTotal")) {
-                totalSwap = map.get("SwapTotal") * 1000;
+                totalSwap = map.get("SwapTotal") * unit;
             }
             if (map.containsKey("SwapFree")) {
-                availSwap = map.get("SwapFree") * 1000;
+                availSwap = map.get("SwapFree") * unit;
             }
 
             if (map.containsKey("SwapCached")) {
-                swapCached = map.get("SwapCached") * 1000;
+                swapCached = map.get("SwapCached") * unit;
             }
 
-            String swapCache = _swap_cached + " : " + Formatter.formatFileSize(this, swapCached);
+            String swapCache = _swap_cached + " : " + FormatterX.formatFileSize(this, swapCached, unit_flag);
             usedSwap = totalSwap - availSwap;
             int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
             String _swap_zram = _swap + " " + "(" + _zram + ")";
-            MemInfo swapInfo = new MemInfo(_swap_zram, Formatter.formatFileSize(this, totalSwap), Formatter.formatFileSize(this, availSwap), Formatter.formatFileSize(this, usedSwap), swapCache, swapTrack);
+            MemInfo swapInfo = new MemInfo(_swap_zram, FormatterX.formatFileSize(this, totalSwap, unit_flag), FormatterX.formatFileSize(this, availSwap, unit_flag), FormatterX.formatFileSize(this, usedSwap, unit_flag), swapCache, swapTrack);
             storeArrayList.add(swapInfo);
 
 

@@ -12,14 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
     private SwitchMaterial animation, blockSize, advanceMode;
+    private MaterialButtonToggleGroup unitToggle;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false;
+    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false, useSI = false;
 
     public SettingsBottomSheet() {
     }
@@ -37,10 +39,19 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         animation = v.findViewById(R.id.switchMaterial_animation);
         blockSize = v.findViewById(R.id.switchMaterial_blockSize);
         advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
+        unitToggle = v.findViewById(R.id.unitToggle);
 
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
         advanceMode.setChecked(sharedPref.getBoolean("advanceMode", false));
+
+        if (sharedPref.getBoolean("useSI", false)) {
+            unitToggle.check(R.id.btn_si);
+            useSI = true;
+        } else {
+            unitToggle.check(R.id.btn_iec);
+            useSI = false;
+        }
 
         isCheckedPreviously = blockSize.isChecked();
         advanceModeOn = advanceMode.isChecked();
@@ -60,19 +71,37 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         }));
 
 
+        unitToggle.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (checkedId == R.id.btn_si) {
+                editor.putBoolean("useSI", true).apply();
+            }
+            if (checkedId == R.id.btn_iec) {
+                editor.putBoolean("useSI", false).apply();
+            }
+
+        });
+
+
         return v;
     }
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
+
+
+        if (useSI ^ sharedPref.getBoolean("useSI", false))
+            ((MainActivity) requireActivity()).restartToApply(0);
+
+        if (isModeChanged) ((MainActivity) requireActivity()).advanceModeOn();
+        isModeChanged = false;
+
         if (isChanged) {
             ((MainActivity) requireActivity()).recreateRecyclerView();
         }
         isChanged = false;
-        if (isModeChanged) ((MainActivity) requireActivity()).advanceModeOn();
-        isModeChanged = false;
-        //((MainActivity) requireActivity()).resetSettingsFabLocation();
+
+
     }
 
 }

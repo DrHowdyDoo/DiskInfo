@@ -36,5 +36,8 @@
     <string name="access_type_tooltip">Jenis Akses (hanya baca atau baca/tulis)</string>
     <string name="block_size_tooltip">Ukuran blok</string>
     <string name="filesystem_tooltip">Jenis Sistem File</string>
+    <string name="unit_system">sistem unit</string>
+    <string name="si">SI</string>
+    <string name="iec">IEC</string>
 
 </resources>

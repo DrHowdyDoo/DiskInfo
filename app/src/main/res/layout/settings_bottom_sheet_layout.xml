@@ -70,13 +70,14 @@
         app:layout_constraintTop_toTopOf="@+id/txtView_blockSize" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        style="?attr/materialCardViewFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?attr/materialCardViewFilledStyle"
-        app:cardCornerRadius="100dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginStart="2dp"
+        app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtView_blockSize">
@@ -84,12 +85,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginEnd="70dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="70dp"
             android:layout_marginBottom="12dp"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtView_advance_mode"
@@ -117,12 +118,53 @@
             android:id="@+id/switchMaterial_advance_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
+            android:layout_gravity="end|top"
             android:layout_marginTop="4dp"
-            android:layout_gravity="end|top" />
+            android:layout_marginEnd="14dp" />
 
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtView_unit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="start"
+        android:text="@string/unit_system"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/unitToggle"
+        app:layout_constraintEnd_toStartOf="@+id/unitToggle"
+        app:layout_constraintStart_toStartOf="@+id/txtView_blockSize"
+        app:layout_constraintTop_toTopOf="@+id/unitToggle" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/unitToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:selectionRequired="true"
+        app:singleSelection="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+        <Button
+            android:id="@+id/btn_si"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/si" />
+
+        <Button
+            android:id="@+id/btn_iec"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/iec" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,4 +35,7 @@
     <string name="access_type_tooltip">Loại truy cập (chỉ đọc hoặc đọc / ghi)</string>
     <string name="block_size_tooltip">Kích thước khối</string>
     <string name="filesystem_tooltip">Loại hệ thống tệp</string>
+    <string name="unit_system">hệ thống đơn vị</string>
+    <string name="si">SI</string>
+    <string name="iec">IEC</string>
 </resources>
