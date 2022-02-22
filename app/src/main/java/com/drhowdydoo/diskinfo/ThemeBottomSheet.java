@@ -68,42 +68,29 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         amoledMode = v.findViewById(R.id.switch_amoledMode);
         amoledModeBody = v.findViewById(R.id.txtView_amoledMode_body);
 
-        Drawable purple_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        Drawable red_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        Drawable yellow_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        Drawable green_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        Drawable orange_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        Drawable pink_circle = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
 
-        if (purple_circle != null) {
-            purple_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Purple), R.attr.colorPrimary));
-            imgPurple.setBackground(purple_circle);
+        Drawable[] mDrawables = new Drawable[6];
+        int[] themeRes = {
+                R.style.Theme_DiskInfo_Purple,
+                R.style.Theme_DiskInfo_Red,
+                R.style.Theme_DiskInfo_Yellow,
+                R.style.Theme_DiskInfo_Green,
+                R.style.Theme_DiskInfo_Orange,
+                R.style.Theme_DiskInfo_Pink
+        };
+
+        for (int i = 0; i < mDrawables.length; i++) {
+            mDrawables[i] = createDrawable();
+            assert mDrawables[i] != null;
+            mDrawables[i].setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), themeRes[i]), R.attr.colorPrimary));
         }
 
-        if (red_circle != null) {
-            red_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Red), R.attr.colorPrimary));
-            imgRed.setBackground(red_circle);
-        }
-
-        if (yellow_circle != null) {
-            yellow_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Yellow), R.attr.colorPrimary));
-            imgYellow.setBackground(yellow_circle);
-        }
-
-        if (green_circle != null) {
-            green_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Green), R.attr.colorPrimary));
-            imgGreen.setBackground(green_circle);
-        }
-
-        if (orange_circle != null) {
-            orange_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Orange), R.attr.colorPrimary));
-            imgOrange.setBackground(orange_circle);
-        }
-
-        if (pink_circle != null) {
-            pink_circle.setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), R.style.Theme_DiskInfo_Pink), R.attr.colorPrimary));
-            imgPink.setBackground(pink_circle);
-        }
+        imgPurple.setBackground(mDrawables[0]);
+        imgRed.setBackground(mDrawables[1]);
+        imgYellow.setBackground(mDrawables[2]);
+        imgGreen.setBackground(mDrawables[3]);
+        imgOrange.setBackground(mDrawables[4]);
+        imgPink.setBackground(mDrawables[5]);
 
 
         dynamicColors = v.findViewById(R.id.toggleButton);
@@ -298,6 +285,12 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
     }
 
+    private Drawable createDrawable() {
+        Drawable mDrawable = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
+        if (mDrawable != null)
+            return mDrawable.mutate();
+        else return null;
+    }
 
     private void restart() {
         ((MainActivity) requireActivity()).restartToApply(100);
