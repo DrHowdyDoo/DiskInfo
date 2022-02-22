@@ -6,7 +6,7 @@
     <string name="off">Off</string>
     <string name="show_animation">Show Animation</string>
     <string name="preferences">Preferences</string>
-    <string name="animate_bars">Animate Bars</string>
+    <string name="animate_bars">Show bar animation</string>
     <string name="show_block_size">Show block size</string>
     <string name="app_colors">App Colors</string>
     <string name="auto">Auto</string>
