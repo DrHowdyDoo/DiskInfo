@@ -54,8 +54,7 @@ public class FormatterX {
             return "";
         }
         final BytesResult res = formatBytes(context.getResources(), sizeBytes, flags);
-        Resources r = Resources.getSystem();
-        return bidiWrap(context, context.getString(r.getIdentifier("fileSizeSuffix", "string", "android"),
+        return bidiWrap(context, context.getString(R.string.fileSizeSuffix,
                 res.value, res.units));
     }
 
@@ -64,30 +63,30 @@ public class FormatterX {
         final int unit = ((flags & FLAG_IEC_UNITS) != 0) ? 1024 : 1000;
         final boolean isNegative = (sizeBytes < 0);
         float result = isNegative ? -sizeBytes : sizeBytes;
-        int suffix = res.getIdentifier("byteShort", "string", "android");
+        int suffix = R.string.byteShort;
         long mult = 1;
         if (result > 900) {
-            suffix = res.getIdentifier("kilobyteShort", "string", "android");
+            suffix = R.string.kilobyteShort;
             mult = unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = res.getIdentifier("megabyteShort", "string", "android");
+            suffix = R.string.megabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = res.getIdentifier("gigabyteShort", "string", "android");
+            suffix = R.string.gigabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = res.getIdentifier("terabyteShort", "string", "android");
+            suffix = R.string.terabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = res.getIdentifier("petabyteShort", "string", "android");
+            suffix = R.string.petabyteShort;
             mult *= unit;
             result = result / unit;
         }
@@ -134,6 +133,7 @@ public class FormatterX {
         final String units = res.getString(suffix);
 
         return new BytesResult(roundedString, units, roundedBytes);
+
     }
 
 }

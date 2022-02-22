@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">DiskInfo</string>
     <string name="themes">темы</string>
     <string name="dynamic_colors">Динамические цвета</string>
@@ -38,4 +38,11 @@
     <string name="unit_system">система единиц</string>
     <string name="si">SI</string>
     <string name="iec">IEC</string>
+    <string name="byteShort">"Б"</string>
+    <string name="kilobyteShort">"КБ"</string>
+    <string name="megabyteShort">"МБ"</string>
+    <string name="gigabyteShort">"ГБ"</string>
+    <string name="terabyteShort">"TБ"</string>
+    <string name="petabyteShort">"ПБ"</string>
+    <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
 </resources>

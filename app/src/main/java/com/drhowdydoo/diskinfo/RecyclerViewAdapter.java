@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<Object> storeArrayList;
-    private Context context;
-    private SharedPreferences sharedPref;
+    private final ArrayList<Object> storeArrayList;
+    private final Context context;
+    private final SharedPreferences sharedPref;
 
     public RecyclerViewAdapter(Context context, ArrayList<Object> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
