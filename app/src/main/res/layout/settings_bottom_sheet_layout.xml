@@ -77,7 +77,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
-        app:cardCornerRadius="100dp"
+        app:cardCornerRadius="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtView_blockSize">

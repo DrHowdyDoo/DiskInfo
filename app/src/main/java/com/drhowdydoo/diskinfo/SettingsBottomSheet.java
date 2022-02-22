@@ -41,6 +41,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
         unitToggle = v.findViewById(R.id.unitToggle);
 
+
         animation.setChecked(sharedPref.getBoolean("animation", true));
         blockSize.setChecked(sharedPref.getBoolean("blockSize", true));
         advanceMode.setChecked(sharedPref.getBoolean("advanceMode", false));
