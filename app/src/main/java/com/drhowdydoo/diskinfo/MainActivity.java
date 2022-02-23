@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
-import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
@@ -317,10 +316,14 @@ public class MainActivity extends AppCompatActivity {
                 String[] entry = line.split(":");
                 map.put(entry[0], Long.parseLong(entry[1].substring(0, entry[1].length() - 2).trim()));
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
 
             long totalMem = 0, availMem = 0, usedMem;
             long cahced = 0;
+
 
             if (map.containsKey("MemTotal")) {
                 totalMem = map.get("MemTotal") * unit;
@@ -332,7 +335,6 @@ public class MainActivity extends AppCompatActivity {
                 cahced = map.get("Cached") * unit;
             }
 
-            Log.d(TAG, "addMemoryDetails: " + availMem + " " + FormatterX.formatFileSize(this, availMem, unit_flag));
 
             String cache = _cached + " : " + FormatterX.formatFileSize(this, cahced, unit_flag);
 
@@ -342,6 +344,7 @@ public class MainActivity extends AppCompatActivity {
             String _memory_ram = _memory + " " + "(" + _ram + ")";
             MemInfo memInfo = new MemInfo(_memory_ram, FormatterX.formatFileSize(this, totalMem, unit_flag), FormatterX.formatFileSize(this, availMem, unit_flag), FormatterX.formatFileSize(this, usedMem, unit_flag), cache, memTrack);
             storeArrayList.add(memInfo);
+
 
             long totalSwap = 0, availSwap = 0, usedSwap, swapCached = 0;
 
