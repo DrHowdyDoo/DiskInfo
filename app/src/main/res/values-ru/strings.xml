@@ -28,6 +28,8 @@
     <string name="used">использовал</string>
     <string name="data">данные</string>
     <string name="cache">тайник</string>
+    <string name="sdcard_internal">SD-карта (внутренняя)</string>
+    <string name="sdcard_portable">SD-карта (портативный)</string>
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>

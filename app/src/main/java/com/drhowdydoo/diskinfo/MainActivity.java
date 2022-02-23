@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Object> storeArrayList, basicPartition, advancePartition;
     private boolean expanded;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory;
+    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory, _sdcard_internal, _sdcard_portable;
     private int unit_flag, unit;
     private Map<String, Long> map;
     private RandomAccessFile reader;
@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
         _ram = getString(R.string.ram);
         _zram = getString(R.string.zram);
         _memory = getString(R.string.memory);
+        _sdcard_internal = getString(R.string.sdcard_internal);
+        _sdcard_portable = getString(R.string.sdcard_portable);
 
 
         getList();
@@ -220,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getList() {
 
-        DataStore cacheStore = null, rootStore = null;
+        DataStore cacheStore = null, rootStore = null, sdStore = null, usbStore = null;
 
         advancePartition.add(_partition);
 
@@ -248,6 +250,12 @@ public class MainActivity extends AppCompatActivity {
                 if (store.toString().startsWith("/data ")) {
                     rootStore = new DataStore(dataStore);
                 }
+                if (store.toString().startsWith("/mnt/expand/")) {
+                    sdStore = new DataStore(dataStore);
+                }
+                if (store.toString().contains("/mnt/media_rw/")) {
+                    usbStore = new DataStore(dataStore);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -268,6 +276,16 @@ public class MainActivity extends AppCompatActivity {
         if (cacheStore != null) {
             cacheStore.setMount_name(_cache);
             basicPartition.add(cacheStore);
+        }
+
+        if (sdStore != null) {
+            sdStore.setMount_name(_sdcard_internal);
+            basicPartition.add(sdStore);
+        }
+
+        if (usbStore != null) {
+            usbStore.setMount_name(_sdcard_portable);
+            basicPartition.add(usbStore);
         }
     }
 

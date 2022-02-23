@@ -28,6 +28,8 @@
     <string name="used">Đã dùng </string>
     <string name="data">Dữ liệu </string>
     <string name="cache">Cache</string>
+    <string name="sdcard_internal">thẻ SD (Nội bộ)</string>
+    <string name="sdcard_portable">thẻ SD (Portable)</string>
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>
