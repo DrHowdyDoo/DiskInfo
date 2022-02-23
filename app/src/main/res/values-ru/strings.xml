@@ -30,6 +30,7 @@
     <string name="cache">тайник</string>
     <string name="sdcard_internal">SD-карта (внутренняя)</string>
     <string name="sdcard_portable">SD-карта (портативный)</string>
+    <string name="otg">ОТГ</string>
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>

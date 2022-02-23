@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Object> storeArrayList, basicPartition, advancePartition;
     private boolean expanded;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory, _sdcard_internal, _sdcard_portable;
+    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory, _sdcard_internal, _sdcard_portable, _otg;
     private int unit_flag, unit;
     private Map<String, Long> map;
     private RandomAccessFile reader;
@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         _memory = getString(R.string.memory);
         _sdcard_internal = getString(R.string.sdcard_internal);
         _sdcard_portable = getString(R.string.sdcard_portable);
+        _otg = getString(R.string.otg);
 
 
         getList();
@@ -222,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getList() {
 
-        DataStore cacheStore = null, rootStore = null, sdStore = null, usbStore = null;
+        DataStore cacheStore = null, rootStore = null, sdStore = null, sdExtStore = null, otgStore = null;
 
         advancePartition.add(_partition);
 
@@ -254,7 +255,10 @@ public class MainActivity extends AppCompatActivity {
                     sdStore = new DataStore(dataStore);
                 }
                 if (store.toString().contains("/mnt/media_rw/")) {
-                    usbStore = new DataStore(dataStore);
+                    sdExtStore = new DataStore(dataStore);
+                }
+                if (store.toString().contains("/dev/fuse") && !store.toString().startsWith("/storage/emulated")) {
+                    otgStore = new DataStore(dataStore);
                 }
 
             } catch (IOException e) {
@@ -283,9 +287,14 @@ public class MainActivity extends AppCompatActivity {
             basicPartition.add(sdStore);
         }
 
-        if (usbStore != null) {
-            usbStore.setMount_name(_sdcard_portable);
-            basicPartition.add(usbStore);
+        if (sdExtStore != null) {
+            sdExtStore.setMount_name(_sdcard_portable);
+            basicPartition.add(sdExtStore);
+        }
+
+        if (otgStore != null) {
+            otgStore.setMount_name(_otg);
+            basicPartition.add(otgStore);
         }
     }
 

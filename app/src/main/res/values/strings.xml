@@ -29,6 +29,7 @@
     <string name="cache">Cache</string>
     <string name="sdcard_internal">SD card (Internal)</string>
     <string name="sdcard_portable">SD card (Portable)</string>
+    <string name="otg">OTG</string>
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
     <string name="swap_cached">SwapCached</string>
