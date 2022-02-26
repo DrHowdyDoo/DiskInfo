@@ -10,9 +10,9 @@
     <string name="animate_bars">анимированные бары</string>
     <string name="show_block_size">показать размер блока</string>
     <string name="app_colors">цвет приложения</string>
-    <string name="auto">автоматический</string>
-    <string name="dark">темно</string>
-    <string name="light">светлый</string>
+    <string name="auto">Автомат.</string>
+    <string name="dark">Темная</string>
+    <string name="light">Светлая</string>
     <string name="show_all_partitions">показать все перегородки</string>
     <string name="advance_mode">расширенный режим</string>
     <string name="show_more_than_just_basic_partitions">Показывает больше, чем просто основные перегородки</string>
@@ -24,8 +24,8 @@
     <string name="ram">RAM</string>
     <string name="zram">ZRAM</string>
     <string name="total">Всего</string>
-    <string name="free">бесплатно</string>
-    <string name="used">использовал</string>
+    <string name="free">свобоДно</string>
+    <string name="used">Занято</string>
     <string name="data">данные</string>
     <string name="cache">тайник</string>
     <string name="sdcard_internal">SD-карта (внутренняя)</string>

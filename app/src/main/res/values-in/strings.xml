@@ -11,9 +11,9 @@
     <string name="animate_bars">bar animasi</string>
     <string name="show_block_size">Tampilkan ukuran blok</string>
     <string name="app_colors">Warna Aplikasi</string>
-    <string name="auto">otomatis</string>
+    <string name="auto">Otomatis</string>
     <string name="dark">Gelap</string>
-    <string name="light">Lampu</string>
+    <string name="light">Terang</string>
     <string name="show_all_partitions">Tampilkan semua partisi</string>
     <string name="advance_mode">Modus Lanjutan</string>
     <string name="show_more_than_just_basic_partitions">Menampilkan lebih dari sekedar partisi dasar</string>
@@ -25,7 +25,7 @@
     <string name="ram">RAM</string>
     <string name="zram">ZRAM</string>
     <string name="total">total</string>
-    <string name="free">gratis</string>
+    <string name="free">kosong</string>
     <string name="used">digunakan</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>
