@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">DiskInfo</string>
-    <string name="themes">Chủ để </string>
+    <string name="themes">Chủ đề </string>
     <string name="dynamic_colors">Màu sắc động</string>
     <string name="on">Bật</string>
     <string name="off">Tắt</string>
@@ -28,8 +28,8 @@
     <string name="used">Đã dùng </string>
     <string name="data">Dữ liệu </string>
     <string name="cache">Cache</string>
-    <string name="sdcard_internal">thẻ SD (Nội bộ)</string>
-    <string name="sdcard_portable">thẻ SD (Portable)</string>
+    <string name="sdcard_internal">Thẻ SD (Nội bộ)</string>
+    <string name="sdcard_portable">Thẻ SD (Portable)</string>
     <string name="otg">OTG</string>
     <string name="swap">Swap</string>
     <string name="cached">Cached</string>
@@ -38,14 +38,14 @@
     <string name="access_type_tooltip">Loại truy cập (chỉ đọc hoặc đọc / ghi)</string>
     <string name="block_size_tooltip">Kích thước khối</string>
     <string name="filesystem_tooltip">Loại hệ thống tệp</string>
-    <string name="unit_system">hệ thống đơn vị</string>
+    <string name="unit_system">Hệ thống đơn vị</string>
     <string name="si">SI</string>
     <string name="iec">IEC</string>
-    <string name="byteShort">"B"</string>
-    <string name="kilobyteShort">"KB"</string>
-    <string name="megabyteShort">"MB"</string>
-    <string name="gigabyteShort">"GB"</string>
-    <string name="terabyteShort">"TB"</string>
-    <string name="petabyteShort">"PB"</string>
+    <string name="byteShort">" B"</string>
+    <string name="kilobyteShort">" KB"</string>
+    <string name="megabyteShort">" MB"</string>
+    <string name="gigabyteShort">" GB"</string>
+    <string name="terabyteShort">" TB"</string>
+    <string name="petabyteShort">" PB"</string>
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g><xliff:g id="UNIT">%2$s</xliff:g>"</string>
 </resources>

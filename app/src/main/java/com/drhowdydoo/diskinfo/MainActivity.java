@@ -1,10 +1,14 @@
 package com.drhowdydoo.diskinfo;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +19,7 @@ import android.view.animation.LayoutAnimationController;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -26,6 +31,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "TEST";
     private RecyclerView recyclerView;
     private MaterialToolbar materialToolbar;
+    private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton fab;
     private SharedPreferences sharedPref;
     private AppBarLayout appBarLayout;
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private int unit_flag, unit;
     private Map<String, Long> map;
     private RandomAccessFile reader;
+    private BroadcastReceiver mUsbReceiver;
+    private LayoutAnimationController animation;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -124,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab_theme);
         settings = findViewById(R.id.settings);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        coordinatorLayout = findViewById(R.id.coordinator_layout);
 
         int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
         int progressIndicatorColor = MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK);
@@ -172,28 +182,8 @@ public class MainActivity extends AppCompatActivity {
         setView();
 
         int resId = R.anim.layout_animation_fall_down;
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, resId);
+        animation = AnimationUtils.loadLayoutAnimation(this, resId);
 
-
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-
-            new Thread(() -> {
-                storeArrayList.clear();
-                advancePartition.clear();
-                basicPartition.clear();
-                map.clear();
-
-                getList();
-                setList();
-                addMemoryDetails();
-                runOnUiThread(() -> {
-                    setView();
-                    recyclerView.setLayoutAnimation(animation);
-                    swipeRefreshLayout.setRefreshing(false);
-                });
-            }).start();
-
-        });
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -206,6 +196,23 @@ public class MainActivity extends AppCompatActivity {
         }
         new FastScrollerBuilder(recyclerView).useMd2Style().build();
 
+        SwipeRefreshLayout.OnRefreshListener onRefreshListener = () -> new Thread(() -> {
+            storeArrayList.clear();
+            advancePartition.clear();
+            basicPartition.clear();
+            map.clear();
+
+            getList();
+            setList();
+            addMemoryDetails();
+            runOnUiThread(() -> {
+                setView();
+                recyclerView.setLayoutAnimation(animation);
+                swipeRefreshLayout.setRefreshing(false);
+            });
+        }).start();
+        swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
+
         fab.setOnClickListener(view -> {
             ThemeBottomSheet themeBottomSheet = new ThemeBottomSheet();
             themeBottomSheet.show(getSupportFragmentManager(), "ThemeSwitcher");
@@ -217,6 +224,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> expanded = verticalOffset == 0);
+
+        mUsbReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (action.equalsIgnoreCase("android.hardware.usb.action.USB_DEVICE_ATTACHED")) {
+
+                    UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+
+                    if (device != null) {
+                        _otg = device.getManufacturerName() + " " + device.getProductName();
+                    }
+
+
+                    Snackbar.make(coordinatorLayout, "OTG Detected", Snackbar.LENGTH_INDEFINITE).setAction("Refresh", v -> {
+                        onRefreshListener.onRefresh();
+                    }).show();
+
+
+                } else if (action.equalsIgnoreCase("android.hardware.usb.action.USB_DEVICE_DETACHED")) {
+                    Snackbar.make(coordinatorLayout, "OTG Disconnected", Snackbar.LENGTH_SHORT).show();
+                    onRefreshListener.onRefresh();
+                }
+            }
+        };
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.hardware.usb.action.USB_DEVICE_ATTACHED");
+        filter.addAction("android.hardware.usb.action.USB_DEVICE_DETACHED");
+        registerReceiver(mUsbReceiver, filter);
 
     }
 
@@ -448,5 +485,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        unregisterReceiver(mUsbReceiver);
     }
+
 }
