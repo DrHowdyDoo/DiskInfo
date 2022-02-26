@@ -11,7 +11,7 @@
     <string name="show_block_size">показать размер блока</string>
     <string name="app_colors">цвет приложения</string>
     <string name="auto">Автомат.</string>
-    <string name="dark">Темная</string>
+    <string name="dark">Тёмная</string>
     <string name="light">Светлая</string>
     <string name="show_all_partitions">показать все перегородки</string>
     <string name="advance_mode">расширенный режим</string>
@@ -20,14 +20,14 @@
     <string name="amoled_mode">AMOLED-РЕЖИМ</string>
     <string name="partitions">перегородки</string>
     <string name="basic_partitions">основные перегородки</string>
-    <string name="memory">объем памяти</string>
+    <string name="memory">Память</string>
     <string name="ram">RAM</string>
     <string name="zram">ZRAM</string>
     <string name="total">Всего</string>
     <string name="free">свобоДно</string>
     <string name="used">Занято</string>
     <string name="data">данные</string>
-    <string name="cache">тайник</string>
+    <string name="cache">Кеш</string>
     <string name="sdcard_internal">SD-карта (внутренняя)</string>
     <string name="sdcard_portable">SD-карта (портативный)</string>
     <string name="otg">ОТГ</string>
