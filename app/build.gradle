@@ -9,8 +9,8 @@ android {
         applicationId "com.drhowdydoo.diskinfo"
         minSdk 27
         targetSdk 31
-        versionCode 63
-        versionName "2.8"
+        versionCode 69
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
