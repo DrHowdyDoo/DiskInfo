@@ -173,7 +173,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty() && s.toString().charAt(0) == '$')
+                    searchView.setHelperText("Filter by size");
+                else {
+                    searchView.setHelperText("");
+                }
                 filter(s.toString());
+
             }
         });
 
