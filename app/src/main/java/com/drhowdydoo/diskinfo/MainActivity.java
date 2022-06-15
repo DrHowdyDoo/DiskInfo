@@ -16,6 +16,7 @@ import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -313,7 +314,8 @@ public class MainActivity extends AppCompatActivity {
             for (Object d : storeArrayList) {
                 if (d instanceof DataStore) {
                     if (text.charAt(0) == '$' && text.length() > 1) {
-                        if (((DataStore) d).getTotalSize().substring(0, text.length() - 1).equalsIgnoreCase(text.substring(1))) {
+                        Log.d(TAG, "filter: " + ((DataStore) d).getTotalSize());
+                        if (((DataStore) d).getTotalSize().length() > text.length() && ((DataStore) d).getTotalSize().substring(0, text.length() - 1).equalsIgnoreCase(text.substring(1))) {
                             temp.add(d);
                         }
                     } else if (((DataStore) d).getMount_name().contains(text))
