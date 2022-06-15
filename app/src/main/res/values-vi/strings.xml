@@ -48,5 +48,6 @@
     <string name="terabyteShort">" TB"</string>
     <string name="petabyteShort">" PB"</string>
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g><xliff:g id="UNIT">%2$s</xliff:g>"</string>
-    <string name="search">Search</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="not_found">Không tìm thấy</string>
 </resources>
