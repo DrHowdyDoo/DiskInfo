@@ -3,7 +3,7 @@
     <string name="app_name">DiskInfo</string>
     <string name="themes">темы</string>
     <string name="dynamic_colors">Динамические цвета</string>
-    <string name="on">включи это</string>
+    <string name="on">включить</string>
     <string name="off">выключить</string>
     <string name="show_animation">Show Animation</string>
     <string name="preferences">предпочтения</string>

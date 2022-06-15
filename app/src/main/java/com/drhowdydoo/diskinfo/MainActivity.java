@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
@@ -32,6 +33,7 @@ import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private RandomAccessFile reader;
     private BroadcastReceiver mUsbReceiver;
     private LayoutAnimationController animation;
+    private TextInputLayout searchView;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -134,12 +137,20 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
+        searchView = findViewById(R.id.searchView);
+
 
         int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
         int progressIndicatorColor = MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK);
 
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressBackgroundColor);
         swipeRefreshLayout.setColorSchemeColors(progressIndicatorColor);
+
+        if (sharedPref.getBoolean("advanceMode", false)) {
+            searchView.setVisibility(View.VISIBLE);
+        } else {
+            searchView.setVisibility(View.GONE);
+        }
 
         if (sharedPref.getBoolean("useSI", false)) {
             unit_flag = FormatterX.FLAG_SI_UNITS;

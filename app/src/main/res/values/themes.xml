@@ -20,6 +20,8 @@
         <item name="switchStyle">@style/App.Switches</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Overlay.LargeComponent
         </item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyApp.SmallComponent
+        </item>
     </style>
 
 
