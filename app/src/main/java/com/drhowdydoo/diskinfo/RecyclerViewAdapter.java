@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
-    private final ArrayList<Object> storeArrayList;
+    private ArrayList<Object> storeArrayList;
     private final Context context;
     private final SharedPreferences sharedPref;
 
@@ -152,6 +152,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             memTrack = itemView.findViewById(R.id.track_bar_mem);
             chipCache = itemView.findViewById(R.id.chip_cached);
         }
+    }
+
+    public void updateList(ArrayList<Object> list) {
+        storeArrayList = list;
+        notifyDataSetChanged();
     }
 
 }

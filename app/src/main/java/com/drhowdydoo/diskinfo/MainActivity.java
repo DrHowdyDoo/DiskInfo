@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.StatFs;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -33,6 +35,7 @@ import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton settings;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private ArrayList<Object> storeArrayList, basicPartition, advancePartition;
+    private ArrayList<Object> storeArrayList, basicPartition, advancePartition, backupList;
     private boolean expanded;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory, _sdcard_internal, _sdcard_portable, _otg;
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver mUsbReceiver;
     private LayoutAnimationController animation;
     private TextInputLayout searchView;
+    private TextInputEditText searchField;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         searchView = findViewById(R.id.searchView);
+        searchField = findViewById(R.id.searchField);
 
 
         int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
@@ -151,6 +156,24 @@ public class MainActivity extends AppCompatActivity {
         } else {
             searchView.setVisibility(View.GONE);
         }
+
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
 
         if (sharedPref.getBoolean("useSI", false)) {
             unit_flag = FormatterX.FLAG_SI_UNITS;
@@ -268,6 +291,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void filter(String text) {
+        if (text.isEmpty()) {
+            recyclerViewAdapter.updateList(backupList);
+            searchView.clearFocus();
+        } else {
+            ArrayList<Object> temp = new ArrayList<>();
+            for (Object d : storeArrayList) {
+                if (d instanceof DataStore) {
+                    if (((DataStore) d).getMount_name().contains(text))
+                        temp.add(d);
+                }
+            }
+            recyclerViewAdapter.updateList(temp);
+        }
+    }
+
     private void getList() {
 
         DataStore cacheStore = null, rootStore = null, sdStore = null, sdExtStore = null, otgStore = null;
@@ -351,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             storeArrayList = basicPartition;
         }
+        backupList = storeArrayList;
     }
 
     private void addMemoryDetails() {
