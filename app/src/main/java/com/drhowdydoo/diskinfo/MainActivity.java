@@ -306,7 +306,11 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Object> temp = new ArrayList<>();
             for (Object d : storeArrayList) {
                 if (d instanceof DataStore) {
-                    if (((DataStore) d).getMount_name().contains(text))
+                    if (text.charAt(0) == '$' && text.length() > 1) {
+                        if (((DataStore) d).getTotalSize().substring(0, text.length() - 1).equalsIgnoreCase(text.substring(1))) {
+                            temp.add(d);
+                        }
+                    } else if (((DataStore) d).getMount_name().contains(text))
                         temp.add(d);
                 }
             }
