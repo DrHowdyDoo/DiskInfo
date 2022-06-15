@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private LayoutAnimationController animation;
     private TextInputLayout searchView;
     private TextInputEditText searchField;
+    private LinearLayout not_found;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         searchView = findViewById(R.id.searchView);
         searchField = findViewById(R.id.searchField);
+        not_found = findViewById(R.id.not_found);
 
 
         int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
@@ -243,6 +246,8 @@ public class MainActivity extends AppCompatActivity {
                 setView();
                 recyclerView.setLayoutAnimation(animation);
                 swipeRefreshLayout.setRefreshing(false);
+                Objects.requireNonNull(searchField.getText()).clear();
+                searchField.clearFocus();
             });
         }).start();
         swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
@@ -293,6 +298,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void filter(String text) {
         if (text.isEmpty()) {
+            not_found.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
             recyclerViewAdapter.updateList(backupList);
             searchView.clearFocus();
         } else {
@@ -303,7 +310,15 @@ public class MainActivity extends AppCompatActivity {
                         temp.add(d);
                 }
             }
+            if (temp.isEmpty()) {
+                not_found.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            } else {
+                not_found.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
             recyclerViewAdapter.updateList(temp);
+
         }
     }
 
