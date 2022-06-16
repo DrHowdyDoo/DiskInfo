@@ -477,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
             String swapCache = _swap_cached + " : " + FormatterX.formatFileSize(this, swapCached, unit_flag);
             usedSwap = totalSwap - availSwap;
             int swapTrack = totalSwap != 0 ? (int) (((double) usedSwap / totalSwap) * 100) : 0;
-            String _swap_zram = _swap + " " + "(" + _zram + ")";
+            String _swap_zram = _swap;
             MemInfo swapInfo = new MemInfo(_swap_zram, FormatterX.formatFileSize(this, totalSwap, unit_flag), FormatterX.formatFileSize(this, availSwap, unit_flag), FormatterX.formatFileSize(this, usedSwap, unit_flag), swapCache, swapTrack);
             storeArrayList.add(swapInfo);
 
