@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             default:
                 if (DynamicColors.isDynamicColorAvailable()) {
-                    DynamicColors.applyIfAvailable(this);
+                    DynamicColors.applyToActivityIfAvailable(this);
                 } else setTheme(R.style.Theme_DiskInfo_Purple);
                 break;
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 //        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 //        activityManager.getMemoryInfo(mi);
 //
-//        Log.d(TAG, "onCreate: mem avail : " + mi.availMem + " \nmemTotal : " + mi.totalMem);
+//        Log.d(TAG, "onCreate: mem avail : " + mi.availMem + " \memTotal : " + mi.totalMem);
 
         storeArrayList = new ArrayList<>();
         basicPartition = new ArrayList<>();
