@@ -226,8 +226,6 @@
     <color name="orange_dark_inverseOnSurface">#201A17</color>
     <color name="orange_dark_inverseSurface">#ECE0DA</color>
     <color name="orange_dark_primaryInverse">#914C00</color>
-    <color name="orange_seed">#D47D2B</color>
-    <color name="orange_error_">#BA1B1B</color>
 
     <!-- Pink -->
 
@@ -283,7 +281,5 @@
     <color name="pink_dark_inverseOnSurface">#1F1A1C</color>
     <color name="pink_dark_inverseSurface">#EAE0E2</color>
     <color name="pink_dark_primaryInverse">#964071</color>
-    <color name="seed">#4D0034</color>
-    <color name="error">#BA1B1B</color>
 
 </resources>

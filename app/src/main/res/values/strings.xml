@@ -4,7 +4,6 @@
     <string name="dynamic_colors">Dynamic Colors</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <string name="show_animation">Show Animation</string>
     <string name="preferences">Preferences</string>
     <string name="animate_bars">Show bar animation</string>
     <string name="show_block_size">Show block size</string>
@@ -12,7 +11,6 @@
     <string name="auto">Auto</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
-    <string name="show_all_partitions">Show all partitions</string>
     <string name="advance_mode">Advance Mode</string>
     <string name="show_more_than_just_basic_partitions">Shows more than just basic partitions</string>
     <string name="not_available_with_dynamic_colors">Not available with Dynamic Colors</string>

@@ -4,7 +4,6 @@
     <string name="dynamic_colors">colores dinámicos</string>
     <string name="on">En</string>
     <string name="off">apagado</string>
-    <string name="show_animation">Mostrar animacion</string>
     <string name="preferences">Preferencias</string>
     <string name="animate_bars">Mostrar animación de barra</string>
     <string name="show_block_size">Mostrar tamaño de bloque</string>
@@ -12,7 +11,6 @@
     <string name="auto">Automático</string>
     <string name="dark">Oscuro</string>
     <string name="light">Claro</string>
-    <string name="show_all_partitions">Mostrar todas las particiones</string>
     <string name="advance_mode">Modo avanzado</string>
     <string name="show_more_than_just_basic_partitions">Muestre más que solo particiones básicas</string>
     <string name="not_available_with_dynamic_colors">No disponible con colores dinámicos</string>

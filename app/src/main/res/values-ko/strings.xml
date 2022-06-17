@@ -4,7 +4,6 @@
     <string name="dynamic_colors">다이나믹 컬러</string>
     <string name="on">끄다</string>
     <string name="off">끄다</string>
-    <string name="show_animation">애니메이션 디스플레이</string>
     <string name="preferences">설정</string>
     <string name="animate_bars">막대 애니메이션 표시</string>
     <string name="show_block_size">블록 크기 표시</string>
@@ -12,7 +11,6 @@
     <string name="auto">자동</string>
     <string name="dark">어두운</string>
     <string name="light">빛</string>
-    <string name="show_all_partitions">모든 파티션 표시</string>
     <string name="advance_mode">고급 모드</string>
     <string name="show_more_than_just_basic_partitions">기본 파티션 이상을 표시합니다.</string>
     <string name="not_available_with_dynamic_colors">동적 색상에는 사용할 수 없음</string>

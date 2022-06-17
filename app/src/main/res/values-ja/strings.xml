@@ -4,7 +4,6 @@
     <string name="dynamic_colors">ダイナミックカラー</string>
     <string name="on">オン</string>
     <string name="off">オフ</string>
-    <string name="show_animation">アニメーションを表示</string>
     <string name="preferences">設定</string>
     <string name="animate_bars">バーのアニメーションを表示する</string>
     <string name="show_block_size">ブロックサイズを表示</string>
@@ -12,7 +11,6 @@
     <string name="auto">自動</string>
     <string name="dark">ダーク</string>
     <string name="light">ライト</string>
-    <string name="show_all_partitions">すべてのパーティションを表示</string>
     <string name="advance_mode">アドバンストモード</string>
     <string name="show_more_than_just_basic_partitions">基本的なパーティション以上のものを表示する</string>
     <string name="not_available_with_dynamic_colors">ダイナミックカラーでは使用できません</string>

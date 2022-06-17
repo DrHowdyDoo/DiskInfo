@@ -6,7 +6,6 @@
     <string name="dynamic_colors">Warna Dinamis</string>
     <string name="on">mengaktifkan</string>
     <string name="off">matikan</string>
-    <string name="show_animation">Show Animation</string>
     <string name="preferences">Preferensi</string>
     <string name="animate_bars">bar animasi</string>
     <string name="show_block_size">Tampilkan ukuran blok</string>
@@ -14,7 +13,6 @@
     <string name="auto">Otomatis</string>
     <string name="dark">Gelap</string>
     <string name="light">Terang</string>
-    <string name="show_all_partitions">Tampilkan semua partisi</string>
     <string name="advance_mode">Modus Lanjutan</string>
     <string name="show_more_than_just_basic_partitions">Menampilkan lebih dari sekedar partisi dasar</string>
     <string name="not_available_with_dynamic_colors">Tidak tersedia dengan Warna Dinamis</string>

@@ -5,7 +5,6 @@
     <string name="dynamic_colors">Динамические цвета</string>
     <string name="on">включить</string>
     <string name="off">выключить</string>
-    <string name="show_animation">Show Animation</string>
     <string name="preferences">предпочтения</string>
     <string name="animate_bars">анимированные бары</string>
     <string name="show_block_size">показать размер блока</string>
@@ -13,7 +12,6 @@
     <string name="auto">Автомат.</string>
     <string name="dark">Тёмная</string>
     <string name="light">Светлая</string>
-    <string name="show_all_partitions">показать все перегородки</string>
     <string name="advance_mode">расширенный режим</string>
     <string name="show_more_than_just_basic_partitions">Показывает больше, чем просто основные перегородки</string>
     <string name="not_available_with_dynamic_colors">недоступно с динамическими цветами</string>
