@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             default:
                 if (DynamicColors.isDynamicColorAvailable()) {
-                    DynamicColors.applyToActivityIfAvailable(this);
+                    DynamicColors.applyIfAvailable(this);
                 } else setTheme(R.style.Theme_DiskInfo_Purple);
                 break;
 
