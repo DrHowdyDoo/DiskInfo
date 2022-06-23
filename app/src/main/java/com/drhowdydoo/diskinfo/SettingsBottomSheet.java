@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
     private SwitchMaterial animation, blockSize, advanceMode;
     private MaterialButtonToggleGroup unitToggle;
+    private TextView versionName;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false, useSI = false;
@@ -36,10 +38,13 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         editor = sharedPref.edit();
 
 
+        versionName = v.findViewById(R.id.txtView_version);
         animation = v.findViewById(R.id.switchMaterial_animation);
         blockSize = v.findViewById(R.id.switchMaterial_blockSize);
         advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
         unitToggle = v.findViewById(R.id.unitToggle);
+
+        versionName.setText("v " + BuildConfig.VERSION_NAME);
 
 
         animation.setChecked(sharedPref.getBoolean("animation", true));
