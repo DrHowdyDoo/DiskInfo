@@ -45,6 +45,13 @@
     <string name="gigabyteShort">"ГБ"</string>
     <string name="terabyteShort">"TБ"</string>
     <string name="petabyteShort">"ПБ"</string>
+
+    <string name="kibibyteShort">"КиБ"</string>
+    <string name="mebibyteShort">"МиБ"</string>
+    <string name="gibibyteShort">"ГиБ"</string>
+    <string name="tebibyteShort">"ТиБ"</string>
+    <string name="pebibyteShort">"ПиБ"</string>
+
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">Поиск</string>
     <string name="not_found">не найден</string>

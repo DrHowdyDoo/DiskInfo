@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
         not_found = findViewById(R.id.not_found);
 
 
-        int progressBackgroundColor = MaterialColors.getColor(this, R.attr.colorBackgroundFloating, Color.WHITE);
-        int progressIndicatorColor = MaterialColors.getColor(this, R.attr.colorPrimary, Color.BLACK);
+        int progressBackgroundColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorBackgroundFloating, Color.WHITE);
+        int progressIndicatorColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimary, Color.BLACK);
 
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressBackgroundColor);
         swipeRefreshLayout.setColorSchemeColors(progressIndicatorColor);
@@ -191,11 +191,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPref.getBoolean("useSI", false)) {
             unit_flag = FormatterX.FLAG_SI_UNITS;
+            unit = 1000;
         } else {
             unit_flag = FormatterX.FLAG_IEC_UNITS;
+            unit = 1024;
         }
 
-        unit = 1024;
 
 //        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
 //        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
@@ -339,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getList() {
 
-        DataStore cacheStore = null, rootStore = null, sdStore = null, sdExtStore = null, otgStore = null;
+        DataStore cacheStore = null, rootStore = null, rootStoreBackup = null, sdStore = null, sdExtStore = null, otgStore = null;
 
         advancePartition.add(_partition);
 
@@ -349,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
                 long totalSpace = store.getTotalSpace();
                 long unusedSpace = store.getUnallocatedSpace();
                 long usedSpace = totalSpace - unusedSpace;
+                Log.d(TAG, "getList: storage in bytes : " + totalSpace + " unused : " + unusedSpace + " name: " + store);
                 String totalSize = FormatterX.formatFileSize(this, totalSpace, unit_flag);
                 String usedSize = FormatterX.formatFileSize(this, usedSpace, unit_flag);
                 String freeSize = FormatterX.formatFileSize(this, unusedSpace, unit_flag);
@@ -364,8 +366,11 @@ public class MainActivity extends AppCompatActivity {
                 if (store.toString().startsWith("/cache")) {
                     cacheStore = new DataStore(dataStore);
                 }
-                if (store.toString().startsWith("/data ")) {
+                if (store.toString().startsWith("/storage/emulated ")) {
                     rootStore = new DataStore(dataStore);
+                }
+                if (store.toString().startsWith("/data ")) {
+                    rootStoreBackup = new DataStore(dataStore);
                 }
                 if (store.toString().startsWith("/mnt/expand/")) {
                     sdStore = new DataStore(dataStore);
@@ -390,7 +395,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (rootStore != null) {
             rootStore.setMount_name(_data);
+            if (rootStoreBackup != null) {
+                rootStore.setFileSystem(rootStoreBackup.getFileSystem());
+            }
             basicPartition.add(rootStore);
+        } else if (rootStoreBackup != null) {
+            rootStoreBackup.setMount_name(_data);
+            basicPartition.add(rootStoreBackup);
         }
 
         if (cacheStore != null) {

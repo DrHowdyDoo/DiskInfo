@@ -66,27 +66,27 @@ public class FormatterX {
         int suffix = R.string.byteShort;
         long mult = 1;
         if (result > 900) {
-            suffix = R.string.kilobyteShort;
+            suffix = ((flags & FLAG_IEC_UNITS) != 0) ? R.string.kibibyteShort : R.string.kilobyteShort;
             mult = unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = R.string.megabyteShort;
+            suffix = ((flags & FLAG_IEC_UNITS) != 0) ? R.string.mebibyteShort : R.string.megabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = R.string.gigabyteShort;
+            suffix = ((flags & FLAG_IEC_UNITS) != 0) ? R.string.gibibyteShort : R.string.gigabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = R.string.terabyteShort;
+            suffix = ((flags & FLAG_IEC_UNITS) != 0) ? R.string.tebibyteShort : R.string.terabyteShort;
             mult *= unit;
             result = result / unit;
         }
         if (result > 900) {
-            suffix = R.string.petabyteShort;
+            suffix = ((flags & FLAG_IEC_UNITS) != 0) ? R.string.pebibyteShort : R.string.petabyteShort;
             mult *= unit;
             result = result / unit;
         }

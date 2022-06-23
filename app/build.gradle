@@ -9,8 +9,8 @@ android {
         applicationId "com.drhowdydoo.diskinfo"
         minSdk 27
         targetSdk 31
-        versionCode 78
-        versionName "3.4"
+        versionCode 82
+        versionName "3.6.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,7 +30,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'me.zhanghai.android.fastscroll:library:1.1.7'
+    implementation 'me.zhanghai.android.fastscroll:library:1.1.8'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'com.google.android.material:material:1.6.0-alpha01'

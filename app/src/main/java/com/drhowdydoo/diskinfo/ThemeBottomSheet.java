@@ -82,7 +82,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         for (int i = 0; i < mDrawables.length; i++) {
             mDrawables[i] = createDrawable();
             assert mDrawables[i] != null;
-            mDrawables[i].setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), themeRes[i]), R.attr.colorPrimary));
+            mDrawables[i].setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), themeRes[i]), com.google.android.material.R.attr.colorPrimary));
         }
 
         imgPurple.setBackground(mDrawables[0]);

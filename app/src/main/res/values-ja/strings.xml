@@ -44,6 +44,13 @@
     <string name="gigabyteShort">"GB"</string>
     <string name="terabyteShort">"TB"</string>
     <string name="petabyteShort">"PB"</string>
+
+    <string name="kibibyteShort">"KiB"</string>
+    <string name="mebibyteShort">"MiB"</string>
+    <string name="gibibyteShort">"GiB"</string>
+    <string name="tebibyteShort">"TiB"</string>
+    <string name="pebibyteShort">"PiB"</string>
+
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">検索</string>
     <string name="not_found">見つかりません</string>
