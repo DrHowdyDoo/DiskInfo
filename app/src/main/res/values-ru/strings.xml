@@ -55,4 +55,7 @@
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">Поиск</string>
     <string name="not_found">не найден</string>
+    <string name="language">Язык</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="language_help_text">Не стесняйтесь помочь мне перевести это приложение на ваш язык или улучшить существующее.\n Отправьте электронное письмо на адрес drhowdydoo@gmail.com</string>
 </resources>

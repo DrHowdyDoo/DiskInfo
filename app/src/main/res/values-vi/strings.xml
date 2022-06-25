@@ -55,4 +55,7 @@
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g><xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">Tìm kiếm</string>
     <string name="not_found">Không tìm thấy</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="select_language">Chọn ngôn ngữ</string>
+    <string name="language_help_text">Vui lòng giúp tôi dịch ứng dụng này sang ngôn ngữ của bạn hoặc cải thiện ứng dụng hiện có.\n Gửi email đến drhowdydoo@gmail.com</string>
 </resources>

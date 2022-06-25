@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:paddingBottom="22dp"
     android:paddingTop="32dp"
+    android:clipToPadding="false"
     android:layout_height="wrap_content">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtView_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/preferences"
-        android:gravity="center"
-        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-        android:textStyle="bold"
+
+        <TextView
+            android:id="@+id/txtView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/preferences"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -178,30 +183,77 @@
             android:text="@string/iec" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:alpha="0.5"
-        android:gravity="center"
-        android:layout_marginStart="14dp"
-        android:text="(1000 B)"
-        android:textAppearance="?attr/textAppearanceBodyMedium"
-        app:layout_constraintStart_toStartOf="@+id/unitToggle"
-        app:layout_constraintTop_toBottomOf="@+id/unitToggle" />
+        <LinearLayout
+            android:id="@+id/unit_label_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@+id/unitToggle"
+            app:layout_constraintEnd_toEndOf="@+id/unitToggle"
+            app:layout_constraintTop_toBottomOf="@+id/unitToggle"
+            android:weightSum="2">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:alpha="0.5"
-        android:layout_marginEnd="14dp"
-        android:gravity="center"
-        android:text="(1024 B)"
-        app:layout_constraintEnd_toEndOf="@+id/unitToggle"
-        app:layout_constraintTop_toBottomOf="@+id/unitToggle" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:text="(1000 B)"
+                android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:text="(1024 B)" />
+
+        </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txt_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="English"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_language"
+            app:layout_constraintEnd_toEndOf="@+id/btn_language"
+            app:layout_constraintTop_toTopOf="@+id/btn_language"
+            app:drawableStartCompat="@drawable/ic_round_language_24" />
+
+        <Button
+            android:id="@+id/btn_language"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="6dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/language"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/unit_label_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

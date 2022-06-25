@@ -1,11 +1,14 @@
 package com.drhowdydoo.diskinfo;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.usb.UsbDevice;
@@ -51,6 +54,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -85,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        setLocale(this, sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage()));
 
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
         AppCompatDelegate.setDefaultNightMode(mode);
@@ -350,7 +356,6 @@ public class MainActivity extends AppCompatActivity {
                 long totalSpace = store.getTotalSpace();
                 long unusedSpace = store.getUnallocatedSpace();
                 long usedSpace = totalSpace - unusedSpace;
-                Log.d(TAG, "getList: storage in bytes : " + totalSpace + " unused : " + unusedSpace + " name: " + store);
                 String totalSize = FormatterX.formatFileSize(this, totalSpace, unit_flag);
                 String usedSize = FormatterX.formatFileSize(this, usedSpace, unit_flag);
                 String freeSize = FormatterX.formatFileSize(this, unusedSpace, unit_flag);
@@ -556,6 +561,15 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }, 0);
 
+    }
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
     @Override

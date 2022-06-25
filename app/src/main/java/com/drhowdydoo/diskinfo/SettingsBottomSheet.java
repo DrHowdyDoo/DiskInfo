@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,14 +17,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.util.Locale;
+
+@SuppressWarnings("FieldCanBeLocal")
 public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
     private SwitchMaterial animation, blockSize, advanceMode;
     private MaterialButtonToggleGroup unitToggle;
-    private TextView versionName;
+    private TextView versionName, txtLanguage;
+    private Button btnLanguage;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false, useSI = false;
+    private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false, useSI = false, languageChanged = false;
+    private String currentLanguageCode;
 
     public SettingsBottomSheet() {
     }
@@ -45,6 +51,19 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         unitToggle = v.findViewById(R.id.unitToggle);
 
         versionName.setText("v " + BuildConfig.VERSION_NAME);
+
+        txtLanguage = v.findViewById(R.id.txt_language);
+        btnLanguage = v.findViewById(R.id.btn_language);
+
+        String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getDisplayLanguage());
+        txtLanguage.setText(new Locale(languageCode).getDisplayLanguage());
+
+        currentLanguageCode = languageCode;
+
+        btnLanguage.setOnClickListener(v1 -> {
+            LanguageSelector languageSelector = new LanguageSelector();
+            languageSelector.show(requireActivity().getSupportFragmentManager(), "LanguageSelection");
+        });
 
 
         animation.setChecked(sharedPref.getBoolean("animation", true));
@@ -96,8 +115,10 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         super.onDismiss(dialog);
 
 
-        if (useSI ^ sharedPref.getBoolean("useSI", false))
+        if ((useSI ^ sharedPref.getBoolean("useSI", false)) || languageChanged) {
+            languageChanged = false;
             ((MainActivity) requireActivity()).restartToApply(0);
+        }
 
         if (isModeChanged) ((MainActivity) requireActivity()).advanceModeOn();
         isModeChanged = false;
@@ -108,6 +129,13 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         isChanged = false;
 
 
+    }
+
+    public void updateLanguage() {
+        String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getDisplayLanguage());
+        txtLanguage.setText(new Locale(languageCode).getDisplayLanguage());
+        if (!currentLanguageCode.equalsIgnoreCase(languageCode))
+            languageChanged = true;
     }
 
 }

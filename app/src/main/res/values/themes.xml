@@ -31,7 +31,7 @@
     <style name="Launcher.Theme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/launcher_background</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
     </style>
 

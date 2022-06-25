@@ -56,5 +56,8 @@
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">Telusuri</string>
     <string name="not_found">Tidak ditemukan</string>
+    <string name="language">Bahasa</string>
+    <string name="select_language">Pilih bahasa</string>
+    <string name="language_help_text">Jangan ragu untuk membantu saya menerjemahkan aplikasi ini dalam bahasa Anda atau meningkatkan yang sudah ada.\n Kirim email ke drhowdydoo@gmail.com</string>
 
 </resources>
