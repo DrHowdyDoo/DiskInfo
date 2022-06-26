@@ -20,7 +20,6 @@ import android.os.Parcelable;
 import android.os.StatFs;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -28,6 +27,7 @@ import android.view.animation.LayoutAnimationController;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -46,6 +46,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.play.core.splitcompat.SplitCompat;
+import com.google.android.play.core.splitinstall.SplitInstallManager;
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
+import com.google.android.play.core.splitinstall.SplitInstallRequest;
+import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -57,9 +62,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "TEST";
@@ -68,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton fab;
     private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
     private AppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton settings;
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Object> storeArrayList, basicPartition, advancePartition, backupList;
     private boolean expanded;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _zram, _memory, _sdcard_internal, _sdcard_portable, _otg;
+    private String _partition, _basic_partitions, _data, _cache, _cached, _swap, _swap_cached, _ram, _system, _memory, _sdcard_internal, _sdcard_portable, _otg;
     private int unit_flag, unit;
     private Map<String, Long> map;
     private RandomAccessFile reader;
@@ -84,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout searchView;
     private TextInputEditText searchField;
     private LinearLayout not_found;
+    private SplitInstallManager splitInstallManager;
+    private Set<String> installedLangs;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
         setLocale(this, sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage()));
 
@@ -158,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
         searchField = findViewById(R.id.searchField);
         not_found = findViewById(R.id.not_found);
 
+        splitInstallManager = SplitInstallManagerFactory.create(this);
+        installedLangs = splitInstallManager.getInstalledLanguages();
+
+        if (!installedLangs.contains(sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage()))) {
+            editor.putString("DiskInfo.Language", Locale.getDefault().getLanguage());
+        }
 
         int progressBackgroundColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorBackgroundFloating, Color.WHITE);
         int progressIndicatorColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimary, Color.BLACK);
@@ -184,9 +201,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty() && s.toString().charAt(0) == '$')
-                    searchView.setHelperText("Filter by size");
-                else {
+                if (!s.toString().isEmpty()) {
+                    if (s.toString().toLowerCase().startsWith("size:"))
+                        searchView.setHelperText("Filter by size");
+                    if (s.toString().toLowerCase().startsWith("fs:"))
+                        searchView.setHelperText("Filter by filesystem");
+                    if (s.toString().toLowerCase().startsWith("free:"))
+                        searchView.setHelperText("Filter by free space");
+                    if (s.toString().toLowerCase().startsWith("used:"))
+                        searchView.setHelperText("Filter by used space");
+                    if (s.toString().toLowerCase().startsWith("accesstype:"))
+                        searchView.setHelperText("Filter by access type");
+                } else {
                     searchView.setHelperText("");
                 }
                 filter(s.toString());
@@ -224,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         _swap = getString(R.string.swap);
         _swap_cached = getString(R.string.swap_cached);
         _ram = getString(R.string.ram);
-        _zram = getString(R.string.zram);
+        _system = getString(R.string.system);
         _memory = getString(R.string.memory);
         _sdcard_internal = getString(R.string.sdcard_internal);
         _sdcard_portable = getString(R.string.sdcard_portable);
@@ -323,13 +349,15 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Object> temp = new ArrayList<>();
             for (Object d : storeArrayList) {
                 if (d instanceof DataStore) {
-                    if (text.charAt(0) == '$' && text.length() > 1) {
-                        Log.d(TAG, "filter: " + ((DataStore) d).getTotalSize());
-                        if (((DataStore) d).getTotalSize().length() > text.length() && ((DataStore) d).getTotalSize().substring(0, text.length() - 1).equalsIgnoreCase(text.substring(1))) {
-                            temp.add(d);
+                    if (text.contains(":")) {
+                        String[] searchText = text.split(":");
+                        if (searchText.length > 1) {
+                            if (searchWith(searchText[0], (DataStore) d).contains(searchText[1]))
+                                temp.add(d);
                         }
-                    } else if (((DataStore) d).getMount_name().contains(text))
-                        temp.add(d);
+                    } else {
+                        if (((DataStore) d).getMount_name().contains(text)) temp.add(d);
+                    }
                 }
             }
             if (temp.isEmpty()) {
@@ -344,9 +372,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private String searchWith(String text, DataStore dataStore) {
+
+        switch (text.toLowerCase()) {
+
+            case "size":
+                return dataStore.getTotalSize();
+
+            case "fs":
+                return dataStore.getFileSystem();
+
+            case "accesstype":
+                if (dataStore.isAccess_type()) return "r";
+                else return "r/w";
+
+            case "block":
+                return dataStore.getBlockSize();
+
+            case "free":
+                return dataStore.getFreeSize();
+
+            case "used":
+                return dataStore.getUsedSize();
+        }
+        return "";
+    }
+
     private void getList() {
 
-        DataStore cacheStore = null, rootStore = null, rootStoreBackup = null, sdStore = null, sdExtStore = null, otgStore = null;
+        DataStore cacheStore = null, rootStore = null, systemStore = null, sdStore = null, sdExtStore = null, otgStore = null;
 
         advancePartition.add(_partition);
 
@@ -371,11 +425,11 @@ public class MainActivity extends AppCompatActivity {
                 if (store.toString().startsWith("/cache")) {
                     cacheStore = new DataStore(dataStore);
                 }
-                if (store.toString().startsWith("/storage/emulated ")) {
+                if (store.toString().startsWith("/data ")) {
                     rootStore = new DataStore(dataStore);
                 }
-                if (store.toString().startsWith("/data ")) {
-                    rootStoreBackup = new DataStore(dataStore);
+                if (store.toString().startsWith("/system ")) {
+                    systemStore = new DataStore(dataStore);
                 }
                 if (store.toString().startsWith("/mnt/expand/")) {
                     sdStore = new DataStore(dataStore);
@@ -400,13 +454,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (rootStore != null) {
             rootStore.setMount_name(_data);
-            if (rootStoreBackup != null) {
-                rootStore.setFileSystem(rootStoreBackup.getFileSystem());
-            }
             basicPartition.add(rootStore);
-        } else if (rootStoreBackup != null) {
-            rootStoreBackup.setMount_name(_data);
-            basicPartition.add(rootStoreBackup);
+        }
+
+        if (systemStore != null) {
+            systemStore.setMount_name(_system);
+            basicPartition.add(systemStore);
         }
 
         if (cacheStore != null) {
@@ -529,9 +582,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 finish();
-                }
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }, delay);
+            }
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }, delay);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -570,6 +623,27 @@ public class MainActivity extends AppCompatActivity {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    public void downloadRes() {
+        String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage());
+        if (!installedLangs.contains(languageCode)) {
+            String downloadMsg = new Locale(languageCode).getDisplayLanguage() + " language is being downloaded";
+            Toast.makeText(this, downloadMsg, Toast.LENGTH_SHORT).show();
+            SplitInstallRequest request =
+                    SplitInstallRequest.newBuilder()
+                            .addLanguage(Locale.forLanguageTag(sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage())))
+                            .build();
+            splitInstallManager.startInstall(request);
+            splitInstallManager.registerListener(splitInstallSessionState -> {
+                if (splitInstallSessionState.status() == SplitInstallSessionStatus.INSTALLED) {
+                    String msg = new Locale(languageCode).getDisplayLanguage() + " language is successfully downloaded";
+                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(this::recreate, 2500);
+                }
+            });
+        }
     }
 
     @Override
@@ -611,4 +685,9 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(event);
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        SplitCompat.install(this);
+    }
 }

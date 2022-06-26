@@ -24,6 +24,7 @@
     <string name="free">libre</string>
     <string name="used">en uso</string>
     <string name="data">Datos</string>
+    <string name="system">Sistema</string>
     <string name="cache">Cache</string>
     <string name="sdcard_internal">Tarjeta SD (interna)</string>
     <string name="sdcard_portable">Tarjeta SD (portátil)</string>

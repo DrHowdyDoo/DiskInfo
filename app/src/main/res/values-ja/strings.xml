@@ -24,6 +24,7 @@
     <string name="free">空き容量</string>
     <string name="used">使用済み</string>
     <string name="data">データ</string>
+    <string name="system">システム</string>
     <string name="cache">キャッシュ</string>
     <string name="sdcard_internal">SDカード（内蔵）</string>
     <string name="sdcard_portable">SDカード（ポータブル）</string>

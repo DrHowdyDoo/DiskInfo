@@ -42,14 +42,32 @@
             android:textAppearance="?attr/textAppearanceSubtitle1" />
 
         <TextView
+            android:id="@+id/txt_language_display_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.6" />
+
+        <TextView
             android:id="@+id/txt_language_translator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Google translate"
-            android:alpha="0.6" />
+            android:alpha="0.6"
+            android:text="Khan"
+            android:drawablePadding="4dp"
+            app:drawableStartCompat="@drawable/ic_round_translate_24" />
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ic_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_round_download_for_offline_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

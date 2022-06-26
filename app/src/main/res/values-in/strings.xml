@@ -26,6 +26,7 @@
     <string name="free">kosong</string>
     <string name="used">digunakan</string>
     <string name="data">Data</string>
+    <string name="system">Sistem</string>
     <string name="cache">Cache</string>
     <string name="sdcard_internal">SD-card (Internal)</string>
     <string name="sdcard_portable">SD card (Portable)</string>

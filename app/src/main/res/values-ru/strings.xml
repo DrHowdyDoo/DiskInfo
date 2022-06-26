@@ -25,6 +25,7 @@
     <string name="free">свобоДно</string>
     <string name="used">Занято</string>
     <string name="data">данные</string>
+    <string name="system">Система</string>
     <string name="cache">Кеш</string>
     <string name="sdcard_internal">SD-карта (внутренняя)</string>
     <string name="sdcard_portable">SD-карта (портативный)</string>

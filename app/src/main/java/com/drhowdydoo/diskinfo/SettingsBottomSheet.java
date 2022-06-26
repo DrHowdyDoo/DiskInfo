@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.Locale;
@@ -30,6 +31,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
     private SharedPreferences.Editor editor;
     private boolean isChanged = false, isCheckedPreviously, advanceModeOn = false, isModeChanged = false, useSI = false, languageChanged = false;
     private String currentLanguageCode;
+    private MaterialCardView advModeCard;
 
     public SettingsBottomSheet() {
     }
@@ -49,6 +51,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         blockSize = v.findViewById(R.id.switchMaterial_blockSize);
         advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
         unitToggle = v.findViewById(R.id.unitToggle);
+        advModeCard = v.findViewById(R.id.card_view_advance_mode);
 
         versionName.setText("v " + BuildConfig.VERSION_NAME);
 
@@ -64,6 +67,8 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
             LanguageSelector languageSelector = new LanguageSelector();
             languageSelector.show(requireActivity().getSupportFragmentManager(), "LanguageSelection");
         });
+
+        advModeCard.setOnClickListener(v12 -> advanceMode.setChecked(!advanceMode.isChecked()));
 
 
         animation.setChecked(sharedPref.getBoolean("animation", true));
@@ -131,11 +136,13 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
     }
 
-    public void updateLanguage() {
+    public void updateLanguage(boolean requireRestart) {
         String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getDisplayLanguage());
         txtLanguage.setText(new Locale(languageCode).getDisplayLanguage());
-        if (!currentLanguageCode.equalsIgnoreCase(languageCode))
-            languageChanged = true;
+        if (!currentLanguageCode.equalsIgnoreCase(languageCode)) {
+            if (requireRestart)
+                languageChanged = true;
+        }
     }
 
 }

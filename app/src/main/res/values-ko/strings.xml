@@ -24,6 +24,7 @@
     <string name="free">사용가능</string>
     <string name="used">사용</string>
     <string name="data">데이터</string>
+    <string name="system">체계</string>
     <string name="cache">케시</string>
     <string name="sdcard_internal">SD 카드 (내부의)</string>
     <string name="sdcard_portable">SD 카드 (휴대용)</string>

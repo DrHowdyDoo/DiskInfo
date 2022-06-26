@@ -25,6 +25,7 @@
     <string name="free">Còn trống</string>
     <string name="used">Đã dùng </string>
     <string name="data">Dữ liệu </string>
+    <string name="system">Hệ thống</string>
     <string name="cache">Cache</string>
     <string name="sdcard_internal">Thẻ SD (Nội bộ)</string>
     <string name="sdcard_portable">Thẻ SD (Portable)</string>
