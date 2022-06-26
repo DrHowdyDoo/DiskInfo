@@ -58,4 +58,8 @@
     <string name="language">言語</string>
     <string name="select_language">言語を選択してください</string>
     <string name="language_help_text">このアプリをあなたの言語に翻訳したり、既存のアプリを改善したりするのを手伝ってください。\n drhowdydoo@gmail.comにメールをドロップ</string>
+    <string name="search_function">検索機能</string>
+    <string name="startswith">で始まる</string>
+    <string name="contains">含む</string>
+    <string name="equals">同等</string>
 </resources>

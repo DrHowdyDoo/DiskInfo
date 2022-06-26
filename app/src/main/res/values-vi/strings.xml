@@ -59,4 +59,8 @@
     <string name="language">Ngôn ngữ</string>
     <string name="select_language">Chọn ngôn ngữ</string>
     <string name="language_help_text">Vui lòng giúp tôi dịch ứng dụng này sang ngôn ngữ của bạn hoặc cải thiện ứng dụng hiện có.\n Gửi email đến drhowdydoo@gmail.com</string>
+    <string name="search_function">Chức năng tìm kiếm</string>
+    <string name="startswith">bắt đầu với</string>
+    <string name="contains">chứa</string>
+    <string name="equals">tương đương với</string>
 </resources>

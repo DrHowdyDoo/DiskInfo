@@ -24,7 +24,7 @@ import java.util.Locale;
 public class SettingsBottomSheet extends BottomSheetDialogFragment {
 
     private SwitchMaterial animation, blockSize, advanceMode;
-    private MaterialButtonToggleGroup unitToggle;
+    private MaterialButtonToggleGroup unitToggle, searchFunction;
     private TextView versionName, txtLanguage;
     private Button btnLanguage;
     private SharedPreferences sharedPref;
@@ -52,6 +52,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         advanceMode = v.findViewById(R.id.switchMaterial_advance_mode);
         unitToggle = v.findViewById(R.id.unitToggle);
         advModeCard = v.findViewById(R.id.card_view_advance_mode);
+        searchFunction = v.findViewById(R.id.search_function_toggle_group);
 
         versionName.setText("v " + BuildConfig.VERSION_NAME);
 
@@ -83,6 +84,11 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
             useSI = false;
         }
 
+        int searchfx = sharedPref.getInt("DiskInfo.SearchFunction", 1);
+        if (searchfx == 0) searchFunction.check(R.id.btn_start_with);
+        if (searchfx == 1) searchFunction.check(R.id.btn_contains);
+        if (searchfx == 2) searchFunction.check(R.id.btn_equals);
+
         isCheckedPreviously = blockSize.isChecked();
         advanceModeOn = advanceMode.isChecked();
 
@@ -109,6 +115,18 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
                 editor.putBoolean("useSI", false).apply();
             }
 
+        });
+
+        searchFunction.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (checkedId == R.id.btn_start_with) {
+                editor.putInt("DiskInfo.SearchFunction", 0).apply();
+            }
+            if (checkedId == R.id.btn_contains) {
+                editor.putInt("DiskInfo.SearchFunction", 1).apply();
+            }
+            if (checkedId == R.id.btn_equals) {
+                editor.putInt("DiskInfo.SearchFunction", 2).apply();
+            }
         });
 
 

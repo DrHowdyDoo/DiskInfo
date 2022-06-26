@@ -58,4 +58,8 @@
     <string name="language">Idioma</string>
     <string name="select_language">Seleccione el idioma</string>
     <string name="language_help_text">No dude en ayudarme a traducir esta aplicación a su idioma o mejorar la existente.\nEnvíe un correo electrónico a drhowdydoo@gmail.com</string>
+    <string name="search_function">Búsqueda función</string>
+    <string name="startswith">comienza con</string>
+    <string name="contains">contiene</string>
+    <string name="equals">igual</string>
 </resources>

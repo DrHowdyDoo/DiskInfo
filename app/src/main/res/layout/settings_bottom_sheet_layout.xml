@@ -20,145 +20,145 @@
             android:gravity="center"
             android:textAppearance="?attr/textAppearanceHeadlineSmall"
             android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtView_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:textAppearance="?attr/textAppearanceSubtitle1"
-        android:alpha="0.8"
-        app:layout_constraintEnd_toEndOf="@+id/txtView_title"
-        app:layout_constraintStart_toStartOf="@+id/txtView_title"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_title" />
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:gravity="start"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/animate_bars"
-        android:textAppearance="?attr/textAppearanceTitleLarge"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/switchMaterial_animation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_version" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchMaterial_animation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/txtView_blockSize"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/show_block_size"
-        android:gravity="start"
-        android:layout_marginEnd="16dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceTitleLarge"
-        app:layout_constraintEnd_toStartOf="@+id/switchMaterial_blockSize"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchMaterial_blockSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtView_blockSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtView_blockSize" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_advance_mode"
-        style="?attr/materialCardViewFilledStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/ripple_effect"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="2dp"
-        app:cardCornerRadius="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_blockSize">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtView_advance_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/advance_mode"
-                android:textAppearance="?attr/textAppearanceTitleLarge"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:alpha="0.5"
-                android:text="@string/show_more_than_just_basic_partitions"
-                android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-
-        </LinearLayout>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchMaterial_advance_mode"
+        <TextView
+            android:id="@+id/txtView_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
+            android:gravity="center"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="14dp" />
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:alpha="0.8"
+            app:layout_constraintEnd_toEndOf="@+id/txtView_title"
+            app:layout_constraintStart_toStartOf="@+id/txtView_title"
+            app:layout_constraintTop_toBottomOf="@+id/txtView_title" />
 
 
-    </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="start"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/animate_bars"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/switchMaterial_animation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtView_version" />
 
-    <TextView
-        android:id="@+id/txtView_unit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:gravity="start"
-        android:text="@string/unit_system"
-        android:textAppearance="?attr/textAppearanceTitleLarge"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/unitToggle"
-        app:layout_constraintEnd_toStartOf="@+id/unitToggle"
-        app:layout_constraintStart_toStartOf="@+id/txtView_blockSize"
-        app:layout_constraintTop_toTopOf="@+id/unitToggle" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/txtView_blockSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/show_block_size"
+            android:gravity="start"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            app:layout_constraintEnd_toStartOf="@+id/switchMaterial_blockSize"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial_blockSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtView_blockSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtView_blockSize" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_advance_mode"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/ripple_effect"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="2dp"
+            app:cardCornerRadius="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtView_blockSize">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtView_advance_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/advance_mode"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:alpha="0.5"
+                    android:text="@string/show_more_than_just_basic_partitions"
+                    android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+
+            </LinearLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaterial_advance_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|top"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="14dp" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txtView_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="start"
+            android:text="@string/unit_system"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/unitToggle"
+            app:layout_constraintEnd_toStartOf="@+id/unitToggle"
+            app:layout_constraintStart_toStartOf="@+id/txtView_blockSize"
+            app:layout_constraintTop_toTopOf="@+id/unitToggle" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/unitToggle"
@@ -180,11 +180,11 @@
 
             <Button
                 android:id="@+id/btn_iec"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/iec" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/iec" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <LinearLayout
             android:id="@+id/unit_label_layout"
@@ -255,6 +255,57 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/unit_label_layout" />
+
+        <TextView
+            android:id="@+id/txt_search_function_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_function"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txtView_unit"
+            app:layout_constraintTop_toBottomOf="@+id/btn_language" />
+
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/search_function_toggle_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_search_function_label"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/btn_start_with"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/startswith" />
+
+            <Button
+                android:id="@+id/btn_contains"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/contains" />
+
+            <Button
+                android:id="@+id/btn_equals"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/equals" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

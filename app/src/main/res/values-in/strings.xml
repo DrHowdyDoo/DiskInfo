@@ -60,5 +60,9 @@
     <string name="language">Bahasa</string>
     <string name="select_language">Pilih bahasa</string>
     <string name="language_help_text">Jangan ragu untuk membantu saya menerjemahkan aplikasi ini dalam bahasa Anda atau meningkatkan yang sudah ada.\n Kirim email ke drhowdydoo@gmail.com</string>
+    <string name="search_function">Fungsi Pencarian</string>
+    <string name="startswith">Dimulai dengan</string>
+    <string name="contains">berisi</string>
+    <string name="equals">setara</string>
 
 </resources>

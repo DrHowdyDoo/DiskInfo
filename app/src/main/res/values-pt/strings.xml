@@ -58,4 +58,8 @@
     <string name="language">Idioma</string>
     <string name="select_language">Selecione o idioma</string>
     <string name="language_help_text">Sinta-se à vontade para me ajudar a traduzir este aplicativo para o seu idioma ou melhorar um já existente.\n Envie um e-mail para drhowdydoo@gmail.com</string>
+    <string name="search_function">Função de pesquisa</string>
+    <string name="startswith">Começa com</string>
+    <string name="contains">contém</string>
+    <string name="equals">igual</string>
 </resources>

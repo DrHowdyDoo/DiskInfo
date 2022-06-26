@@ -347,16 +347,34 @@ public class MainActivity extends AppCompatActivity {
             recyclerViewAdapter.updateList(backupList);
         } else {
             ArrayList<Object> temp = new ArrayList<>();
+            int searchFx = sharedPref.getInt("DiskInfo.SearchFunction", 1);
             for (Object d : storeArrayList) {
                 if (d instanceof DataStore) {
                     if (text.contains(":")) {
                         String[] searchText = text.split(":");
                         if (searchText.length > 1) {
-                            if (searchWith(searchText[0], (DataStore) d).contains(searchText[1]))
-                                temp.add(d);
+                            if (searchFx == 0) {
+                                if (searchWith(searchText[0], (DataStore) d).startsWith(searchText[1]))
+                                    temp.add(d);
+                            } else if (searchFx == 1) {
+                                if (searchWith(searchText[0], (DataStore) d).contains(searchText[1]))
+                                    temp.add(d);
+                            } else {
+                                if (searchWith(searchText[0], (DataStore) d).equalsIgnoreCase(searchText[1]))
+                                    temp.add(d);
+                            }
+
                         }
                     } else {
-                        if (((DataStore) d).getMount_name().contains(text)) temp.add(d);
+                        if (searchFx == 0) {
+                            if (((DataStore) d).getMount_name().startsWith(text)) temp.add(d);
+                        } else if (searchFx == 1)
+                            if (((DataStore) d).getMount_name().contains(text)) temp.add(d);
+                            else {
+                                if (((DataStore) d).getMount_name().equalsIgnoreCase(text))
+                                    temp.add(d);
+                            }
+
                     }
                 }
             }
