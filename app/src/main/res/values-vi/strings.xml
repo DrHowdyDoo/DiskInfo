@@ -55,12 +55,12 @@
 
     <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g><xliff:g id="UNIT">%2$s</xliff:g>"</string>
     <string name="search">Tìm kiếm</string>
-    <string name="not_found">Không tìm thấy</string>
-    <string name="language">Ngôn ngữ</string>
-    <string name="select_language">Chọn ngôn ngữ</string>
-    <string name="language_help_text">Vui lòng giúp tôi dịch ứng dụng này sang ngôn ngữ của bạn hoặc cải thiện ứng dụng hiện có.\n Gửi email đến drhowdydoo@gmail.com</string>
-    <string name="search_function">Chức năng tìm kiếm</string>
-    <string name="startswith">bắt đầu với</string>
-    <string name="contains">chứa</string>
-    <string name="equals">tương đương với</string>
+    <string name="not_found">Không tìm thấy gì cả</string>
+    <string name="language">Ngôn ngữ ứng dụng</string>
+    <string name="select_language">Chọn ngôn ngữ mong muốn</string>
+    <string name="language_help_text">Giúp tôi dịch ứng dụng này qua ngôn ngữ bạn hiểu hoặc cải thiện bản dịch hiện có.\n Gửi email tại drhowdydoo@gmail.com</string>
+    <string name="search_function">Tìm kiếm nâng cao</string>
+    <string name="startswith">Bắt đầu với</string>
+    <string name="contains">Chứa</string>
+    <string name="equals">Bằng</string>
 </resources>
