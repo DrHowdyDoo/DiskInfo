@@ -25,7 +25,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     public RecyclerViewAdapter(Context context, ArrayList<Object> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
         this.context = context;
-        sharedPref = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
+        sharedPref = context.getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
     }
 
     @Override

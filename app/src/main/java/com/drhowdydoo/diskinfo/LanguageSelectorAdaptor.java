@@ -32,7 +32,7 @@ public class LanguageSelectorAdaptor extends RecyclerView.Adapter<LanguageSelect
         this.context = context;
         this.languageSelector = languageSelector;
         this.installedLangs = installedLangs;
-        sharedPref = this.context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
+        sharedPref = this.context.getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
     }
 

@@ -42,7 +42,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         View v = inflater.inflate(R.layout.settings_bottom_sheet_layout,
                 container, false);
 
-        sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        sharedPref = requireActivity().getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
 

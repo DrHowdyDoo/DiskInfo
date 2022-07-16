@@ -99,7 +99,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         t2 = v.findViewById(R.id.dynamic_off);
         dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
 
-        sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        sharedPref = requireActivity().getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
 

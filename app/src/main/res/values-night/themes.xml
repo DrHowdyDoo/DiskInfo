@@ -27,6 +27,7 @@
         </item>
     </style>
 
+
     <style name="Theme.DiskInfo.Purple" parent="Theme.DiskInfo">
         <item name="colorPrimary">@color/purple_primary_80</item>
         <item name="colorOnPrimary">@color/purple_primary_20</item>

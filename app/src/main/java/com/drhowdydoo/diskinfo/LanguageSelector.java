@@ -37,7 +37,7 @@ public class LanguageSelector extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.language_selector_bottom_sheet, container, false);
 
-        sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        sharedPref = requireActivity().getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         activity = (MainActivity) requireActivity();
 
