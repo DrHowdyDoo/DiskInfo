@@ -64,11 +64,15 @@ public class LanguageSelectorAdaptor extends RecyclerView.Adapter<LanguageSelect
             holder.languageTranslator.setVisibility(View.GONE);
         }
 
-        if (!isInstalled) {
-            holder.download.setVisibility(View.VISIBLE);
-        } else {
-            holder.download.setVisibility(View.INVISIBLE);
+        if (BuildConfig.DEBUG) holder.download.setVisibility(View.INVISIBLE);
+        else {
+            if (!isInstalled) {
+                holder.download.setVisibility(View.VISIBLE);
+            } else {
+                holder.download.setVisibility(View.INVISIBLE);
+            }
         }
+
     }
 
 

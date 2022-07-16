@@ -3,6 +3,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('E:\\Backup\\AndroidProjects\\Keys\\exo.jks')
+            storePassword 'virgo1999'
+            keyAlias 'frozen'
+            keyPassword 'virgo1999'
+        }
+        release {
+            storeFile file('E:\\Backup\\AndroidProjects\\Keys\\exo.jks')
+            storePassword 'virgo1999'
+            keyAlias 'frozen'
+            keyPassword 'virgo1999'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -13,6 +27,7 @@ android {
         versionName "3.6.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {

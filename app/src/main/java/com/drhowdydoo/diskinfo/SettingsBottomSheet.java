@@ -158,7 +158,7 @@ public class SettingsBottomSheet extends BottomSheetDialogFragment {
         String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getDisplayLanguage());
         txtLanguage.setText(new Locale(languageCode).getDisplayLanguage());
         if (!currentLanguageCode.equalsIgnoreCase(languageCode)) {
-            if (requireRestart)
+            if (requireRestart || BuildConfig.DEBUG)
                 languageChanged = true;
         }
     }

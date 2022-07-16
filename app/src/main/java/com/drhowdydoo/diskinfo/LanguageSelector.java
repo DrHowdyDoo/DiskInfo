@@ -68,7 +68,6 @@ public class LanguageSelector extends BottomSheetDialogFragment {
 
 
         recyclerViewAdapter = new LanguageSelectorAdaptor(languageInfo, requireActivity(), LanguageSelector.this, installedLangs);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -81,7 +80,7 @@ public class LanguageSelector extends BottomSheetDialogFragment {
         SettingsBottomSheet settingsBottomSheet = (SettingsBottomSheet) activity.getSupportFragmentManager().findFragmentByTag("Settings");
         if (settingsBottomSheet != null) {
             settingsBottomSheet.updateLanguage(installedLangs.contains(sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage())));
-            activity.downloadRes();
+            if (!BuildConfig.DEBUG) activity.downloadRes();
         }
     }
 
