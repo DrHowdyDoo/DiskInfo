@@ -68,6 +68,7 @@ public class LanguageSelector extends BottomSheetDialogFragment {
 
 
         recyclerViewAdapter = new LanguageSelectorAdaptor(languageInfo, requireActivity(), LanguageSelector.this, installedLangs);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
