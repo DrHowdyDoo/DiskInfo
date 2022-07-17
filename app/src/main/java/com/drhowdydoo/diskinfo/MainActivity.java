@@ -27,6 +27,7 @@ import android.view.animation.LayoutAnimationController;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout not_found;
     private SplitInstallManager splitInstallManager;
     private Set<String> installedLangs;
+    private TextView not_found_text;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         searchField = findViewById(R.id.searchField);
         not_found = findViewById(R.id.not_found);
+        not_found_text = findViewById(R.id.txt_search_text);
 
         splitInstallManager = SplitInstallManagerFactory.create(this);
         installedLangs = splitInstallManager.getInstalledLanguages();
@@ -380,6 +383,8 @@ public class MainActivity extends AppCompatActivity {
             }
             if (temp.isEmpty()) {
                 not_found.setVisibility(View.VISIBLE);
+                String t = getString(R.string.not_found);
+                not_found_text.setText("‘ " + text + " ’ " + t.toLowerCase());
                 recyclerView.setVisibility(View.GONE);
             } else {
                 not_found.setVisibility(View.GONE);

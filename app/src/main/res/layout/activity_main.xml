@@ -85,15 +85,19 @@
             android:layout_marginBottom="8dp"
             android:textStyle="bold"
             android:alpha="0.8"
+            android:textColor="?attr/colorPrimary"
             android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
-            android:text="(·_·)" />
+            android:text="(≥o≤)" />
 
         <TextView
+            android:id="@+id/txt_search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorPrimary"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:alpha="0.8"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-            android:text="@string/not_found" />
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
     </LinearLayout>
 

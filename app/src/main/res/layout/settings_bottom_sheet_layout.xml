@@ -270,44 +270,50 @@
             app:layout_constraintStart_toStartOf="@+id/txtView_unit"
             app:layout_constraintTop_toBottomOf="@+id/btn_language" />
 
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/search_function_toggle_group"
-            android:layout_width="0dp"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:clipToPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_search_function_label"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            app:layout_constraintTop_toBottomOf="@+id/txt_search_function_label">
 
-            <Button
-                android:id="@+id/btn_start_with"
-                style="?attr/materialButtonOutlinedStyle"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/search_function_toggle_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/startswith" />
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
-            <Button
-                android:id="@+id/btn_contains"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/contains" />
+                <Button
+                    android:id="@+id/btn_start_with"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/startswith" />
 
-            <Button
-                android:id="@+id/btn_equals"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/equals" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                <Button
+                    android:id="@+id/btn_contains"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/contains" />
+
+                <Button
+                    android:id="@+id/btn_equals"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/equals" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </HorizontalScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
