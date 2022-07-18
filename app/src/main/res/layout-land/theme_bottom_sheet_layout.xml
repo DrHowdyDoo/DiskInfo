@@ -254,12 +254,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
                         android:layout_gravity="center_vertical"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="start|center_vertical"
                             android:text="@string/amoled_mode"
                             android:textAppearance="?attr/textAppearanceTitleMedium"
