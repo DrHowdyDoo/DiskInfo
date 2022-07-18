@@ -3,43 +3,44 @@ package com.drhowdydoo.diskinfo.bottomsheet;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.content.res.AppCompatResources;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.drhowdydoo.diskinfo.R;
 import com.drhowdydoo.diskinfo.activity.MainActivity;
+import com.drhowdydoo.diskinfo.adapter.ThemeAdapter;
+import com.drhowdydoo.diskinfo.model.Theme;
 import com.drhowdydoo.diskinfo.util.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class ThemeBottomSheet extends BottomSheetDialogFragment {
 
 
-    private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic, themeOrange, themePink;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors, appTheme;
     private MaterialButton t1, t2, x1, x2, x3;
     private TextView dynamicColorsTitle, amoledModeBody;
     private SwitchMaterial amoledMode;
+    private RecyclerView themeRecyclerView;
+    private ArrayList<Theme> themes;
 
-    private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
     private boolean isAmoledModeChanged = false, prevState;
 
     public ThemeBottomSheet() {
@@ -53,57 +54,42 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
                 container, false);
 
 
-        themePurple = v.findViewById(R.id.theme_purple);
-        themeRed = v.findViewById(R.id.theme_red);
-        themeYellow = v.findViewById(R.id.theme_yellow);
-        themeGreen = v.findViewById(R.id.theme_green);
-        themeDynamic = v.findViewById(R.id.theme_dynamic);
-        themeOrange = v.findViewById(R.id.theme_orange);
-        themePink = v.findViewById(R.id.theme_pink);
-
-        imgPurple = v.findViewById(R.id.img_purple);
-        imgRed = v.findViewById(R.id.img_red);
-        imgYellow = v.findViewById(R.id.img_yellow);
-        imgGreen = v.findViewById(R.id.img_green);
-        imgOrange = v.findViewById(R.id.img_orange);
-        imgPink = v.findViewById(R.id.img_pink);
-
+        themeRecyclerView = v.findViewById(R.id.theme_recycler_view);
         amoledMode = v.findViewById(R.id.switch_amoledMode);
         amoledModeBody = v.findViewById(R.id.txtView_amoledMode_body);
-
-
-        Drawable[] mDrawables = new Drawable[6];
-        int[] themeRes = {
-                R.style.Theme_DiskInfo_Purple,
-                R.style.Theme_DiskInfo_Red,
-                R.style.Theme_DiskInfo_Yellow,
-                R.style.Theme_DiskInfo_Green,
-                R.style.Theme_DiskInfo_Orange,
-                R.style.Theme_DiskInfo_Pink
-        };
-
-        for (int i = 0; i < mDrawables.length; i++) {
-            mDrawables[i] = createDrawable();
-            assert mDrawables[i] != null;
-            mDrawables[i].setTint(Util.getColorAttr(new ContextThemeWrapper(requireActivity(), themeRes[i]), com.google.android.material.R.attr.colorPrimary));
-        }
-
-        imgPurple.setBackground(mDrawables[0]);
-        imgRed.setBackground(mDrawables[1]);
-        imgYellow.setBackground(mDrawables[2]);
-        imgGreen.setBackground(mDrawables[3]);
-        imgOrange.setBackground(mDrawables[4]);
-        imgPink.setBackground(mDrawables[5]);
-
-
         dynamicColors = v.findViewById(R.id.toggleButton);
         appTheme = v.findViewById(R.id.appTheme);
+        dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
+
         t1 = v.findViewById(R.id.dynamic_on);
         t2 = v.findViewById(R.id.dynamic_off);
-        dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
+
 
         sharedPref = requireActivity().getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
+        themes = new ArrayList<>();
+        Theme theme1 = new Theme(R.style.Theme_DiskInfo_Purple, R.style.Theme_DiskInfo_Purple_Amoled, 0);
+        Theme theme2 = new Theme(R.style.Theme_DiskInfo_Red, R.style.Theme_DiskInfo_Red_Amoled, 1);
+        Theme theme3 = new Theme(R.style.Theme_DiskInfo_Yellow, R.style.Theme_DiskInfo_Yellow_Amoled, 2);
+        Theme theme4 = new Theme(R.style.Theme_DiskInfo_Green, R.style.Theme_DiskInfo_Green_Amoled, 3);
+        Theme theme5 = new Theme(R.style.Theme_DiskInfo_Orange, R.style.Theme_DiskInfo_Orange_Amoled, 4);
+        Theme theme6 = new Theme(R.style.Theme_DiskInfo_Pink, R.style.Theme_DiskInfo_Pink_Amoled, 5);
+        Theme dynamicTheme = new Theme(Util.Theme_Dynamic, Util.Theme_Dynamic, -1);
+
+        themes.add(theme1);
+        themes.add(theme2);
+        themes.add(theme3);
+        themes.add(theme4);
+        themes.add(theme5);
+        themes.add(theme6);
+        themes.add(dynamicTheme);
+
+
+        ThemeAdapter themeAdapter = new ThemeAdapter(themes, requireActivity(), ThemeBottomSheet.this);
+        themeRecyclerView.setHasFixedSize(false);
+        themeRecyclerView.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
+        themeRecyclerView.setAdapter(themeAdapter);
 
 
         if (Build.VERSION.SDK_INT < 31) {
@@ -112,40 +98,9 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         } else {
             if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
                 dynamicColors.check(R.id.dynamic_on);
-                themeDynamic.setVisibility(View.VISIBLE);
-                themeDynamic.setChecked(true);
             } else {
                 dynamicColors.check(R.id.dynamic_off);
-                themeDynamic.setChecked(false);
-                themeDynamic.setVisibility(View.GONE);
             }
-        }
-
-        switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
-            case "purple":
-                themePurple.setChecked(true);
-                break;
-
-            case "red":
-                themeRed.setChecked(true);
-                break;
-
-            case "yellow":
-                themeYellow.setChecked(true);
-                break;
-
-            case "green":
-                themeGreen.setChecked(true);
-                break;
-
-            case "orange":
-                themeOrange.setChecked(true);
-                break;
-
-            case "pink":
-                themePink.setChecked(true);
-                break;
-
         }
 
         switch (sharedPref.getInt("DiskInfo.MODE", -1)) {
@@ -184,31 +139,20 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (checkedId == R.id.dynamic_on) {
                 editor.putBoolean("DiskInfo.DynamicColors", true).apply();
-                unCheckAll();
                 dynamicColors.check(R.id.dynamic_on);
-                themeDynamic.setVisibility(View.VISIBLE);
-                themeDynamic.setChecked(true);
-                editor.putString("DiskInfo.Theme", "dynamic").apply();
+                editor.putInt("DiskInfo.Theme", Util.Theme_Dynamic).apply();
+                editor.putInt("DiskInfo.Theme.Id", -1).apply();
                 DynamicColors.applyIfAvailable(requireActivity());
             }
             if (checkedId == R.id.dynamic_off) {
-
                 editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                editor.putString("DiskInfo.Theme", "purple").apply();
-                themePurple.setChecked(true);
-                themeDynamic.setVisibility(View.GONE);
+                editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple).apply();
+                editor.putInt("DiskInfo.Theme.Id", 0).apply();
                 dismiss();
                 restart();
-
             }
         });
 
-        themePurple.setOnClickListener(this);
-        themeRed.setOnClickListener(this);
-        themeYellow.setOnClickListener(this);
-        themeGreen.setOnClickListener(this);
-        themeOrange.setOnClickListener(this);
-        themePink.setOnClickListener(this);
 
         if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
             amoledMode.setChecked(false);
@@ -221,93 +165,19 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
         amoledMode.setOnCheckedChangeListener(((buttonView, isChecked) -> {
             editor.putBoolean("amoledMode", isChecked).apply();
+            int theme;
+            if (isChecked)
+                theme = themes.get(sharedPref.getInt("DiskInfo.Theme.Id", 0)).getAmoledVersion();
+            else theme = themes.get(sharedPref.getInt("DiskInfo.Theme.Id", 0)).getTheme();
+            editor.putInt("DiskInfo.Theme", theme).apply();
             isAmoledModeChanged = isChecked ^ prevState;
         }));
 
         return v;
     }
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.theme_purple:
-                unCheckAll();
-                if (!themePurple.isChecked()) themePurple.setChecked(true);
-                editor.putString("DiskInfo.Theme", "purple").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_red:
-                unCheckAll();
-                if (!themeRed.isChecked()) themeRed.setChecked(true);
-                editor.putString("DiskInfo.Theme", "red").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_yellow:
-                unCheckAll();
-                if (!themeYellow.isChecked()) themeYellow.setChecked(true);
-                editor.putString("DiskInfo.Theme", "yellow").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_green:
-                unCheckAll();
-                if (!themeGreen.isChecked()) themeGreen.setChecked(true);
-                editor.putString("DiskInfo.Theme", "green").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_orange:
-                unCheckAll();
-                if (!themeOrange.isChecked()) themeOrange.setChecked(true);
-                editor.putString("DiskInfo.Theme", "orange").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_pink:
-                unCheckAll();
-                if (!themePink.isChecked()) themePink.setChecked(true);
-                editor.putString("DiskInfo.Theme", "pink").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-        }
-
-    }
-
-    private Drawable createDrawable() {
-        Drawable mDrawable = AppCompatResources.getDrawable(requireActivity(), R.drawable.ic_circle_24);
-        if (mDrawable != null)
-            return mDrawable.mutate();
-        else return null;
-    }
-
-    private void restart() {
+    public void restart() {
         ((MainActivity) requireActivity()).restartToApply(100);
-    }
-
-    private void unCheckAll() {
-        themePurple.setChecked(false);
-        themeRed.setChecked(false);
-        themeYellow.setChecked(false);
-        themeGreen.setChecked(false);
-        themeOrange.setChecked(false);
-        themePink.setChecked(false);
-        themeDynamic.setChecked(false);
-
     }
 
     @Override

@@ -116,53 +116,15 @@ public class MainActivity extends AppCompatActivity {
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
         AppCompatDelegate.setDefaultNightMode(mode);
 
-        switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
-            case "purple":
-                if (sharedPref.getBoolean("amoledMode", false)) {
-                    setTheme(R.style.Theme_DiskInfo_Purple_Amoled);
-                } else {
-                    setTheme(R.style.Theme_DiskInfo_Purple);
-                }
-
-                break;
-
-            case "red":
-                if (sharedPref.getBoolean("amoledMode", false))
-                    setTheme(R.style.Theme_DiskInfo_Red_Amoled);
-                else setTheme(R.style.Theme_DiskInfo_Red);
-                break;
-
-            case "yellow":
-                if (sharedPref.getBoolean("amoledMode", false))
-                    setTheme(R.style.Theme_DiskInfo_Yellow_Amoled);
-                else setTheme(R.style.Theme_DiskInfo_Yellow);
-                break;
-
-            case "green":
-                if (sharedPref.getBoolean("amoledMode", false))
-                    setTheme(R.style.Theme_DiskInfo_Green_Amoled);
-                else setTheme(R.style.Theme_DiskInfo_Green);
-                break;
-
-            case "orange":
-                if (sharedPref.getBoolean("amoledMode", false))
-                    setTheme(R.style.Theme_DiskInfo_Orange_Amoled);
-                else setTheme(R.style.Theme_DiskInfo_Orange);
-                break;
-
-            case "pink":
-                if (sharedPref.getBoolean("amoledMode", false))
-                    setTheme(R.style.Theme_DiskInfo_Pink_Amoled);
-                else setTheme(R.style.Theme_DiskInfo_Pink);
-                break;
-
-            default:
-                if (DynamicColors.isDynamicColorAvailable()) {
-                    DynamicColors.applyIfAvailable(this);
-                } else setTheme(R.style.Theme_DiskInfo_Purple);
-                break;
-
+        int theme = sharedPref.getInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple);
+        if (theme == Util.Theme_Dynamic) {
+            if (DynamicColors.isDynamicColorAvailable()) {
+                DynamicColors.applyIfAvailable(this);
+            }
+        } else {
+            setTheme(theme);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

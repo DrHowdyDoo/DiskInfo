@@ -7,6 +7,8 @@ import androidx.annotation.AttrRes;
 
 public class Util {
 
+    public static int Theme_Dynamic = 0;
+
 
     public static int getUsedSpace(long total, long used) {
 
