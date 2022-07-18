@@ -23,8 +23,8 @@ android {
         applicationId "com.drhowdydoo.diskinfo"
         minSdk 27
         targetSdk 31
-        versionCode 96
-        versionName "3.6.8"
+        versionCode 97
+        versionName "3.6.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release

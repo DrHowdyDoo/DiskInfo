@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.bottomsheet;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.drhowdydoo.diskinfo.BuildConfig;
+import com.drhowdydoo.diskinfo.R;
+import com.drhowdydoo.diskinfo.activity.MainActivity;
+import com.drhowdydoo.diskinfo.adapter.LanguageSelectorAdaptor;
+import com.drhowdydoo.diskinfo.model.LanguageInfo;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.play.core.splitinstall.SplitInstallManager;
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;

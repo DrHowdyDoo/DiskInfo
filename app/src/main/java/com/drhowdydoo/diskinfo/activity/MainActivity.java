@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -38,6 +38,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.drhowdydoo.diskinfo.R;
+import com.drhowdydoo.diskinfo.adapter.RecyclerViewAdapter;
+import com.drhowdydoo.diskinfo.bottomsheet.SettingsBottomSheet;
+import com.drhowdydoo.diskinfo.bottomsheet.ThemeBottomSheet;
+import com.drhowdydoo.diskinfo.model.DataStore;
+import com.drhowdydoo.diskinfo.model.MemInfo;
+import com.drhowdydoo.diskinfo.util.FormatterX;
+import com.drhowdydoo.diskinfo.util.Util;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -451,8 +459,14 @@ public class MainActivity extends AppCompatActivity {
                 if (store.toString().startsWith("/data ")) {
                     rootStore = new DataStore(dataStore);
                 }
-                if (store.toString().startsWith("/system ")) {
-                    systemStore = new DataStore(dataStore);
+                if (Build.VERSION.SDK_INT >= 28) {
+                    if (store.toString().startsWith("/ ")) {
+                        systemStore = new DataStore(dataStore);
+                    }
+                } else {
+                    if (store.toString().startsWith("/system ")) {
+                        systemStore = new DataStore(dataStore);
+                    }
                 }
                 if (store.toString().startsWith("/mnt/expand/")) {
                     sdStore = new DataStore(dataStore);

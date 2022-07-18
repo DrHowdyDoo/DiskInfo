@@ -1,10 +1,12 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.util;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.BidiFormatter;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.drhowdydoo.diskinfo.R;
 
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.model;
 
 public class DataStore {
 

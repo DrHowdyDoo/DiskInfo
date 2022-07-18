@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.bottomsheet;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
 
+import com.drhowdydoo.diskinfo.R;
+import com.drhowdydoo.diskinfo.activity.MainActivity;
+import com.drhowdydoo.diskinfo.util.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;

@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.drhowdydoo.diskinfo.BuildConfig;
+import com.drhowdydoo.diskinfo.R;
+import com.drhowdydoo.diskinfo.bottomsheet.LanguageSelector;
+import com.drhowdydoo.diskinfo.model.LanguageInfo;
 
 import java.util.ArrayList;
 import java.util.Locale;

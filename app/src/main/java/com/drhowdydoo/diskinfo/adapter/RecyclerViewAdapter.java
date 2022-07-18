@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.drhowdydoo.diskinfo.R;
+import com.drhowdydoo.diskinfo.model.DataStore;
+import com.drhowdydoo.diskinfo.model.MemInfo;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 

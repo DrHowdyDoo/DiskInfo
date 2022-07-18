@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

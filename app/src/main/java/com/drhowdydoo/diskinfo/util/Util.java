@@ -1,4 +1,4 @@
-package com.drhowdydoo.diskinfo;
+package com.drhowdydoo.diskinfo.util;
 
 import android.content.Context;
 import android.util.TypedValue;

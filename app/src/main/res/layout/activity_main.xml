@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:id="@+id/coordinator_layout"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout

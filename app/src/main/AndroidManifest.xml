@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiskInfo.Purple">
         <activity
-            android:name=".LauncherActivity"
+            android:name=".activity.LauncherActivity"
             android:theme="@style/Launcher.Theme"
             android:exported="true">
             <intent-filter>
@@ -21,7 +21,7 @@
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
     </application>
