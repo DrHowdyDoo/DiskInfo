@@ -26,7 +26,6 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.DynamicColors;
@@ -40,12 +39,10 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors, appTheme;
-    private MaterialButton t1, t2, x1, x2, x3;
     private TextView dynamicColorsTitle, amoledModeBody;
     private SwitchMaterial amoledMode;
     private RecyclerView themeRecyclerView;
     private ArrayList<Theme> themes;
-    private int themeBackup, themeBackupId;
     private MaterialCardView amoledModeContainer;
 
     private boolean isAmoledModeChanged = false, prevState;
@@ -68,9 +65,6 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
         dynamicColors = v.findViewById(R.id.toggleButton);
         appTheme = v.findViewById(R.id.appTheme);
         dynamicColorsTitle = v.findViewById(R.id.txtView_dynamic_colors);
-
-        t1 = v.findViewById(R.id.dynamic_on);
-        t2 = v.findViewById(R.id.dynamic_off);
 
 
         sharedPref = requireActivity().getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
@@ -173,6 +167,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
         if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
             amoledMode.setChecked(false);
             amoledMode.setEnabled(false);
+            amoledModeContainer.setEnabled(false);
             amoledModeBody.setVisibility(View.VISIBLE);
         } else {
             amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
