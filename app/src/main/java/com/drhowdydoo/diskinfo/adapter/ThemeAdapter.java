@@ -69,7 +69,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeViewHol
         holder.themeDot.setBackground(drawable);
         if (sharedPref.getInt("DiskInfo.Theme.Id", 0) == themeObj.getId())
             holder.themeDotContainer.setChecked(true);
-        if (themeObj.getId() == -1 && !sharedPref.getBoolean("DiskInfo.DynamicColors", false))
+        if (themeObj.getId() == -1 && sharedPref.getInt("DiskInfo.Theme.Id", 0) != -1)
             holder.itemView.setVisibility(View.GONE);
     }
 
@@ -95,14 +95,16 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeViewHol
         public void onClick(View view) {
             int position = this.getBindingAdapterPosition();
             Theme themeObj = themeList.get(position);
-            int theme;
-            if (sharedPref.getBoolean("amoledMode", false)) theme = themeObj.getAmoledVersion();
-            else theme = themeObj.getTheme();
-            editor.putInt("DiskInfo.Theme", theme).apply();
-            editor.putInt("DiskInfo.Theme.Id", themeObj.getId()).apply();
-            ((MaterialCardView) view).setChecked(true);
-            themeBottomSheet.dismiss();
-            themeBottomSheet.restart();
+            if (themeObj.getId() != -1) {
+                int theme;
+                if (sharedPref.getBoolean("amoledMode", false)) theme = themeObj.getAmoledVersion();
+                else theme = themeObj.getTheme();
+                editor.putInt("DiskInfo.Theme", theme).apply();
+                editor.putInt("DiskInfo.Theme.Id", themeObj.getId()).apply();
+                ((MaterialCardView) view).setChecked(true);
+                themeBottomSheet.dismiss();
+                themeBottomSheet.restart();
+            }
         }
     }
 

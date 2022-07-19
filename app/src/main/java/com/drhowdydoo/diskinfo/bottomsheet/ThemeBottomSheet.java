@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.drhowdydoo.diskinfo.R;
@@ -21,9 +20,15 @@ import com.drhowdydoo.diskinfo.activity.MainActivity;
 import com.drhowdydoo.diskinfo.adapter.ThemeAdapter;
 import com.drhowdydoo.diskinfo.model.Theme;
 import com.drhowdydoo.diskinfo.util.Util;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -40,6 +45,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
     private SwitchMaterial amoledMode;
     private RecyclerView themeRecyclerView;
     private ArrayList<Theme> themes;
+    private int themeBackup, themeBackupId;
+    private MaterialCardView amoledModeContainer;
 
     private boolean isAmoledModeChanged = false, prevState;
 
@@ -56,6 +63,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
 
         themeRecyclerView = v.findViewById(R.id.theme_recycler_view);
         amoledMode = v.findViewById(R.id.switch_amoledMode);
+        amoledModeContainer = v.findViewById(R.id.cardView_amoledMode);
         amoledModeBody = v.findViewById(R.id.txtView_amoledMode_body);
         dynamicColors = v.findViewById(R.id.toggleButton);
         appTheme = v.findViewById(R.id.appTheme);
@@ -87,8 +95,13 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
 
 
         ThemeAdapter themeAdapter = new ThemeAdapter(themes, requireActivity(), ThemeBottomSheet.this);
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(requireActivity());
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setJustifyContent(JustifyContent.CENTER);
+        layoutManager.setAlignItems(AlignItems.CENTER);
+        themeRecyclerView.setLayoutManager(layoutManager);
         themeRecyclerView.setHasFixedSize(false);
-        themeRecyclerView.setLayoutManager(new GridLayoutManager(requireActivity(), 4));
         themeRecyclerView.setAdapter(themeAdapter);
 
 
@@ -96,7 +109,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
             dynamicColors.setVisibility(View.GONE);
             dynamicColorsTitle.setVisibility(View.GONE);
         } else {
-            if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+            if (sharedPref.getInt("DiskInfo.Theme.Id", 0) == -1) {
                 dynamicColors.check(R.id.dynamic_on);
             } else {
                 dynamicColors.check(R.id.dynamic_off);
@@ -136,6 +149,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
             }
         }));
 
+
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (checkedId == R.id.dynamic_on) {
                 editor.putBoolean("DiskInfo.DynamicColors", true).apply();
@@ -146,7 +160,9 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
             }
             if (checkedId == R.id.dynamic_off) {
                 editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple).apply();
+                if (sharedPref.getBoolean("amoledMode", false))
+                    editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple_Amoled).apply();
+                else editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple).apply();
                 editor.putInt("DiskInfo.Theme.Id", 0).apply();
                 dismiss();
                 restart();
@@ -173,8 +189,13 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
             isAmoledModeChanged = isChecked ^ prevState;
         }));
 
+        amoledModeContainer.setOnClickListener(view -> {
+            amoledMode.setChecked(!amoledMode.isChecked());
+        });
+
         return v;
     }
+
 
     public void restart() {
         ((MainActivity) requireActivity()).restartToApply(100);
