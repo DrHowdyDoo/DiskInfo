@@ -146,14 +146,12 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
 
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (checkedId == R.id.dynamic_on) {
-                editor.putBoolean("DiskInfo.DynamicColors", true).apply();
                 dynamicColors.check(R.id.dynamic_on);
                 editor.putInt("DiskInfo.Theme", Util.Theme_Dynamic).apply();
                 editor.putInt("DiskInfo.Theme.Id", -1).apply();
                 DynamicColors.applyIfAvailable(requireActivity());
             }
             if (checkedId == R.id.dynamic_off) {
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
                 if (sharedPref.getBoolean("amoledMode", false))
                     editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple_Amoled).apply();
                 else editor.putInt("DiskInfo.Theme", R.style.Theme_DiskInfo_Purple).apply();
@@ -164,7 +162,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
         });
 
 
-        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+        if (sharedPref.getInt("DiskInfo.Theme.Id", 0) == -1) {
             amoledMode.setChecked(false);
             amoledMode.setEnabled(false);
             amoledModeContainer.setEnabled(false);
