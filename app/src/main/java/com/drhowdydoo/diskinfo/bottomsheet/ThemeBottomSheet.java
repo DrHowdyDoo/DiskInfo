@@ -89,6 +89,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment {
 
 
         ThemeAdapter themeAdapter = new ThemeAdapter(themes, requireActivity(), ThemeBottomSheet.this);
+        themeAdapter.setHasStableIds(true);
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(requireActivity());
         layoutManager.setFlexWrap(FlexWrap.WRAP);
         layoutManager.setFlexDirection(FlexDirection.ROW);
