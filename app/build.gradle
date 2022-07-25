@@ -24,7 +24,7 @@ android {
         minSdk 27
         targetSdk 31
         versionCode 97
-        versionName "3.6.9"
+        versionName "3.6.9-beta01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
