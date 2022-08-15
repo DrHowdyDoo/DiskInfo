@@ -32,6 +32,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
 
     private MaterialCardView themePurple, themeRed, themeYellow, themeGreen, themeDynamic, themeOrange, themePink;
+    private MaterialCardView amoledModeContainer;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private MaterialButtonToggleGroup dynamicColors, appTheme;
@@ -70,6 +71,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
         amoledMode = v.findViewById(R.id.switch_amoledMode);
         amoledModeBody = v.findViewById(R.id.txtView_amoledMode_body);
+        amoledModeContainer = v.findViewById(R.id.cardView_amoledMode);
 
 
         Drawable[] mDrawables = new Drawable[6];
@@ -213,9 +215,11 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
             amoledMode.setChecked(false);
             amoledMode.setEnabled(false);
+            amoledModeContainer.setEnabled(false);
             amoledModeBody.setVisibility(View.VISIBLE);
         } else {
             amoledMode.setChecked(sharedPref.getBoolean("amoledMode", false));
+            amoledModeContainer.setEnabled(true);
             prevState = amoledMode.isChecked();
         }
 
@@ -223,6 +227,8 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
             editor.putBoolean("amoledMode", isChecked).apply();
             isAmoledModeChanged = isChecked ^ prevState;
         }));
+
+        amoledModeContainer.setOnClickListener(view -> amoledMode.setChecked(!amoledMode.isChecked()));
 
         return v;
     }
