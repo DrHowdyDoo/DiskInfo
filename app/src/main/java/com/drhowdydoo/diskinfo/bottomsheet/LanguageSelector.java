@@ -59,7 +59,7 @@ public class LanguageSelector extends BottomSheetDialogFragment {
         LanguageInfo l4 = new LanguageInfo("ja", "Google Translate", "日本語", false);
         LanguageInfo l5 = new LanguageInfo("ko", "Prachi Saxena", "한국어", true);
         LanguageInfo l6 = new LanguageInfo("pt", "Google Translate", "Português", false);
-        LanguageInfo l7 = new LanguageInfo("ru", "Google Translate", "русский", false);
+        LanguageInfo l7 = new LanguageInfo("ru", "Rasta Gubaz", "русский", true);
         LanguageInfo l8 = new LanguageInfo("vi", "CuynuTT", "Tiếng Việt", true);
 
         languageInfo.add(l1);
