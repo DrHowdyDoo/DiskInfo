@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Diskİnfo</string>
+    <string name="themes">Mövzu</string>
+    <string name="dynamic_colors">Dinamik Rənglər</string>
+    <string name="on">Açıq</string>
+    <string name="off">Qapalı</string>
+    <string name="preferences">Üstünlüklər</string>
+    <string name="animate_bars">Bar animasiyasını göstərin</string>
+    <string name="show_block_size">Blok ölçüsünü göstərin</string>
+    <string name="app_colors">Program Rəngləri</string>
+    <string name="auto">Avto</string>
+    <string name="dark">Tünd</string>
+    <string name="light">İşıqlı</string>
+    <string name="advance_mode">Qabaqcıl rejim</string>
+    <string name="show_more_than_just_basic_partitions">Əsas bölmələrdən daha çoxunu göstərir</string>
+    <string name="not_available_with_dynamic_colors">Dinamik Rənglər ilə mövcud deyil</string>
+    <string name="amoled_mode">AMOLED REJİMİ</string>
+    <string name="partitions">Bölmələr</string>
+    <string name="basic_partitions">Əsas Bölmələr</string>
+    <string name="memory">Yaddaş</string>
+    <string name="ram">RAM</string>
+    <string name="zram">ZRAM</string>
+    <string name="total">ümumi</string>
+    <string name="free">azad</string>
+    <string name="used">istifadə edilən</string>
+    <string name="data">Məlumat</string>
+    <string name="system">Sistem</string>
+    <string name="cache">Keş</string>
+    <string name="sdcard_internal">SD kard (Daxili)</string>
+    <string name="sdcard_portable">SD kard (Portativ)</string>
+    <string name="otg">OTG</string>
+    <string name="swap">Swap</string>
+    <string name="cached">Keşlənmiş</string>
+    <string name="swap_cached">KeşlənmişSwap</string>
+    <string name="partition_tooltip">bölmələrin montaj yolu (bölmə faylsistem)</string>
+    <string name="access_type_tooltip">Giriş növü (yalnız oxumaq və ya oxumaq/yazmaq)</string>
+    <string name="block_size_tooltip">Blok ölçüsü</string>
+    <string name="filesystem_tooltip">FaylSistem növü</string>
+    <string name="unit_system">Vahid Sistem</string>
+    <string name="si">SI</string>
+    <string name="iec">IEC</string>
+    <string name="byteShort">"B"</string>
+    <string name="kilobyteShort">"KB"</string>
+    <string name="megabyteShort">"MB"</string>
+    <string name="gigabyteShort">"GB"</string>
+    <string name="terabyteShort">"TB"</string>
+    <string name="petabyteShort">"PB"</string>
+
+    <string name="kibibyteShort">"KiB"</string>
+    <string name="mebibyteShort">"MiB"</string>
+    <string name="gibibyteShort">"GiB"</string>
+    <string name="tebibyteShort">"TiB"</string>
+    <string name="pebibyteShort">"PiB"</string>
+
+    <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
+    <string name="search">Axtar</string>
+    <string name="not_found">tapılmadı</string>
+    <string name="language">Dil</string>
+    <string name="select_language">Dil seçin</string>
+    <string name="language_help_text">Bu proqramı sizin dilinizə tərcümə etməkdə və ya mövcud proqramı təkmilləşdirməkdə mənə kömək etməkdən çəkinməyin.\n drhowdydoo@gmail.com Ünvanına məktub göndərin</string>
+    <string name="search_function">Axtarış funksiyası</string>
+    <string name="startswith">İlə başlayır</string>
+    <string name="contains">Ehtiva edir</string>
+    <string name="equals">Bərabərdir</string>
+</resources>
