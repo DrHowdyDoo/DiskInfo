@@ -62,6 +62,8 @@ public class LanguageSelector extends BottomSheetDialogFragment {
         LanguageInfo l7 = new LanguageInfo("ru", "Rasta Gubaz", "русский", true);
         LanguageInfo l8 = new LanguageInfo("vi", "CuynuTT", "Tiếng Việt", true);
         LanguageInfo l9 = new LanguageInfo("az", "thepoladov", "Azərbaycan", true);
+        LanguageInfo l10 = new LanguageInfo("ar", "Montathar A. Hussein", "Arabic", true);
+        LanguageInfo l11 = new LanguageInfo("pl", "Bartosz Northen", "Polish", true);
 
         languageInfo.add(l1);
         languageInfo.add(l2);
@@ -72,6 +74,8 @@ public class LanguageSelector extends BottomSheetDialogFragment {
         languageInfo.add(l7);
         languageInfo.add(l8);
         languageInfo.add(l9);
+        languageInfo.add(l10);
+        languageInfo.add(l11);
 
 
         recyclerViewAdapter = new LanguageSelectorAdaptor(languageInfo, requireActivity(), LanguageSelector.this, installedLangs);

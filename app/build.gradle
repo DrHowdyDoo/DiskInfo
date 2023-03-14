@@ -17,14 +17,14 @@ android {
             keyPassword 'virgo1999'
         }
     }
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.drhowdydoo.diskinfo"
         minSdk 27
         targetSdk 32
-        versionCode 100
-        versionName "3.7.2"
+        versionCode 102
+        versionName "3.7.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
@@ -44,8 +44,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'me.zhanghai.android.fastscroll:library:1.1.8'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'me.zhanghai.android.fastscroll:library:1.2.0'
     implementation 'com.google.android.play:core:1.10.3'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"

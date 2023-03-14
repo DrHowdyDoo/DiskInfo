@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">DiskInfo</string>
+    <string name="themes">الثيم</string>
+    <string name="dynamic_colors">ألوان ديناميكية</string>
+    <string name="on">تشغيل</string>
+    <string name="off">إيقاف</string>
+    <string name="preferences">الإعدادات</string>
+    <string name="animate_bars">عرض الرسوم التفاعلية للشريط</string>
+    <string name="show_block_size">عرض حجم القطاعات</string>
+    <string name="app_colors">ألوان التطبيق</string>
+    <string name="auto">تلقائي</string>
+    <string name="dark">داكن</string>
+    <string name="light">مشرق</string>
+    <string name="advance_mode">الوضع المتقدم</string>
+    <string name="show_more_than_just_basic_partitions">عرض أكثر من مجرد أقسام أساسية</string>
+    <string name="not_available_with_dynamic_colors">غير متوفر مع الألوان الديناميكية</string>
+    <string name="amoled_mode">وضع شاشات Amoled</string>
+    <string name="partitions">الأقسام</string>
+    <string name="basic_partitions">الأقسام الأساسية</string>
+    <string name="memory">الذاكرة</string>
+    <string name="ram"> ذاكرة الوصول العشوائي</string>
+    <string name="zram">الذاكرة الموسعة</string>
+    <string name="total">المجموع</string>
+    <string name="free">الحر</string>
+    <string name="used">المستعمل</string>
+    <string name="data">البيانات</string>
+    <string name="system">النظام</string>
+    <string name="cache">الكاش</string>
+    <string name="sdcard_internal">ذاكرة التخزين الداخلية</string>
+    <string name="sdcard_portable">ذاكرة التخزين الخارجية</string>
+    <string name="otg">OTG</string>
+    <string name="swap">التبديل</string>
+    <string name="cached">المخبأ (الكاش)</string>
+    <string name="swap_cached">لتبديل المخبأ</string>
+    <string name="partition_tooltip">مسار تحميل القسم (قسم ملفات النظام)</string>
+    <string name="access_type_tooltip">نوع الوصول (القراءة فقط او القراءة والكتابة)</string>
+    <string name="block_size_tooltip">حجم القطاع</string>
+    <string name="filesystem_tooltip">نوع ملف النظام</string>
+    <string name="unit_system">نظام الوحدات</string>
+    <string name="si">النظام الدولي (SI)</string>
+    <string name="iec">اللجنة الكهرتقنية الدولية (IEC)</string>
+    <string name="byteShort">"بايت"</string>
+    <string name="kilobyteShort">"كيلوبايت"</string>
+    <string name="megabyteShort">"ميگابايت"</string>
+    <string name="gigabyteShort">"گيگابايت"</string>
+    <string name="terabyteShort">"تيرابايت"</string>
+    <string name="petabyteShort">"بيتابايت"</string>
+
+    <string name="kibibyteShort">"كيلوبايت"</string>
+    <string name="mebibyteShort">"ميگابايت"</string>
+    <string name="gibibyteShort">"گيگابايت"</string>
+    <string name="tebibyteShort">"تيرابايت"</string>
+    <string name="pebibyteShort">"بيتابايت"</string>
+
+    <string name="fileSizeSuffix">"<xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g>"</string>
+    <string name="search">بحث</string>
+    <string name="not_found">لا يوجد</string>
+    <string name="language">اللغة</string>
+    <string name="select_language">أختر اللغة</string>
+    <string name="language_help_text">لا تترد في مساعدتي في ترجمة هذا التطبيق إلى لغتك او تحسين اللغة الحالية.\n قم بإرسال بريد إلكتروني إلى drhowdydoo@gmail.com</string>
+    <string name="search_function">وظيفة البحث</string>
+    <string name="startswith">يبدأ بـ</string>
+    <string name="contains">يحتوي على</string>
+    <string name="equals">يساوي</string>
+</resources>
