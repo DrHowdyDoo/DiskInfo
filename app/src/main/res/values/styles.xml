@@ -45,6 +45,5 @@
         <item name="postSplashScreenTheme">@style/Theme.DiskInfo.Purple</item>
     </style>
 
-    <style name="App" parent="Widget.Material3.MaterialDivider"/>
 
 </resources>
