@@ -2,9 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator_layout"
+    android:background="?android:colorBackground"
     android:fitsSystemWindows="true"
     tools:context=".activity.MainActivity">
 
@@ -12,26 +13,26 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:fitsSystemWindows="true">
+        android:focusableInTouchMode="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolBar"
             style="?attr/collapsingToolbarLayoutMediumStyle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             android:layout_width="match_parent"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
             app:expandedTitleTextAppearance="?attr/textAppearanceDisplayMedium"
-            android:layout_height="?attr/collapsingToolbarLayoutLargeSize">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/materialToolBar"
                 android:layout_width="match_parent"
-                app:layout_collapseMode="pin"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/app_name"
-                android:elevation="0dp" />
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:title="@string/app_name" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -39,13 +40,13 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            app:startIconDrawable="@drawable/ic_round_search_24"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/search"
             app:endIconMode="clear_text"
-            android:hint="@string/search">
+            app:startIconDrawable="@drawable/ic_round_search_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchField"
@@ -64,42 +65,43 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:paddingTop="52dp"
-            android:clipToPadding="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="52dp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/not_found"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:padding="16dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textStyle="bold"
             android:alpha="0.8"
-            android:textColor="?attr/colorPrimary"
+            android:gravity="center"
+            android:text="(≥o≤)"
             android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
-            android:text="(≥o≤)" />
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorPrimary"
             android:layout_gravity="center"
-            android:gravity="center"
             android:alpha="0.8"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:textColor="?attr/colorPrimary" />
 
     </LinearLayout>
 
@@ -119,9 +121,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="84dp"
-        app:srcCompat="@drawable/ic_round_settings_24"
         app:layout_anchor="@id/collapsingToolBar"
         app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_round_settings_24"
         tools:ignore="SpeakableTextPresentCheck" />
 
 

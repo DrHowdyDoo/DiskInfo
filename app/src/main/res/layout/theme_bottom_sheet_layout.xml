@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:paddingBottom="34dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:ignore="contentDescription"
-    android:orientation="vertical">
+    tools:ignore="contentDescription">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/app_colors"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:drawablePadding="4dp"
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:text="@string/app_colors"
         android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_theme_large"
         app:drawableTint="?attr/colorPrimary" />
 
@@ -28,10 +28,10 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:layout_marginTop="14dp"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_purple"
@@ -41,9 +41,9 @@
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            app:checkedIconMargin="17dp"
             app:cardCornerRadius="18dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp"
             tools:ignore="DuplicateSpeakableTextCheck">
 
             <ImageView
@@ -57,15 +57,15 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
-            app:checkedIconMargin="17dp"
             app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_red"
@@ -78,15 +78,15 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="@color/white"
-            android:layout_width="wrap_content"
             app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_yellow"
@@ -99,15 +99,15 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
             app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_green"
@@ -128,15 +128,15 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
             app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_orange"
@@ -149,15 +149,15 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            android:layout_margin="8dp"
-            app:checkedIconMargin="17dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
             app:cardCornerRadius="18dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_pink"
@@ -170,17 +170,17 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/theme_dynamic"
-            android:checkable="true"
-            android:visibility="gone"
-            android:clickable="true"
-            android:focusable="true"
-            app:checkedIconMargin="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            app:checkedIconTint="?attr/colorOnPrimary"
-            android:layout_width="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
             app:cardCornerRadius="16dp"
-            android:layout_height="wrap_content">
+            app:checkedIcon="@drawable/ic_check"
+            app:checkedIconMargin="17dp">
 
             <ImageView
                 android:id="@+id/img_dynamic"
@@ -207,42 +207,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:selectionRequired="true"
         app:singleSelection="true">
 
         <Button
             android:id="@+id/theme_auto"
+            style="@style/App.ToggleButtons.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/auto"
-            style="@style/App.ToggleButtons.Small" />
+            android:text="@string/auto" />
 
         <Button
             android:id="@+id/theme_light"
+            style="@style/App.ToggleButtons.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/light"
-            style="@style/App.ToggleButtons.Small" />
+            android:text="@string/light" />
 
         <Button
             android:id="@+id/theme_dark"
+            style="@style/App.ToggleButtons.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dark"
-            style="@style/App.ToggleButtons.Small" />
+            android:text="@string/dark" />
 
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView_amoledMode"
+        style="?attr/materialCardViewFilledStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="32dp"
-        style="?attr/materialCardViewFilledStyle"
-        android:layout_marginTop="24dp">
+        app:cardCornerRadius="32dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -254,10 +255,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -269,18 +270,18 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/txtView_amoledMode_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/not_available_with_dynamic_colors"
                     android:alpha="0.5"
-                    android:textAppearance="?attr/textAppearanceTitleSmall" />
+                    android:text="@string/not_available_with_dynamic_colors"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/switch_amoledMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -296,26 +297,27 @@
         android:id="@+id/txtView_dynamic_colors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dynamic_colors"
-        android:textStyle="bold"
         android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="@string/dynamic_colors"
         android:textAppearance="?attr/textAppearanceTitleLarge"
-        android:layout_margin="16dp" />
+        android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:singleSelection="true"
-        android:layout_height="wrap_content">
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
         <Button
             android:id="@+id/dynamic_on"
+            style="@style/App.ToggleButtons.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/on"
-            app:icon="@drawable/ic_theme"
-            style="@style/App.ToggleButtons.Small" />
+            app:icon="@drawable/ic_theme" />
 
         <Button
             android:id="@+id/dynamic_off"

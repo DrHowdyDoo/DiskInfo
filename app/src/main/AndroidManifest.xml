@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.drhowdydoo.diskinfo">
-
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DiskInfo.Purple">
-        <activity
-            android:name=".activity.LauncherActivity"
-            android:theme="@style/Launcher.Theme"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        android:theme="@style/Theme.DiskInfo"
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="tiramisu">
         <activity
             android:name=".activity.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.App.Splash"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

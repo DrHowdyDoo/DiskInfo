@@ -63,4 +63,6 @@
     <string name="startswith">Начинается с</string>
     <string name="contains">Содержит</string>
     <string name="equals">Равняется</string>
+    <string name="advance_settings">Расширенные настройки</string>
+
 </resources>

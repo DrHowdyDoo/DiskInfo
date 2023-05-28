@@ -62,4 +62,6 @@
     <string name="startswith">で始まる</string>
     <string name="contains">含む</string>
     <string name="equals">同等</string>
+    <string name="advance_settings">高度な設定</string>
+
 </resources>

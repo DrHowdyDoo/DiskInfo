@@ -1,66 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/avisa/.gradle/caches/transforms-3/39597e141a63f827b9014c23e88732dc/transformed/material-1.6.0-alpha01/res/drawable-v23/m3_selection_control_ripple.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-night-v31/ic_launcher_foreground.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-night-v31/ic_pie.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-night/ic_launcher_foreground.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-notnight-v31/ic_launcher_foreground.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-notnight-v31/ic_pie.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-notnight/ic_launcher_foreground.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable-v31/ic_pie.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/checked_circle.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/fastscroll_thumb.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/fastscroll_track.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_baseline_pie_chart_24.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_block.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_circle_24.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_icon.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_pie.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_quarter.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_quarter_down.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_check_24.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_check_circle_24.xml" value="0.3" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_download_for_offline_24.xml" value="0.2925" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_language_24.xml" value="0.2925" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_settings_suggest_24.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_round_translate_24.xml" value="0.2925" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_search.xml" value="0.23914473684210527" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_theme.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_theme_large.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ic_twotone_settings_24.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/launcher_background.xml" value="0.2905" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/ripple_effect.xml" value="0.2925" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/rounded_bottom_sheet.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/splash_screen.xml" value="0.297" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/switch_thumb.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/switch_track.xml" value="0.56796875" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/test.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/drawable/theme_checkboxes.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout-land/bottom_sheet_layout.xml" value="0.25" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout-land/theme_bottom_sheet_layout.xml" value="0.19609375" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/activity_main.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.3819444444444444" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/item_header.xml" value="0.54375" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/item_meminfo.xml" value="0.3347222222222222" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/item_partion_info.xml" value="0.283595922150139" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/item_view.xml" value="0.39861111111111114" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/language_selector_bottom_sheet.xml" value="0.28174235403151066" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/language_selector_item_view.xml" value="0.28174235403151066" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/not_found_screen.xml" value="0.2967079948696024" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/settings_bottom_sheet_layout.xml" value="0.28266913809082483" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/layout/theme_bottom_sheet_layout.xml" value="0.28174235403151066" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2925" />
-        <entry key="..\:/Users/avisa/AndroidStudioProjects/DiskInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2925" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -62,4 +62,6 @@
     <string name="startswith">로 시작</string>
     <string name="contains">포함</string>
     <string name="equals">동일한</string>
+    <string name="advance_settings">고급 설정</string>
+
 </resources>

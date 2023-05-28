@@ -21,9 +21,9 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<Object> storeArrayList;
     private final Context context;
     private final SharedPreferences sharedPref;
+    private ArrayList<Object> storeArrayList;
 
     public RecyclerViewAdapter(Context context, ArrayList<Object> storeArrayList) {
         this.storeArrayList = new ArrayList<>(storeArrayList);
@@ -75,6 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
             PartitionViewHolder partitionViewHolder = (PartitionViewHolder) holder;
 
+
             partitionViewHolder.mountName.setText(curr.getMount_name());
             partitionViewHolder.totalSpace.setText(curr.getTotalSize() + _total);
             partitionViewHolder.chip_fileSystem.setText(curr.getFileSystem());
@@ -103,6 +104,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             headerViewHolder.headerView.setText(header);
         }
 
+
     }
 
     @Override
@@ -110,6 +112,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
         return storeArrayList.size();
     }
 
+    public void updateList(ArrayList<Object> list) {
+        storeArrayList = list;
+        notifyDataSetChanged();
+    }
 
     public static class PartitionViewHolder extends RecyclerView.ViewHolder {
 
@@ -155,11 +161,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
             memTrack = itemView.findViewById(R.id.track_bar_mem);
             chipCache = itemView.findViewById(R.id.chip_cached);
         }
-    }
-
-    public void updateList(ArrayList<Object> list) {
-        storeArrayList = list;
-        notifyDataSetChanged();
     }
 
 }

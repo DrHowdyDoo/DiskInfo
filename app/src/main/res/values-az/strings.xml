@@ -63,4 +63,5 @@
     <string name="startswith">İlə başlayır</string>
     <string name="contains">Ehtiva edir</string>
     <string name="equals">Bərabərdir</string>
+    <string name="advance_settings">Qabaqcıl Parametrlər</string>
 </resources>

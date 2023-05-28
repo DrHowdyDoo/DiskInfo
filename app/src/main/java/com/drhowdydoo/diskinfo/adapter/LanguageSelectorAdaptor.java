@@ -2,6 +2,7 @@ package com.drhowdydoo.diskinfo.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.drhowdydoo.diskinfo.BuildConfig;
 import com.drhowdydoo.diskinfo.R;
 import com.drhowdydoo.diskinfo.bottomsheet.LanguageSelector;
 import com.drhowdydoo.diskinfo.model.LanguageInfo;
@@ -25,10 +25,10 @@ import java.util.Set;
 public class LanguageSelectorAdaptor extends RecyclerView.Adapter<LanguageSelectorAdaptor.LanguageViewHolder> {
 
 
-    private ArrayList<LanguageInfo> languageList;
     private final SharedPreferences sharedPref;
-    private SharedPreferences.Editor editor;
     private final Context context;
+    private ArrayList<LanguageInfo> languageList;
+    private SharedPreferences.Editor editor;
     private LanguageSelector languageSelector;
     private Set<String> installedLangs;
 
@@ -69,12 +69,14 @@ public class LanguageSelectorAdaptor extends RecyclerView.Adapter<LanguageSelect
             holder.languageTranslator.setVisibility(View.GONE);
         }
 
-        if (BuildConfig.DEBUG) holder.download.setVisibility(View.INVISIBLE);
+
+        boolean isDebuggable = (0 != (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
+        if (isDebuggable) holder.download.setVisibility(View.INVISIBLE);
         else {
-            if (!isInstalled) {
-                holder.download.setVisibility(View.VISIBLE);
+            if (isInstalled) {
+                holder.download.setVisibility(View.GONE);
             } else {
-                holder.download.setVisibility(View.INVISIBLE);
+                holder.download.setVisibility(View.VISIBLE);
             }
         }
 

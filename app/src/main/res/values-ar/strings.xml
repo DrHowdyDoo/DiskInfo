@@ -63,4 +63,5 @@
     <string name="startswith">يبدأ بـ</string>
     <string name="contains">يحتوي على</string>
     <string name="equals">يساوي</string>
+    <string name="advance_settings">إعدادات متقدمة</string>
 </resources>

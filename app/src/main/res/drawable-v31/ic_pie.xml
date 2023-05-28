@@ -11,5 +11,5 @@
         android:fillColor="@android:color/system_accent1_100" />
     <path
         android:pathData="M26,52C22.5856,52 19.2047,51.3275 16.0502,50.0209C12.8958,48.7142 10.0295,46.7991 7.6152,44.3848C5.2009,41.9704 3.2857,39.1042 1.9791,35.9498C0.6725,32.7953 -0,29.4144 0,26L26,26L26,52Z"
-        android:fillColor="@android:color/system_accent1_900" />
+        android:fillColor="@android:color/system_accent1_200" />
 </vector>

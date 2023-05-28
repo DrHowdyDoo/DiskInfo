@@ -62,4 +62,5 @@
     <string name="startswith">StartsWith</string>
     <string name="contains">Contains</string>
     <string name="equals">Equals</string>
+    <string name="advance_settings">Advance settings</string>
 </resources>

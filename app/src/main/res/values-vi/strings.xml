@@ -63,4 +63,5 @@
     <string name="startswith">Bắt đầu với</string>
     <string name="contains">Chứa</string>
     <string name="equals">Bằng</string>
+    <string name="advance_settings">Cài đặt nâng cao</string>
 </resources>

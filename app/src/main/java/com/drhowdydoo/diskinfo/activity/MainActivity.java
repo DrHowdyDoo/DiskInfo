@@ -2,6 +2,7 @@ package com.drhowdydoo.diskinfo.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -59,6 +61,7 @@ import com.google.android.play.core.splitcompat.SplitCompat;
 import com.google.android.play.core.splitinstall.SplitInstallManager;
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
 import com.google.android.play.core.splitinstall.SplitInstallRequest;
+import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener;
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus;
 
 import java.io.IOException;
@@ -104,10 +107,22 @@ public class MainActivity extends AppCompatActivity {
     private SplitInstallManager splitInstallManager;
     private Set<String> installedLangs;
     private TextView not_found_text;
+    private SplitInstallStateUpdatedListener splitInstallListener;
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.installSplashScreen(this);
         sharedPref = getSharedPreferences("com.drhowdydoo.diskinfo", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
@@ -115,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
         int mode = sharedPref.getInt("DiskInfo.MODE", -1);
         AppCompatDelegate.setDefaultNightMode(mode);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+            if (mode == -1) mode = uiModeManager.getNightMode();
+            uiModeManager.setApplicationNightMode(mode);
+        }
 
         switch (sharedPref.getString("DiskInfo.Theme", "purple")) {
             case "purple":
@@ -157,13 +177,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             default:
-                if (DynamicColors.isDynamicColorAvailable()) {
-                    DynamicColors.applyIfAvailable(this);
-                } else setTheme(R.style.Theme_DiskInfo_Purple);
+                setTheme(R.style.Theme_DiskInfo_Purple);
                 break;
 
         }
         super.onCreate(savedInstanceState);
+        if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+            DynamicColors.applyToActivityIfAvailable(this);
+        }
         setContentView(R.layout.activity_main);
 
 
@@ -214,15 +235,15 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     if (s.toString().toLowerCase().startsWith("size:"))
-                        searchView.setHelperText("Filter by size");
+                        searchView.setHelperText("Search by size");
                     if (s.toString().toLowerCase().startsWith("fs:"))
-                        searchView.setHelperText("Filter by filesystem");
+                        searchView.setHelperText("Search by filesystem");
                     if (s.toString().toLowerCase().startsWith("free:"))
-                        searchView.setHelperText("Filter by free space");
+                        searchView.setHelperText("Search by free space");
                     if (s.toString().toLowerCase().startsWith("used:"))
-                        searchView.setHelperText("Filter by used space");
+                        searchView.setHelperText("Search by used space");
                     if (s.toString().toLowerCase().startsWith("accesstype:"))
-                        searchView.setHelperText("Filter by access type");
+                        searchView.setHelperText("Search by access type");
                 } else {
                     searchView.setHelperText("");
                 }
@@ -653,15 +674,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void setLocale(Activity activity, String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
-
     public void downloadRes() {
         String languageCode = sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage());
         if (!installedLangs.contains(languageCode)) {
@@ -672,14 +684,24 @@ public class MainActivity extends AppCompatActivity {
                             .addLanguage(Locale.forLanguageTag(sharedPref.getString("DiskInfo.Language", Locale.getDefault().getLanguage())))
                             .build();
             splitInstallManager.startInstall(request);
-            splitInstallManager.registerListener(splitInstallSessionState -> {
-                if (splitInstallSessionState.status() == SplitInstallSessionStatus.INSTALLED) {
-                    String msg = new Locale(languageCode).getDisplayLanguage() + " language is successfully downloaded";
-                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-                    Handler handler = new Handler();
-                    handler.postDelayed(this::recreate, 2500);
+            splitInstallListener = splitInstallSessionState -> {
+                switch (splitInstallSessionState.status()) {
+                    case SplitInstallSessionStatus.INSTALLED:
+                        String msg = new Locale(languageCode).getDisplayLanguage() + " language is successfully installed";
+                        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(this::recreate, 2000);
+                        splitInstallManager.unregisterListener(splitInstallListener);
+                        break;
+                    case SplitInstallSessionStatus.FAILED:
+                        Toast.makeText(this, new Locale(languageCode).getDisplayLanguage() + " language download failed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SplitInstallSessionStatus.DOWNLOADED:
+                        Toast.makeText(this, new Locale(languageCode).getDisplayLanguage() + " language downloaded", Toast.LENGTH_SHORT).show();
+                        break;
                 }
-            });
+            };
+            splitInstallManager.registerListener(splitInstallListener);
         }
     }
 
@@ -723,8 +745,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
-        SplitCompat.install(this);
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        SplitCompat.installActivity(this);
     }
+
 }

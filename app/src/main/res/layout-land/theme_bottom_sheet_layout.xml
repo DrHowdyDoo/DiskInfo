@@ -52,7 +52,7 @@
                     android:focusable="true"
                     app:checkedIconMargin="17dp"
                     app:cardCornerRadius="18dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     tools:ignore="DuplicateSpeakableTextCheck">
 
                     <ImageView
@@ -70,7 +70,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="8dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:checkedIconMargin="17dp"
                     app:cardCornerRadius="18dp"
@@ -92,7 +92,7 @@
                     android:focusable="true"
                     android:layout_margin="8dp"
                     app:checkedIconMargin="17dp"
-                    app:checkedIconTint="@color/white"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="18dp"
                     android:layout_height="wrap_content">
@@ -113,7 +113,7 @@
                     android:focusable="true"
                     android:layout_margin="8dp"
                     app:checkedIconMargin="17dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="18dp"
                     android:layout_height="wrap_content">
@@ -134,7 +134,7 @@
                     android:focusable="true"
                     android:layout_margin="8dp"
                     app:checkedIconMargin="17dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="18dp"
                     android:layout_height="wrap_content">
@@ -155,7 +155,7 @@
                     android:focusable="true"
                     android:layout_margin="8dp"
                     app:checkedIconMargin="17dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="18dp"
                     android:layout_height="wrap_content">
@@ -178,7 +178,7 @@
                     app:checkedIconMargin="17dp"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
-                    app:checkedIconTint="?attr/colorOnPrimary"
+                    app:checkedIcon="@drawable/ic_check"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="16dp"
                     android:layout_height="wrap_content">
@@ -208,6 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                app:selectionRequired="true"
                 app:singleSelection="true">
 
                 <Button
@@ -279,7 +280,7 @@
                     </LinearLayout>
 
 
-                    <com.google.android.material.switchmaterial.SwitchMaterial
+                    <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/switch_amoledMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -306,6 +307,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 app:singleSelection="true"
+                app:selectionRequired="true"
                 android:layout_marginBottom="50dp"
                 android:layout_height="wrap_content">
 

@@ -62,4 +62,6 @@
     <string name="startswith">ZaczynaSięOd</string>
     <string name="contains">Zawiera</string>
     <string name="equals">RównaSię</string>
+    <string name="advance_settings">Zaawansowane ustawienia</string>
+
 </resources>

@@ -19,22 +19,32 @@
     </style>
 
 
-    <style name="App.Switches" parent="Widget.Material3.CompoundButton.Switch">
-        <item name="track">@drawable/switch_track</item>
-        <item name="android:thumb">@drawable/switch_thumb</item>
-        <item name="thumbTint">@color/custom_switch_thumb_tint</item>
-        <item name="trackTint">@color/custom_switch_track_tint</item>
-    </style>
-
-    <style name="ShapeAppearance.Overlay.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
 
-    <style name="ShapeAppearance.MyApp.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">30dp</item>
     </style>
 
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="Theme.App.Splash" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.DiskInfo.Purple</item>
+    </style>
+
+    <style name="App" parent="Widget.Material3.MaterialDivider"/>
 
 </resources>

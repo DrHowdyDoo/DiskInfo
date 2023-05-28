@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_language_selector"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/parent_language_selector"
-    android:foreground="@drawable/ripple_effect"
+    android:layout_marginBottom="18dp"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="@drawable/ripple_effect"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:layout_marginBottom="18dp">
+    android:paddingBottom="8dp">
 
     <ImageView
         android:id="@+id/ic_checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:src="@drawable/ic_round_check_circle_24"
+        android:src="@drawable/ic_check_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?colorOnBackground" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="16dp"
         android:gravity="start"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ic_checked"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,9 +38,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Russian"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textSize="18sp"
-            android:textAppearance="?attr/textAppearanceSubtitle1" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_language_display_name"
@@ -52,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.6"
-            android:text="Khan"
             android:drawablePadding="4dp"
+            android:text="Khan"
             app:drawableStartCompat="@drawable/ic_round_translate_24" />
 
 

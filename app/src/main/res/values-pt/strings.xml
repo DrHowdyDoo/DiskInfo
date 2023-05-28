@@ -62,4 +62,6 @@
     <string name="startswith">Começa com</string>
     <string name="contains">contém</string>
     <string name="equals">igual</string>
+    <string name="advance_settings">Configurações avançado</string>
+
 </resources>

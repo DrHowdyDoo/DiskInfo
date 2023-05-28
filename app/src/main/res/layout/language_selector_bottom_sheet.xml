@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="22dp"
-    android:paddingTop="32dp">
+    android:paddingTop="32dp"
+    android:paddingBottom="22dp">
 
     <TextView
         android:id="@+id/txt_title"
@@ -22,13 +22,13 @@
         android:id="@+id/txt_helper_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="18dp"
-        android:textAppearance="?attr/textAppearanceSubtitle2"
-        android:gravity="center"
         android:alpha="0.5"
+        android:gravity="center"
         android:text="@string/language_help_text"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title" />
@@ -37,9 +37,9 @@
         android:id="@+id/title_divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_helper_text" />
@@ -52,10 +52,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:clipToPadding="false"
-        app:layout_constrainedHeight="true"
         android:overScrollMode="ifContentScrolls"
         android:paddingTop="42dp"
         android:scrollbars="none"
+        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

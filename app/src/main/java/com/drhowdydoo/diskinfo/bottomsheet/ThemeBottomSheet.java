@@ -25,8 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.color.DynamicColors;
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
@@ -38,7 +37,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     private MaterialButtonToggleGroup dynamicColors, appTheme;
     private MaterialButton t1, t2, x1, x2, x3;
     private TextView dynamicColorsTitle, amoledModeBody;
-    private SwitchMaterial amoledMode;
+    private MaterialSwitch amoledMode;
 
     private ImageView imgPurple, imgRed, imgYellow, imgGreen, imgOrange, imgPink;
     private boolean isAmoledModeChanged = false, prevState;
@@ -61,6 +60,15 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         themeDynamic = v.findViewById(R.id.theme_dynamic);
         themeOrange = v.findViewById(R.id.theme_orange);
         themePink = v.findViewById(R.id.theme_pink);
+
+        themePurple.setCheckedIconTint(null);
+        themeRed.setCheckedIconTint(null);
+        themeYellow.setCheckedIconTint(null);
+        themeGreen.setCheckedIconTint(null);
+        themeDynamic.setCheckedIconTint(null);
+        themeOrange.setCheckedIconTint(null);
+        themePink.setCheckedIconTint(null);
+
 
         imgPurple = v.findViewById(R.id.img_purple);
         imgRed = v.findViewById(R.id.img_red);
@@ -113,6 +121,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
             dynamicColorsTitle.setVisibility(View.GONE);
         } else {
             if (sharedPref.getBoolean("DiskInfo.DynamicColors", false)) {
+                System.out.println("Dynamic toggle restore : ");
                 dynamicColors.check(R.id.dynamic_on);
                 themeDynamic.setVisibility(View.VISIBLE);
                 themeDynamic.setChecked(true);
@@ -151,6 +160,7 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         }
 
         switch (sharedPref.getInt("DiskInfo.MODE", -1)) {
+
             case -1:
                 appTheme.check(R.id.theme_auto);
                 break;
@@ -166,17 +176,18 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
 
 
         appTheme.addOnButtonCheckedListener(((group, checkedId, isChecked) -> {
-            if (checkedId == R.id.theme_auto) {
+            if (checkedId == R.id.theme_auto && isChecked) {
                 editor.putInt("DiskInfo.MODE", -1).apply();
                 dismiss();
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                restart();
             }
-            if (checkedId == R.id.theme_light) {
+            if (checkedId == R.id.theme_light && isChecked) {
                 editor.putInt("DiskInfo.MODE", 1).apply();
                 dismiss();
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
-            if (checkedId == R.id.theme_dark) {
+            if (checkedId == R.id.theme_dark && isChecked) {
                 editor.putInt("DiskInfo.MODE", 2).apply();
                 dismiss();
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -184,17 +195,17 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
         }));
 
         dynamicColors.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
-            if (checkedId == R.id.dynamic_on) {
+            if (checkedId == R.id.dynamic_on && isChecked) {
                 editor.putBoolean("DiskInfo.DynamicColors", true).apply();
                 unCheckAll();
                 dynamicColors.check(R.id.dynamic_on);
                 themeDynamic.setVisibility(View.VISIBLE);
                 themeDynamic.setChecked(true);
                 editor.putString("DiskInfo.Theme", "dynamic").apply();
-                DynamicColors.applyIfAvailable(requireActivity());
+                dismiss();
+                restart();
             }
-            if (checkedId == R.id.dynamic_off) {
-
+            if (checkedId == R.id.dynamic_off && isChecked) {
                 editor.putBoolean("DiskInfo.DynamicColors", false).apply();
                 editor.putString("DiskInfo.Theme", "purple").apply();
                 themePurple.setChecked(true);
@@ -236,60 +247,49 @@ public class ThemeBottomSheet extends BottomSheetDialogFragment implements View.
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.theme_purple:
-                unCheckAll();
-                if (!themePurple.isChecked()) themePurple.setChecked(true);
-                editor.putString("DiskInfo.Theme", "purple").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_red:
-                unCheckAll();
-                if (!themeRed.isChecked()) themeRed.setChecked(true);
-                editor.putString("DiskInfo.Theme", "red").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_yellow:
-                unCheckAll();
-                if (!themeYellow.isChecked()) themeYellow.setChecked(true);
-                editor.putString("DiskInfo.Theme", "yellow").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_green:
-                unCheckAll();
-                if (!themeGreen.isChecked()) themeGreen.setChecked(true);
-                editor.putString("DiskInfo.Theme", "green").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_orange:
-                unCheckAll();
-                if (!themeOrange.isChecked()) themeOrange.setChecked(true);
-                editor.putString("DiskInfo.Theme", "orange").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
-
-            case R.id.theme_pink:
-                unCheckAll();
-                if (!themePink.isChecked()) themePink.setChecked(true);
-                editor.putString("DiskInfo.Theme", "pink").apply();
-                editor.putBoolean("DiskInfo.DynamicColors", false).apply();
-                dismiss();
-                restart();
-                break;
+        int id = v.getId();
+        if (id == R.id.theme_purple) {
+            unCheckAll();
+            if (!themePurple.isChecked()) themePurple.setChecked(true);
+            editor.putString("DiskInfo.Theme", "purple").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
+        } else if (id == R.id.theme_red) {
+            unCheckAll();
+            if (!themeRed.isChecked()) themeRed.setChecked(true);
+            editor.putString("DiskInfo.Theme", "red").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
+        } else if (id == R.id.theme_yellow) {
+            unCheckAll();
+            if (!themeYellow.isChecked()) themeYellow.setChecked(true);
+            editor.putString("DiskInfo.Theme", "yellow").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
+        } else if (id == R.id.theme_green) {
+            unCheckAll();
+            if (!themeGreen.isChecked()) themeGreen.setChecked(true);
+            editor.putString("DiskInfo.Theme", "green").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
+        } else if (id == R.id.theme_orange) {
+            unCheckAll();
+            if (!themeOrange.isChecked()) themeOrange.setChecked(true);
+            editor.putString("DiskInfo.Theme", "orange").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
+        } else if (id == R.id.theme_pink) {
+            unCheckAll();
+            if (!themePink.isChecked()) themePink.setChecked(true);
+            editor.putString("DiskInfo.Theme", "pink").apply();
+            editor.putBoolean("DiskInfo.DynamicColors", false).apply();
+            dismiss();
+            restart();
         }
 
     }

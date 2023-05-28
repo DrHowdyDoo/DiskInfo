@@ -64,5 +64,6 @@
     <string name="startswith">Dimulai dengan</string>
     <string name="contains">berisi</string>
     <string name="equals">setara</string>
+    <string name="advance_settings">Pengaturan lanjutan</string>
 
 </resources>
