@@ -16,22 +16,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        create("release") {
-            storeFile = file("E:\\Backup\\AndroidProjects\\Keys\\exo.jks")
-            storePassword = "virgo1999"
-            keyAlias = "frozen"
-            keyPassword = "virgo1999"
-        }
-    }
-
     buildTypes {
-        release {
-            signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-
-        }
         debug {
             isMinifyEnabled = false
         }
